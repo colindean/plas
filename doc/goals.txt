@@ -1,0 +1,20 @@
+=Goals=
+
+==Modules==
+
+===Initial===
+- Sign-up
+- Event Registration
+- Event Seating
+- Announcements
+- Shoutbox
+
+===Planned===
+- Tournament Registration and Scheduling
+- Tournament Bracket generation
+- Tech support
+
+==Running environments==
+
+PLAS should be able to run in both WEBrick and Mongrel as servers, as well as on Heroku. For smaller events, WEBrick will suffice, eventually moving up to Mongrel. Heroku is necessary for web-based deployments.
+
