@@ -1,0 +1,75 @@
+<p class="notice"><%= notice %></p>
+
+<p>
+  <b>Given name:</b>
+  <%= @user.given_name %>
+</p>
+
+<p>
+  <b>Family name:</b>
+  <%= @user.family_name %>
+</p>
+
+<p>
+  <b>Handle:</b>
+  <%= @user.handle %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @user.email %>
+</p>
+
+<p>
+  <b>Password:</b>
+  <%= @user.password %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @user.date %>
+</p>
+
+<p>
+  <b>Picture:</b>
+  <%= @user.picture %>
+</p>
+
+<p>
+  <b>Enabled:</b>
+  <%= @user.enabled %>
+</p>
+
+<p>
+  <b>Gaming group:</b>
+  <%= @user.gaming_group %>
+</p>
+
+<p>
+  <b>Date arrival:</b>
+  <%= @user.date_arrival %>
+</p>
+
+<p>
+  <b>Date departure:</b>
+  <%= @user.date_departure %>
+</p>
+
+<p>
+  <b>Gamer type:</b>
+  <%= @user.gamer_type %>
+</p>
+
+<p>
+  <b>Birthdate:</b>
+  <%= @user.birthdate %>
+</p>
+
+<p>
+  <b>Gender:</b>
+  <%= @user.gender %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

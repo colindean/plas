@@ -14,6 +14,15 @@
 - Tournament Bracket generation
 - Tech support
 
+==Target browsers==
+Target browsers will be the newest versions of the most HTML5 compliant browsers:
+- Firefox 4
+- Chrome 6
+
+Browsers which should work but do not require testing are Safari and Opera.
+
+Spend no time testing Internet Explorer. Advanced features will not work on it. If it works, it works. Once PLAS is released publicly, the community can fix IE bugs if they so desire.
+
 ==Running environments==
 
 PLAS should be able to run in both WEBrick and Mongrel as servers, as well as on Heroku. For smaller events, WEBrick will suffice, eventually moving up to Mongrel. Heroku is necessary for web-based deployments.

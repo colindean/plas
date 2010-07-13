@@ -1,0 +1,33 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  given_name: MyString
+  family_name: MyString
+  handle: MyString
+  email: MyString
+  password: MyString
+  date: 2010-07-12 22:02:42
+  picture: 
+  enabled: false
+  gaming_group: MyString
+  date_arrival: 2010-07-12 22:02:42
+  date_departure: 2010-07-12 22:02:42
+  gamer_type: 1
+  birthdate: 2010-07-12
+  gender: MyString
+
+two:
+  given_name: MyString
+  family_name: MyString
+  handle: MyString
+  email: MyString
+  password: MyString
+  date: 2010-07-12 22:02:42
+  picture: 
+  enabled: false
+  gaming_group: MyString
+  date_arrival: 2010-07-12 22:02:42
+  date_departure: 2010-07-12 22:02:42
+  gamer_type: 1
+  birthdate: 2010-07-12
+  gender: MyString
