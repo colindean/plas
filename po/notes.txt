@@ -1,0 +1,10 @@
+Using fast_gettext from grosser.
+
+Relevant links:
+
+http://github.com/grosser/gettext_i18n_rails
+http://github.com/grosser/fast_gettext
+
+http://rails-i18n.org/
+
+http://guides.rubyonrails.org/i18n.html

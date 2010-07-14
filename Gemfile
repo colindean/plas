@@ -24,8 +24,5 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # group :test do
 #   gem 'webrat'
 # end
-gem 'locale'
-gem 'locale_rails'
-gem 'gettext'
-gem 'gettext_activerecord'
-gem 'gettext_rails'
+gem "fast_gettest"
+gem '>=1.9.3', "gettext", :require => false
