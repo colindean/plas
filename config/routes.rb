@@ -1,5 +1,7 @@
 Plas::Application.routes.draw do |map|
-  resources :users
+  resources :users do
+		resources :comments
+	end
 
 	root :to => "home#index"
 
