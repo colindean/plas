@@ -9,6 +9,7 @@ one:
   region: MyString
   country: MyString
   postcode: MyString
+	phone: MyString
   type: 
   primary: false
   user: 
@@ -22,6 +23,7 @@ two:
   region: MyString
   country: MyString
   postcode: MyString
+	phone: MyString
   type: 
   primary: false
   user: 
