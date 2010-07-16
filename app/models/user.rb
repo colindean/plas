@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
 			:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 	validates_inclusion_of :gender, :in => %w{ m f male female guy girl dude dudette transsexual t hermaphrodite h }
 	
+	def self.find_by_handle(handle)
+		find(:all, :conditions => ["LOWER(handle) = ?", handle.downcase])
+	end
+	
 end

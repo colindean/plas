@@ -3,6 +3,8 @@ Plas::Application.routes.draw do |map|
 
 	root :to => "home#index"
 
+	match 'user/:handle' => 'users#show'
+
   #get "home/index"
 
   # The priority is based upon order of creation:

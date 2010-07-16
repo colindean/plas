@@ -13,17 +13,4 @@ rescue LoadError
 	puts "gettext_i18n_rails is not installed, you should probably run 'bundle install'"
 end
 
-desc "Create .mo files for gettext i18n/l10n"
-task :makemo do
-	GetText.create_mofiles
-end
-desc "Update pot/po files to match new version."
-take :updatepo do
-	PLAS_TEXT_DOMAIN = "plas"
-	PLAS_VERSION = "plas 2010"
-	GetText.update_pofiles(PLAS_TEXT_DOMAIN, 
-												 Dir.glob("{app,lib}/**/*.{rb,rhtml}"),
-												 PLAS_VERSION)
-end
-
 Rails::Application.load_tasks

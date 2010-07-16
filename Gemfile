@@ -24,5 +24,6 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # group :test do
 #   gem 'webrat'
 # end
-gem "fast_gettest"
-gem '>=1.9.3', "gettext", :require => false
+gem "fast_gettext"
+gem "gettext",">=1.9.3", :require => false
+gem 'gettext_i18n_rails', :git => 'git://github.com/grosser/gettext_i18n_rails.git'
