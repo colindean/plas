@@ -10,8 +10,19 @@ class User < ActiveRecord::Base
 
 	has_many :addresses
 	
+	def self.find_one_by_handle(handle)
+		@l = find(:all, :conditions => ["LOWER(handle) = ?", handle.downcase])
+		if @l.length > 1
+			@l
+		else
+			@l[0]
+		end
+	end
 	def self.find_by_handle(handle)
 		find(:all, :conditions => ["LOWER(handle) = ?", handle.downcase])
 	end
-	
+	def to_param
+		#handle.downcase
+		id
+	end	
 end

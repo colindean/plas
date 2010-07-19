@@ -13,7 +13,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
+		#begin
     @user = User.find(params[:id])
+		#rescue
+		#@user = User.find_one_by_handle(params[:handle])
+		#end
 
     respond_to do |format|
       format.html # show.html.erb

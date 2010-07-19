@@ -1,11 +1,13 @@
 Plas::Application.routes.draw do |map|
-  resources :users do
+	
+#	match 'users/:handle' => 'users#show'
+  
+	resources :users do
 		resources :comments
 	end
 
 	root :to => "home#index"
 
-	match 'user/:handle' => 'users#show'
 
   #get "home/index"
 
