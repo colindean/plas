@@ -27,3 +27,4 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 gem "fast_gettext"
 gem "gettext",">=1.9.3", :require => false
 gem 'gettext_i18n_rails', :git => 'git://github.com/grosser/gettext_i18n_rails.git'
+gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
