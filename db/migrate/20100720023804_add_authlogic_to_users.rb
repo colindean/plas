@@ -1,9 +1,9 @@
 class AddAuthlogicToUsers < ActiveRecord::Migration
   def self.up
-    add_column :users, :password_salt, :string, :null => false
-    add_column :users, :persistence_token, :string, :null => false
-    add_column :users, :single_access_token, :string, :null => false
-    add_column :users, :perishable_token, :string, :null => false
+    add_column :users, :password_salt, :string, :null => false, :default => 'assalted'
+    add_column :users, :persistence_token, :string, :null => false, :default=> 'token'
+    add_column :users, :single_access_token, :string, :null => false, :default => 'token'
+    add_column :users, :perishable_token, :string, :null => false, :default => 'token'
     add_column :users, :login_count, :integer, :null => false, :default => 0
     add_column :users, :failed_login_count, :integer, :null => false, :default => 0
     add_column :users, :last_request_at, :datetime

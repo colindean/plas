@@ -1,0 +1,60 @@
+body {
+	padding: 0.2em;
+	font-size: 16px;
+	font-family: "Droid Sans", Arial, sans-serif;
+}
+
+body {
+	height:auto !important;
+	margin:0 auto -4em;
+	min-height:100%;
+	position:relative;
+	width:990px;
+}
+
+nav.inline ul {
+	list-item-style: none;
+	display: inline;
+}
+
+nav.inline ul li {
+	list-item-style: none;
+	display: inline;
+}
+section#header {
+	margin-bottom: 1em;
+}
+section#header nav#user {
+	position: absolute;
+	top: 0.2em;
+	right: 0.2em;
+}
+section#header nav#modules {
+	clear: both;
+}
+section#header header h1 {
+	float: left;
+	font-size: 5em;
+}
+
+section#header header h2 {
+	font-size: 0.8em;
+	font-style: italic;
+	font-color: gray;
+}
+section#content {
+	margin-bottom:5em;
+}
+br.clear-footer {
+	clear:both;
+	margin:1.5em;
+}
+
+footer {
+	bottom:0;
+	clear:both;
+	font-size:85%;
+	height:4em;
+	position:absolute;
+	/*width:100%;*/
+}

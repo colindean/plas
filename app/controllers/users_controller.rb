@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
-	before_filter :authenticate, :except => [:index, :show, :create, :new]
+	before_filter :require_no_user, :only => [:new, :create, :show]
+	before_filter :require_user, :only => [:edit, :update]
 
   # GET /users
   # GET /users.xml
@@ -41,7 +42,12 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    @u = User.find(params[:id])
+		if @u == @current_user
+			@user = @current_user
+		else
+			render :action => :show
+		end
   end
 
   # POST /users

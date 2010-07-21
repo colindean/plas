@@ -6,6 +6,7 @@ Plas::Application.routes.draw do |map|
 		resources :comments
 	end
 
+	resources :user_session
 	root :to => "home#index"
 
 
