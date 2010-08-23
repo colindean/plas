@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
-	before_filter :require_no_user, :only => [:new, :create, :show]
-	before_filter :require_user, :only => [:edit, :update]
+#	before_filter :require_no_user, :only => [:new, :create, :show]
+#	before_filter :require_user, :only => [:edit, :update]
 
   # GET /users
   # GET /users.xml

@@ -5,3 +5,4 @@ tmp/**/*
 Gemfile.lock
 gettext/
 vendor/cache/
+public/stylesheets/scaffold.css

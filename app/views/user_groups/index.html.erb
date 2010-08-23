@@ -1,0 +1,23 @@
+<h1>Listing user_groups</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @user_groups.each do |user_group| %>
+  <tr>
+    <td><%= user_group.name %></td>
+    <td><%= link_to 'Show', user_group %></td>
+    <td><%= link_to 'Edit', edit_user_group_path(user_group) %></td>
+    <td><%= link_to 'Destroy', user_group, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New User group', new_user_group_path %>

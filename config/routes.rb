@@ -1,4 +1,8 @@
 Plas::Application.routes.draw do |map|
+  resources :permissions
+
+  resources :user_groups
+
 	
 #	match 'users/:handle' => 'users#show'
   
@@ -7,6 +11,8 @@ Plas::Application.routes.draw do |map|
 	end
 
 	resources :user_session
+	match 'login' => 'user_session#new'
+
 	root :to => "home#index"
 
 
