@@ -1,9 +1,9 @@
 Plas::Application.routes.draw do |map|
 	resource :account, :controller => "users"
 	resources :users
-	resource :user_session
+	resource :user_sessions
 #	match 'users/:handle' => 'users#show'
-	match '/login' => 'user_session#new'
+	match '/login' => 'user_sessions#new'
   resources :permissions
   resources :user_groups
 	root :to => "home#index"
