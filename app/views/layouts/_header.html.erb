@@ -1,7 +1,7 @@
 <section id="header">
 <nav id="user" class="inline">
 <ul>
-<li>[logged in username]</li>
+<li><%= @current_user ? @current_user.handle : _('You are not logged in') %> </li>
 <li><%= link_to _("Login"), user_sessions_path %></li>
 </ol>
 </nav>

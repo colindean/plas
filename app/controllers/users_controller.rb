@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_filter :require_no_user, :only => [:new, :create]
-	before_filter :require_user, :only => [:edit, :update, :show]
+	before_filter :require_user, :only => [:show, :edit, :update]
 
   # GET /users
   # GET /users.xml
@@ -17,7 +17,11 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
 		#begin
-    @user = User.find_by_id(params[:id])
+		if params[:id]
+    	@user = User.find_by_id(params[:id])
+		else
+			@user = @current_user
+		end
 		#rescue
 		#@user = User.find_one_by_handle(params[:handle])
 		#end
