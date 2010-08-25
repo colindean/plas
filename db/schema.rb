@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100720023804) do
+ActiveRecord::Schema.define(:version => 20100721033218) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -24,6 +24,20 @@ ActiveRecord::Schema.define(:version => 20100720023804) do
     t.boolean  "primary"
     t.string   "phone"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "permissions", :force => true do |t|
+    t.string   "name",                              :null => false
+    t.string   "code",                              :null => false
+    t.string   "category",   :default => "General", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_groups", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
