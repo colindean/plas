@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-
-#	before_filter :require_no_user, :only => [:new, :create, :show]
-#	before_filter :require_user, :only => [:edit, :update]
+	before_filter :require_no_user, :only => [:new, :create]
+	before_filter :require_user, :only => [:edit, :update, :show]
 
   # GET /users
   # GET /users.xml
@@ -18,7 +17,7 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
 		#begin
-    @user = User.find(params[:id])
+    @user = User.find_by_id(params[:id])
 		#rescue
 		#@user = User.find_one_by_handle(params[:handle])
 		#end
@@ -57,7 +56,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to(@user, :notice => 'User was successfully created.') }
+        format.html { 
+					redirect_to(account_url, :notice => _('Your account  was successfully created.')) 
+				}
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
@@ -69,11 +70,16 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    @user = User.find(params[:id])
+    @u = User.find(params[:id])
+		if @u == @current_user
+			@user = @current_user
+		else
+			redirect_to(account_url, :notice => _("You cannot update someone who isn't you!"))
+		end
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+        format.html { redirect_to(account_url, :notice => _('Your account was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -85,7 +91,13 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    @user = User.find(params[:id])
+    @u = User.find(params[:id])
+		if @u == @current_user
+			@user = @current_user
+		else
+			redirect_to(account_url, :notice => _("You cannot destroy someone who isn't you!"))
+		end
+
     @user.destroy
 
     respond_to do |format|

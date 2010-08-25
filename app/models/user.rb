@@ -10,10 +10,7 @@ class User < ActiveRecord::Base
 
 	has_many :addresses, :dependent => :destroy
 	
-	acts_as_authentic do |c|
-		c.validate_email_field true
-	end
-
+	acts_as_authentic
 
 	def self.find_one_by_handle(handle)
 		@l = find(:all, :conditions => ["LOWER(handle) = ?", handle.downcase])

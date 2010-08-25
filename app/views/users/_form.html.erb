@@ -27,9 +27,13 @@
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :password %><br />
-    <%= f.text_field :password %>
+    <%= f.label :password, form.object.new_record? ? nil : "Change password" %><br />
+    <%= f.password_field :password %>
   </div>
+	<div class="field">
+		<%= form.label :password_confirmation %><br/>
+		<%= form.password_field :password_confirmation %>
+	</div>
   <div class="field">
     <%= f.label :date %><br />
     <%= f.datetime_select :date %>
