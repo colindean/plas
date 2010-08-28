@@ -29,4 +29,10 @@ class User < ActiveRecord::Base
 		#handle.downcase
 		id
 	end	
+
+	def can(permission)
+		#TODO: Make permission stuff resolve
+		true
+	end
+	
 end

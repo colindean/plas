@@ -100,6 +100,7 @@
   <%=h @user.current_login_ip %>
 </p>
 
-<%= link_to 'Edit account', edit_account_path %> |
-<%= link_to ('Edit '+@user.handle), edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%=
+render :partial => 'users/tools'
+%>
+

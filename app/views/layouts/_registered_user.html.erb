@@ -1,0 +1,5 @@
+<ul class="registered-user">
+	<li><%= Time.now %></li>
+	<li><%= link_to @current_user.handle, account_url %></li>
+	<li><%= link_to _('Logout'), logout_path %></li>
+</ul>

@@ -45,7 +45,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @u = User.find(params[:id])
+		@u = params[:id] ? User.find(params[:id]) : @current_user
 		if @u == @current_user
 			@user = @current_user
 		else
@@ -95,14 +95,12 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    @u = User.find(params[:id])
-		if @u == @current_user
-			@user = @current_user
+    @user = User.find(params[:id])
+		if @current_user.can('users.administrate')
+    	@user.destroy
 		else
 			redirect_to(account_url, :notice => _("You cannot destroy someone who isn't you!"))
 		end
-
-    @user.destroy
 
     respond_to do |format|
       format.html { redirect_to(users_url) }

@@ -1,9 +1,12 @@
 <section id="header">
 <nav id="user" class="inline">
-<ul>
-<li><%= @current_user ? @current_user.handle : _('You are not logged in') %> </li>
-<li><%= link_to _("Login"), user_sessions_path %></li>
-</ol>
+<%=
+if @current_user
+	render :partial => "layouts/registered_user"
+else
+	render :partial => "layouts/guest_user"
+end
+%>
 </nav>
 <header>
 <h1><%= _("Pitt.co") %></h1>
