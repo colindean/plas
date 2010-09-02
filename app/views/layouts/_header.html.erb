@@ -1,7 +1,7 @@
 <section id="header">
 <nav id="user" class="inline">
 <%=
-if @current_user
+if current_user
 	render :partial => "layouts/registered_user"
 else
 	render :partial => "layouts/guest_user"
