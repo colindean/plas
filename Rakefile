@@ -13,4 +13,4 @@ rescue LoadError
 	puts "gettext_i18n_rails is not installed, you should probably run 'bundle install'"
 end
 
-Rails::Application.load_tasks
+Plas::Application.load_tasks

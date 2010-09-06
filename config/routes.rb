@@ -1,10 +1,11 @@
-Plas::Application.routes.draw do |map|
+Plas::Application.routes.draw do
+# http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/
 	resource :account, :controller => "users"
 	resources :users
 	resource :user_sessions
 #	match 'users/:handle' => 'users#show'
-	match '/login' => 'user_sessions#new'
-	match '/logout' => 'user_sessions#destroy'
+	match '/login' => 'user_sessions#new', :as => 'login'
+	match '/logout' => 'user_sessions#destroy', :as => 'logout'
   resources :permissions
   resources :user_groups
 	root :to => "home#index"
