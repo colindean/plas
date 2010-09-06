@@ -11,11 +11,10 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :given_name %><br />
+    <%= f.label :given_name %>
     <%= f.text_field :given_name %>
-  </div>
-  <div class="field">
-    <%= f.label :family_name %><br />
+		<br/>
+    <%= f.label :family_name %>
     <%= f.text_field :family_name %>
   </div>
   <div class="field">
@@ -31,18 +30,6 @@
     <%= f.password_field :password %>
   </div>
   <div class="field">
-    <%= f.label :date %><br />
-    <%= f.datetime_select :date %>
-  </div>
-  <div class="field">
-    <%= f.label :picture %><br />
-    <%= f.text_field :picture %>
-  </div>
-  <div class="field">
-    <%= f.label :enabled %><br />
-    <%= f.check_box :enabled %>
-  </div>
-  <div class="field">
     <%= f.label :gaming_group %><br />
     <%= f.text_field :gaming_group %>
   </div>
@@ -56,17 +43,20 @@
   </div>
   <div class="field">
     <%= f.label :gamer_type %><br />
-    <%= f.text_field :gamer_type %>
+<% #TODO: i18n and put into User %>
+    <%= f.select :gamer_type, %w[computer console both] %>
+
   </div>
   <div class="field">
     <%= f.label :birthdate %><br />
-    <%= f.date_select :birthdate %>
+    <%= f.date_select :birthdate, :start_year => Time.now.year - 100, 
+																	:end_year => Time.now.year - 13,
+																	:default => Time.now - 18.years %>
+		<%= _('If you are younger than this date, you may need your parents\' signature on the waiver to enter the event. No exceptions are granted to this rule.') %>
   </div>
   <div class="field">
     <%= f.label :gender %><br />
-    <%= f.text_field :gender %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+<% #TODO: i18n and put into User %>
+    <%= f.select :gender, %w[male female hermaphrodite transsexual pansexual adventurous], :include_blank => _('Prefer not to answer') %>
   </div>
 <% end %>

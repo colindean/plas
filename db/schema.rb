@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100825021314) do
+ActiveRecord::Schema.define(:version => 20100906175926) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -58,9 +58,6 @@ ActiveRecord::Schema.define(:version => 20100825021314) do
     t.string   "family_name"
     t.string   "handle"
     t.string   "email"
-    t.datetime "date"
-    t.binary   "picture"
-    t.boolean  "enabled"
     t.string   "gaming_group"
     t.datetime "date_arrival"
     t.datetime "date_departure"
@@ -81,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20100825021314) do
     t.string   "current_login_ip"
     t.string   "last_login_ip"
     t.string   "crypted_password",    :default => "",         :null => false
+    t.boolean  "disabled",            :default => false,      :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
