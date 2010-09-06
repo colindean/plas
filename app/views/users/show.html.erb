@@ -26,21 +26,6 @@
 </p>
 
 <p>
-  <b>Date:</b>
-  <%= @user.date %>
-</p>
-
-<p>
-  <b>Picture:</b>
-  <%= @user.picture %>
-</p>
-
-<p>
-  <b>Enabled:</b>
-  <%= @user.enabled %>
-</p>
-
-<p>
   <b>Gaming group:</b>
   <%= @user.gaming_group %>
 </p>
@@ -69,6 +54,14 @@
   <b>Gender:</b>
   <%= @user.gender %>
 </p>
+
+<h2>Internals</h2>
+
+<p>
+	<b>Disabled?</b>
+	<%=h @user.disabled %>
+</p>
+
 
 <p>
   <b>Login count:</b>

@@ -1,4 +1,3 @@
-<%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
   <div id="errorExplanation">
     <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -59,4 +58,3 @@
 <% #TODO: i18n and put into User %>
     <%= f.select :gender, %w[male female hermaphrodite transsexual pansexual adventurous], :include_blank => _('Prefer not to answer') %>
   </div>
-<% end %>
