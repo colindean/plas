@@ -25,10 +25,6 @@ class User < ActiveRecord::Base
 	def self.find_by_handle(handle)
 		find(:all, :conditions => ["LOWER(handle) = ?", handle.downcase])
 	end
-	def to_param
-		#handle.downcase
-		id
-	end	
 
 	def can(permission)
 		#TODO: Make permission stuff resolve
