@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
 	validates_format_of :email, 
 			:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-	validates_inclusion_of :gender, :in => %w{ m f male female guy girl dude dudette transsexual t hermaphrodite h }
+	validates :gender, :presence => true
 
 	has_many :addresses, :dependent => :destroy
 	
