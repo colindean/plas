@@ -29,8 +29,18 @@ class User < ActiveRecord::Base
 		true
 	end
 
+	def has_handle
+		return (handle and not handle.empty?)
+	end
+
 	def display_name
-		return handle if handle and not handle.empty?
+		return handle if has_handle
 		return "%s %s" % [given_name, family_name]	
 	end
+
+	def full_name
+		return '%s "%s" %s' % [given_name, handle, family_name] if has_handle
+		return display_name
+	end
+
 end
