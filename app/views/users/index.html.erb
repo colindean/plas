@@ -1,7 +1,7 @@
 <h1>Listing users</h1>
 
 <% @users.each do |user| %>
-<li><%= link_to user.handle, user %> - <%= user.given_name %> <%= user.family_name %> <%= _('of') %> <%= user.gaming_group %></li>
+<li><%= link_to user.display_name, user %> <%= _('of %s') % user.gaming_group if user.gaming_group %> </li>
 <% end %>
 <br />
 

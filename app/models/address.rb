@@ -4,4 +4,6 @@ class Address < ActiveRecord::Base
 	EMERGENCY = 3
 	
   belongs_to :user
+
+	
 end

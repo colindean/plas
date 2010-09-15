@@ -1,4 +1,4 @@
-<% if @current_user.can('users.administrate') %>
+<% if current_user.can('users.administrate') %>
 <section id="user-admin-tools">
 	<header>
 		<h1><%= _('Adminster %s') % @user.handle  %></h1>

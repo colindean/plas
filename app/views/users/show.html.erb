@@ -1,29 +1,26 @@
 <p class="notice"><%= notice %></p>
 
-<p>
-  <b>Given name:</b>
-  <%= @user.given_name %>
-</p>
+<dl class="user-info">
+	<dt><%= _('Name') %></dt>
+	<dd><%= @user.given_name %> <%= @user.family_name %></dd>
 
-<p>
-  <b>Family name:</b>
-  <%= @user.family_name %>
-</p>
+	<dt><%= _('Handle') %></dt>
+  <dd>
+		<%= 
+		if @user.handle and not @user.handle.empty?
+ 			@user.handle
+		else 
+			_('This user has not set a handle :(') 
+		end 
+		%>
+	</dd>
 
-<p>
-  <b>Handle:</b>
-  <%= @user.handle %>
-</p>
+  <dt><%= _('Email') %></dt>
+  <dd><%= @user.email %></dd>
 
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
+</dl>
 
-<p>
-  <b>Password:</b>
-  <%= @user.crypted_password %>
-</p>
+<% TODO: finishing moving these to the above format %>
 
 <p>
   <b>Gaming group:</b>
@@ -55,6 +52,7 @@
   <%= @user.gender %>
 </p>
 
+<% if current_user.can('users.administrate') %>
 <h2>Internals</h2>
 
 <p>
@@ -92,6 +90,7 @@
   <b>Current login ip:</b>
   <%=h @user.current_login_ip %>
 </p>
+<% end %>
 
 <%=
 render :partial => 'users/tools'

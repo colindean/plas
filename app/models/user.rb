@@ -1,12 +1,10 @@
 class User < ActiveRecord::Base
 	validates :given_name, :presence => true, :length => { :minimum => 1 }
 	validates :family_name, :presence => true, :length => { :minimum => 1 }
-	validates :handle, :presence => true
 	validates :email, :presence => true
 
 	validates_format_of :email, 
 			:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-	validates :gender, :presence => true
 
 	has_many :addresses, :dependent => :destroy
 	
@@ -30,5 +28,9 @@ class User < ActiveRecord::Base
 		#TODO: Make permission stuff resolve
 		true
 	end
-	
+
+	def display_name
+		return handle if handle and not handle.empty?
+		return "%s %s" % [given_name, family_name]	
+	end
 end
