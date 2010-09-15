@@ -5,5 +5,6 @@ class Address < ActiveRecord::Base
 	
   belongs_to :user
 
+  #TODO: do stuff with this model. there's not really a business need to collect addresses, so confirmeth bobk
 	
 end
