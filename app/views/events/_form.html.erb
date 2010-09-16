@@ -22,6 +22,7 @@
     <%= f.datetime_select :end %>
   </div>
 	<div class="field">
+<%#TODO: figure out why this damned form isn't rendering %>
 	<% f.fields_for :address do |af| %>
 		<%= f.label :line1 %>
 		<%= af.text_field :line1 %><br/>
