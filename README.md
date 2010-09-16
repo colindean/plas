@@ -9,6 +9,19 @@ Authors
 
 * Colin Dean <cdean@pittco.org>
 
+About Pittco
+------------
+
+Pittco is the Pittsburgh LAN Coalition. Pittco is a not-for-profit
+LAN party video gaming organization based in Pittsburgh, Pennsylvania.
+
+ > Pittsburgh LAN Coalition, Inc. ("Pittco") was founded in 2003 to 
+ > organize the greater Pittsburgh LAN scene. The mission of Pittco 
+ > is to provide a safe, entertaining, and competitive environment 
+ > for video gamers of all ages. Since its inception, Pittco has 
+ > held thirteen events and has received much attention in the LAN 
+ > party community. Its web site is www.pittco.org.
+
 Contributing
 ------------
 
