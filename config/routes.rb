@@ -1,5 +1,8 @@
 Plas::Application.routes.draw do
-  resources :events
+
+  resources :events do
+    resource :address
+  end
 
 # http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/
 	resource :account, :controller => "users"

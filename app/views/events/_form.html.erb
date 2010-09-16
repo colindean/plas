@@ -23,20 +23,20 @@
   </div>
 	<div class="field">
 <%#TODO: figure out why this damned form isn't rendering %>
-	<% f.fields_for :address do |af| %>
-		<%= f.label :line1 %>
+	<%= f.fields_for :address do |af| %>
+		<%= af.label :line1 %>
 		<%= af.text_field :line1 %><br/>
-		<%= f.label :line2 %>
+		<%= af.label :line2 %>
 		<%= af.text_field :line2 %><br/>
-		<%= f.label :line3 %>
+		<%= af.label :line3 %>
 		<%= af.text_field :line3 %><br/>
-		<%= f.label :neighborhood %> <%= af.text_field :neighborhood %><br/>
-		<%= f.label :city %> <%= af.text_field :city %><br/>
-		<%= f.label :region %> <%= af.text_field :region %><br/>
-		<%= f.label :country %> <%= af.text_field :country %><br/>
-		<%= f.label :postcode %> <%= af.text_field :postcode %><br/>
-		<%= f.label :phone %> <%= af.telephone_field :phone %><br/>
-		<%= f.label :type %> <%= af.select :type, Address::TYPES %>
+		<%= af.label :neighborhood %> <%= af.text_field :neighborhood %><br/>
+		<%= af.label :city %> <%= af.text_field :city %><br/>
+		<%= af.label :region %> <%= af.text_field :region %><br/>
+		<%= af.label :country %> <%= af.text_field :country %><br/>
+		<%= af.label :postcode %> <%= af.text_field :postcode %><br/>
+		<%= af.label :phone %> <%= af.telephone_field :phone %><br/>
+		<%= af.label :type %> <%= af.select :type, Address::TYPES %>
 		<%= af.hidden_field :primary, :value => true %>
 	<% end %>
 	</div>
