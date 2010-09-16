@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100906175926) do
+ActiveRecord::Schema.define(:version => 20100915035041) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -25,6 +25,18 @@ ActiveRecord::Schema.define(:version => 20100906175926) do
     t.boolean  "primary"
     t.string   "phone"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.datetime "start"
+    t.datetime "end"
+    t.integer  "address_id"
+    t.boolean  "registration_open"
+    t.boolean  "visible"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

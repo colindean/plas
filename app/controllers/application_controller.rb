@@ -19,20 +19,23 @@ class ApplicationController < ActionController::Base
     def require_user
       unless current_user
         store_location
-        flash[:notice] = "You must be logged in to access this page"
+        flash[:notice] = _("You must be logged in to access this page")
         redirect_to new_user_sessions_url
         return false
       end
-    end
+			return true
+    end		
 
     def require_no_user
       if current_user
         store_location
-        flash[:notice] = "You must be logged out to access this page"
+        flash[:notice] = _("You must be logged out to access this page")
         redirect_to account_url
         return false
       end
+			return true
     end
+
     
     def store_location
       session[:return_to] = request.fullpath
@@ -43,4 +46,24 @@ class ApplicationController < ActionController::Base
       session[:return_to] = nil
     end
 
+		#TODO: refactor these into their own file, as there's likely to be a lot of them
+		def require_user_useradmin
+			unless current_user and current_user.can('users.administrate')
+				store_location
+				flash[:notice] = _("You must be a user administrator to access this page.")
+				redirect_to request.referrer
+				return false
+			end
+			return true
+		end
+		
+		def require_user_eventadmin
+			unless current_user and current_user.can('events.administrate')
+				store_location
+				flash[:notice] = _("You must be an event administrator to access this page.")
+				redirect_to request.referrer
+				return false
+			end
+			return true
+		end
 end

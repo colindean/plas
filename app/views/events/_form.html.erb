@@ -1,4 +1,4 @@
-<%= form_for(@event) do |f| %>
+<%= form_for @event do |f| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -16,24 +16,36 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :start %><br />
-    <%= f.datetime_select :start %>
-  </div>
-  <div class="field">
-    <%= f.label :end %><br />
+    <%= f.label :start %>
+    <%= f.datetime_select :start %><br/>
+    <%= f.label :end %>
     <%= f.datetime_select :end %>
   </div>
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
-  </div>
+	<div class="field">
+	<% f.fields_for :address do |af| %>
+		<%= f.label :line1 %>
+		<%= af.text_field :line1 %><br/>
+		<%= f.label :line2 %>
+		<%= af.text_field :line2 %><br/>
+		<%= f.label :line3 %>
+		<%= af.text_field :line3 %><br/>
+		<%= f.label :neighborhood %> <%= af.text_field :neighborhood %><br/>
+		<%= f.label :city %> <%= af.text_field :city %><br/>
+		<%= f.label :region %> <%= af.text_field :region %><br/>
+		<%= f.label :country %> <%= af.text_field :country %><br/>
+		<%= f.label :postcode %> <%= af.text_field :postcode %><br/>
+		<%= f.label :phone %> <%= af.telephone_field :phone %><br/>
+		<%= f.label :type %> <%= af.select :type, Address::TYPES %>
+		<%= af.hidden_field :primary, :value => true %>
+	<% end %>
+	</div>
   <div class="field">
     <%= f.label :registration_open %><br />
     <%= f.check_box :registration_open %>
   </div>
   <div class="field">
     <%= f.label :visible %><br />
-    <%= f.check_box :visible %>
+    <%= f.check_box :visible, :checked_value => 1, :unchecked_value => 0, :checked => true%>
   </div>
   <div class="field">
     <%= f.label :description %><br />
