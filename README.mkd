@@ -25,11 +25,18 @@ LAN party video gaming organization based in Pittsburgh, Pennsylvania.
 Contributing
 ------------
 
-We have a temporary GitHub mirror of our private repository set up
-at http://github.com/colindean/plas. 
+We have a GitHub mirror of our private repository set up
+at http://github.com/colindean/plas. Github will likely eventually become our
+favored repository.
 
 We develop on ruby-dev 1.9.3 and rails 3.0.0. See the Gemfile for 
-other stuff we require.
+other stuff we require. 
+
+Colin is currently using ruby 1.9.3dev (2010-08-24 trunk 29084) [x86\_64-darwin10.4.0].
+
+**What we really need are tests.** Colin has not been a good Rubyist and
+done proper test-driven development due to the time crunch. We use RSpec and
+Cucumber for tests, what few there are.
 
 Download
 --------
@@ -41,7 +48,8 @@ Hell, it's not ready for our use!
 Installation
 ------------
 
-PLAS requires at least ruby 1.9.2 and rails 3.0.0.
+PLAS requires at least ruby 1.9.2 and rails 3.0.0. Target release is 
+ruby 1.9.3 or ruby 2.0.0, whichever comes first.
 
 Use
 ---
