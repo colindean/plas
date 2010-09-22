@@ -1,0 +1,21 @@
+PLAS DESIGN
+===========
+
+User creation
+-------------
+
+Straightforward. Create the user with the least possible information necessary to create the user.
+Ask for the remainder later, incentivize it.
+
+Event creation
+--------------
+
+Event ticketing and registration
+--------------------------------
+
+A ticket is a prototype for a registration, that is, the admin creates an Event and then creates Tickets for the event. 
+When the User wants to attend an Event, he selects a Ticket. 
+Upon completion of his order, the Ticket creates a Registration, or multiple Registrations if it's a ticket package. 
+A package Ticket is always comprised of other Tickets, and a Registration purchased as a part of a package refers to its parent Registration.
+
+
