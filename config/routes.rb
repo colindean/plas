@@ -1,7 +1,10 @@
 Plas::Application.routes.draw do
 
+
   resources :events do
     resource :address
+    resources :registrations
+    resources :tickets
   end
 
 # http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/

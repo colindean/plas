@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Ticket:</b>
+  <%= @registration.ticket %>
+</p>
+
+<p>
+  <b>Price paid:</b>
+  <%= @registration.price_paid %>
+</p>
+
+<p>
+  <b>Purchaser:</b>
+  <%= @registration.purchaser %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @registration.user %>
+</p>
+
+<p>
+  <b>Date given:</b>
+  <%= @registration.date_given %>
+</p>
+
+<p>
+  <b>Package parent:</b>
+  <%= @registration.package_parent %>
+</p>
+
+<p>
+  <b>Checked in:</b>
+  <%= @registration.checked_in %>
+</p>
+
+<p>
+  <b>Date checked in:</b>
+  <%= @registration.date_checked_in %>
+</p>
+
+
+<%= link_to 'Edit', edit_registration_path(@registration) %> |
+<%= link_to 'Back', registrations_path %>
