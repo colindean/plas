@@ -1,14 +1,18 @@
 PLAS DESIGN
 ===========
 
-User creation
--------------
+This document aims to describe the design of PLAS by establishing workflows.
+
+User creation and modification
+------------------------------
 
 Straightforward. Create the user with the least possible information necessary to create the user.
-Ask for the remainder later, incentivize it.
+Ask for the remainder (address, games, etc.) later, incentivize it.
 
-Event creation
---------------
+Event creation and modification
+-------------------------------
+
+Straightforward. Create an event and give it the necessary information (address, start, end, etc.)
 
 Event ticketing and registration
 --------------------------------
@@ -18,4 +22,32 @@ When the User wants to attend an Event, he selects a Ticket.
 Upon completion of his order, the Ticket creates a Registration, or multiple Registrations if it's a ticket package. 
 A package Ticket is always comprised of other Tickets, and a Registration purchased as a part of a package refers to its parent Registration.
 
+Group and permission management
+-------------------------------
 
+Users belong to groups. By default, there are three groups: 
+*  Anonymous
+*  Users
+*  Administrators
+
+**Anonymous** can view the list of users, tournaments, events, seating map, etc. They can also create an account.
+
+**Users** can do everything Anonymous can, but they can also register, receive gift tickets, sit on the map, join tournaments, etc.
+
+**Administrators** have godmode and can do anything to anything.
+
+Future groups for consideration include:
+* Tournament Administrators (create, modify, delete tournaments)
+* Tournament Reporters (report winners of matches)
+* Shoutbox Moderators (delete offensive posts)
+* Check-In Administrators (grant free admission, change seating)
+* Check-In Workers (indicate that someone has checked in, correct address information)
+* Event Administrator (can change event details, add/modify/delete ticket options)
+
+Permissions are strings like 
+* users.administrate
+* users.checkin
+* events.update
+* shoutbox.moderate
+
+It's always **noun**.*verb*.
