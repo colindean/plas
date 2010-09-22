@@ -26,7 +26,7 @@ class EventsController < ApplicationController
   # GET /events/new.xml
   def new
     @event = Event.new
-    @event.build_address if !@event.address
+    @event.addresses.build if @event.addresses.length == 0
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @event }

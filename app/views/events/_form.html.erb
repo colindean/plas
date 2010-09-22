@@ -21,9 +21,8 @@
     <%= f.label :end %>
     <%= f.datetime_select :end %>
   </div>
-	<div class="field">
-<%#TODO: figure out why this damned form isn't rendering %>
-	<%= f.fields_for :address do |af| %>
+  <div class="field">
+  <%= f.fields_for :addresses do |af| %>
 		<%= af.label :line1 %>
 		<%= af.text_field :line1 %><br/>
 		<%= af.label :line2 %>
@@ -36,9 +35,9 @@
 		<%= af.label :country %> <%= af.text_field :country %><br/>
 		<%= af.label :postcode %> <%= af.text_field :postcode %><br/>
 		<%= af.label :phone %> <%= af.telephone_field :phone %><br/>
-		<%= af.label :type %> <%= af.select :type, Address::TYPES %>
+    <%= af.label :type %> <%= af.select :type, Address::TYPES, :default => "event" %>
 		<%= af.hidden_field :primary, :value => true %>
-	<% end %>
+  <% end %>
 	</div>
   <div class="field">
     <%= f.label :registration_open %><br />

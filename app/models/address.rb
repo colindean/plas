@@ -2,7 +2,7 @@ class Address < ActiveRecord::Base
 	TYPES = [ 'billing', 'shipping', 'emergency', 'event' ]
 	
   belongs_to :event_address
-  belongs_to :event, :through => :event_address
+  belongs_to :event
 
   #belongs_to :user_addresses
   #belongs_to :users, :through => :user_addresses
