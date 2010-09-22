@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100917023642) do
+ActiveRecord::Schema.define(:version => 20100922004030) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -58,6 +58,19 @@ ActiveRecord::Schema.define(:version => 20100917023642) do
     t.datetime "updated_at"
   end
 
+  create_table "registrations", :force => true do |t|
+    t.integer  "ticket_id"
+    t.float    "price_paid"
+    t.integer  "purchaser_id"
+    t.integer  "user_id"
+    t.datetime "date_given"
+    t.integer  "package_parent_id"
+    t.boolean  "checked_in"
+    t.datetime "date_checked_in"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
@@ -67,6 +80,19 @@ ActiveRecord::Schema.define(:version => 20100917023642) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "tickets", :force => true do |t|
+    t.integer  "event_id"
+    t.float    "price"
+    t.integer  "available"
+    t.datetime "date_open"
+    t.datetime "date_closed"
+    t.boolean  "package"
+    t.integer  "generates_ticket_id"
+    t.integer  "generates_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "user_groups", :force => true do |t|
     t.string   "name"

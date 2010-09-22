@@ -2,7 +2,7 @@ class CreateRegistrations < ActiveRecord::Migration
   def self.up
     create_table :registrations do |t|
       t.references :ticket
-      t.double :price_paid
+      t.float :price_paid
       t.references :purchaser
       t.references :user
       t.timestamp :date_given

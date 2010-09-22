@@ -1,4 +1,4 @@
 class EventAddress < ActiveRecord::Base
   belongs_to :event
-  belongs_to :address
+  has_one :address
 end

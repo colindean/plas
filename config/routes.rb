@@ -1,5 +1,7 @@
 Plas::Application.routes.draw do
 
+  resources :registrations
+  resources :tickets
 
   resources :events do
     resource :address
@@ -9,7 +11,11 @@ Plas::Application.routes.draw do
 
 # http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/
 	resource :account, :controller => "users"
-	resources :users
+	
+  resources :users do
+    resource :address
+  end
+
 	resource :user_sessions
 #	match 'users/:handle' => 'users#show'
 	match '/login' => 'user_sessions#new', :as => 'login'
