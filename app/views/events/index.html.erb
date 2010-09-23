@@ -6,27 +6,23 @@
     <th>Start</th>
     <th>End</th>
     <th>Address</th>
-    <th>Registration open</th>
-    <th>Visible</th>
-    <th>Description</th>
-    <th></th>
+    <th>Registration open?</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @events.each do |event| %>
+  <% if current_user.can('events.administrate') or event.visible %>
   <tr>
-    <td><%= event.name %></td>
-    <td><%= event.start %></td>
-    <td><%= event.end %></td>
-    <td><%= event.addresses[0] %></td>
+    <td><%= link_to event.name, event %><br/><small><%= event.description %></small></td>
+    <td><%= event.start.to_date %></td>
+    <td><%= event.end.to_date %></td>
+    <td><%= event.addresses[0].pretty %></td>
     <td><%= event.registration_open %></td>
-    <td><%= event.visible %></td>
-    <td><%= event.description %></td>
-    <td><%= link_to 'Show', event %></td>
     <td><%= link_to 'Edit', edit_event_path(event) %></td>
     <td><%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
+  <% end %>
 <% end %>
 </table>
 

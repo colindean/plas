@@ -6,7 +6,7 @@ gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => '
 gem "fast_gettext", :git => 'git://github.com/grosser/fast_gettext.git'
 #gem '>=1.9.3', "gettext", :require => false
 #gem "gettext",">=1.9.3", :require => false
-gem 'gettext'
+gem 'gettext', :git => 'git://github.com/colindean/gettext.git' #fixes Config deprecation warnings
 gem 'gettext_i18n_rails', :git => 'git://github.com/grosser/gettext_i18n_rails.git'
 
 group :development,:test do
