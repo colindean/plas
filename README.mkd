@@ -6,8 +6,13 @@ payments, track users, schedule tournaments, and more.
 
 Authors
 -------
-
 * Colin Dean <cdean@pittco.org>
+
+### Contributors ###
+* Bill Turner
+
+### Translators ###
+* English: Colin Dean
 
 About Pittco
 ------------
@@ -29,14 +34,24 @@ We have a GitHub mirror of our private repository set up
 at http://github.com/colindean/plas. Github will likely eventually become our
 favored repository.
 
-We develop on ruby-dev 1.9.3 and rails 3.0.0. See the Gemfile for 
-other stuff we require. 
+We develop on ruby-head 1.9.3 and rails 3.0.0. See the Gemfile for 
+other stuff we require. We do provide an .rvmrc for rvm users (seriously makes life so much easier). 
 
 Colin is currently using ruby 1.9.3dev (2010-08-24 trunk 29084) [x86\_64-darwin10.4.0].
 
 **What we really need are tests.** Colin has not been a good Rubyist and
 done proper test-driven development due to the time crunch. We use RSpec and
 Cucumber for tests, what few there are.
+
+Assuming you already have git, any ruby, and rvm installed, do these:
+
+    git clone http://github.com/colindean/plas.git
+    cd plas
+    gem install bundler
+    bundle install
+
+That should make your environment kosher. When you `cd` into `plas`, rvm will ask if you want to download, compile, and install ruby-head and create a gemset called `plas`. You should probably say yes, but if you have ruby 1.9.2 installed and in use, you're probably OK. You should create the gemset anyhow.
+
 
 Download
 --------
