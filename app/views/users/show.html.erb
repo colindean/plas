@@ -5,9 +5,8 @@
 	<dd><%= @user.given_name %> <%= @user.family_name %></dd>
 
 	<dt><%= _('Handle') %></dt>
-  <dd>
-		<%= 
-		if @user.handle and not @user.handle.empty?
+    <dd><%= 
+	    if @user.handle and not @user.handle.empty?
  			@user.handle
 		else 
 			_('This user has not set a handle :(') 
@@ -18,79 +17,48 @@
   <dt><%= _('Email') %></dt>
   <dd><%= @user.email %></dd>
 
+  <dt><%= _('Gaming group') %></dt>
+  <dd><%= @user.gaming_group %></dd>
+
+  <dt><%= _('Date arrival') %></dt>
+  <dd><%= @user.date_arrival %></dt>
+
+  <dt><%= _('Date departure') %></dt>
+  <dd><%= @user.date_departure %></dd>
+
+  <dt><%= _('Gamer type') %></dt>
+  <dd><%= @user.gamer_type %></dd>
+
+  <dt><%= _('Birthdate') %></dt>
+  <dd><%= @user.birthdate %></dd>
+
+  <dt><%= _('Gender') %></dt>
+  <dd><%= @user.gender %></dd>
+
+  <h2>Internals</h2>
+
+  <dt><%= _('Disabled?') %></dt>
+  <dd><%= @user.disabled %></dd>
+
+  <dt><%= _('Login count') %></dt>
+  <dd><%= @user.login_count %></dd>
+
+  <dt><%= _('Last request at') %></dt>
+  <dd><%= @user.last_request_at %></dd>
+
+  <dt><%= _('Last login at') %></dt>
+  <dd><%= @user.last_login_at %></dd>
+
+  <dt><%= _('Current login at') %></dt>
+  <dd><%= @user.current_login_at %></dd>
+
+  <dt><%= _('Last login ip') %></dt>
+  <dd><%= @user.last_login_ip %></dd>
+
+  <dt><%= _('Current login ip') %></dt>
+  <dd><%= @user.current_login_ip %></dd>
+
 </dl>
-
-<% #TODO: finishing moving these to the above format %>
-
-<p>
-  <b>Gaming group:</b>
-  <%= @user.gaming_group %>
-</p>
-
-<p>
-  <b>Date arrival:</b>
-  <%= @user.date_arrival %>
-</p>
-
-<p>
-  <b>Date departure:</b>
-  <%= @user.date_departure %>
-</p>
-
-<p>
-  <b>Gamer type:</b>
-  <%= @user.gamer_type %>
-</p>
-
-<p>
-  <b>Birthdate:</b>
-  <%= @user.birthdate %>
-</p>
-
-<p>
-  <b>Gender:</b>
-  <%= @user.gender %>
-</p>
-
-<% if current_user.can('users.administrate') %>
-<h2>Internals</h2>
-
-<p>
-	<b>Disabled?</b>
-	<%=h @user.disabled %>
-</p>
-
-
-<p>
-  <b>Login count:</b>
-  <%=h @user.login_count %>
-</p>
-
-<p>
-  <b>Last request at:</b>
-  <%=h @user.last_request_at %>
-</p>
-
-<p>
-  <b>Last login at:</b>
-  <%=h @user.last_login_at %>
-</p>
-
-<p>
-  <b>Current login at:</b>
-  <%=h @user.current_login_at %>
-</p>
-
-<p>
-  <b>Last login ip:</b>
-  <%=h @user.last_login_ip %>
-</p>
-
-<p>
-  <b>Current login ip:</b>
-  <%=h @user.current_login_ip %>
-</p>
-<% end %>
 
 <%=
 render :partial => 'users/tools'

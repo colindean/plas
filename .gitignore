@@ -5,3 +5,4 @@ log/*.log
 tmp/**/*
 vendor/cache/
 public/stylesheets/scaffold.css
+*~
