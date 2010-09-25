@@ -12,7 +12,7 @@ gem 'gettext_i18n_rails', :git => 'git://github.com/grosser/gettext_i18n_rails.g
 group :development,:test do
 	gem 'sqlite3-ruby', :require => 'sqlite3'
 	gem 'capybara'
-	gem 'cucumber'
+	gem 'cucumber', :git => 'git://github.com/colindean/cucumber.git' #fixes Config deprecation warnings
 	gem 'rspec', '~>2.0.0.beta.20'
 	gem 'rspec-rails', '~>2.0.0.beta.20'
   gem 'cucumber-rails'
