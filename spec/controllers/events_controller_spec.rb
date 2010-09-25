@@ -2,6 +2,17 @@ require 'spec_helper'
 
 describe EventsController do
 
+  before(:each) do
+    @attributes = {
+      :name => 'Spec Event',
+      :start_date => 1.month.from_now,
+      :end_date => 1.month.from_now + 1.day,
+      :registration_open => true,
+      :visible => true,
+      :description => 'This is a sample rspec event'
+    }
+  end
+
   def mock_event(stubs={})
     @mock_event ||= mock_model(Event, stubs).as_null_object
   end
@@ -18,7 +29,7 @@ describe EventsController do
     it "assigns the requested event as @event" do
       Event.stub(:find).with("37") { mock_event }
       get :show, :id => "37"
-      assigns(:event).should be(mock_event)
+      assigns(:event).should be(@mock_event)
     end
   end
 
