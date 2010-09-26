@@ -1,18 +1,20 @@
 <p class="notice"><%= notice %></p>
 
-<dl class="user-info">
-	<dt><%= _('Name') %></dt>
-	<dd><%= @user.given_name %> <%= @user.family_name %></dd>
-
-	<dt><%= _('Handle') %></dt>
-    <dd><%= 
-	    if @user.handle and not @user.handle.empty?
- 			@user.handle
-		else 
-			_('This user has not set a handle :(') 
-		end 
-		%>
-	</dd>
+<dl class="user-info info-list">
+  <h2>User Information</h2>
+  
+  <dt><%= _('Name') %></dt>
+  <dd><%= @user.given_name %> <%= @user.family_name %></dd>
+  
+  <dt><%= _('Handle') %></dt>
+  <dd><%= 
+      if @user.handle and not @user.handle.empty?
+  		@user.handle
+  	else 
+  		_('This user has not set a handle :(') 
+  	end 
+  	%>
+  </dd>
 
   <dt><%= _('Email') %></dt>
   <dd><%= @user.email %></dd>
@@ -57,10 +59,8 @@
 
   <dt><%= _('Current login ip') %></dt>
   <dd><%= @user.current_login_ip %></dd>
-
 </dl>
 
 <%=
 render :partial => 'users/tools'
 %>
-

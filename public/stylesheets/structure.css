@@ -44,6 +44,26 @@ section#header header h2 {
 section#content {
 	margin-bottom:5em;
 }
+
+dl.info-list {
+    padding-bottom: 2em;
+    margin-left: 25px;
+}
+
+dl.info-list h2 {
+    padding: 1em 0px 1em 0px;
+}
+
+dl.info-list dt {
+    float: left;
+    margin-left: 2em;
+}
+
+dl.info-list dd {
+    margin-left: 15em;
+    height: 1em;
+}
+
 br.clear-footer {
 	clear:both;
 	margin:1.5em;
