@@ -2,7 +2,8 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.xml
   def index
-    @tickets = Ticket.all
+    @event = Event.find(params[:event_id])
+    @tickets = @event.tickets
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,8 +25,8 @@ class TicketsController < ApplicationController
   # GET /tickets/new
   # GET /tickets/new.xml
   def new
-    @ticket = Ticket.new
-
+    @event = Event.find(params[:event_id])
+    @ticket = @event.tickets.build
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @ticket }
@@ -40,12 +41,14 @@ class TicketsController < ApplicationController
   # POST /tickets
   # POST /tickets.xml
   def create
+    @event = Event.find(params[:event_id])
     @ticket = Ticket.new(params[:ticket])
+    @event.tickets << @ticket
 
     respond_to do |format|
-      if @ticket.save
-        format.html { redirect_to(@ticket, :notice => 'Ticket was successfully created.') }
-        format.xml  { render :xml => @ticket, :status => :created, :location => @ticket }
+      if @event.save
+        format.html { redirect_to(@event, :notice => 'Ticket was successfully created.') }
+        format.xml  { render :xml => @event, :status => :created, :location => @ticket }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @ticket.errors, :status => :unprocessable_entity }
