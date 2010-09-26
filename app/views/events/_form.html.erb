@@ -1,4 +1,3 @@
-<%= form_for @event do |f| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -11,47 +10,65 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :start %>
-    <%= f.datetime_select :start %><br/>
-    <%= f.label :end %>
-    <%= f.datetime_select :end %>
-  </div>
-  <div class="field">
-  <%= f.fields_for :addresses do |af| %>
-		<%= af.label :line1 %>
-		<%= af.text_field :line1 %><br/>
-		<%= af.label :line2 %>
-		<%= af.text_field :line2 %><br/>
-		<%= af.label :line3 %>
-		<%= af.text_field :line3 %><br/>
-		<%= af.label :neighborhood %> <%= af.text_field :neighborhood %><br/>
-		<%= af.label :city %> <%= af.text_field :city %><br/>
-		<%= af.label :region %> <%= af.text_field :region %><br/>
-		<%= af.label :country %> <%= af.text_field :country %><br/>
-		<%= af.label :postcode %> <%= af.text_field :postcode %><br/>
-		<%= af.label :phone %> <%= af.telephone_field :phone %><br/>
-    <%= af.label :type %> <%= af.select :type, Address::TYPES, :default => "event" %>
-		<%= af.hidden_field :primary, :value => true %>
-  <% end %>
-	</div>
-  <div class="field">
-    <%= f.label :registration_open %><br />
-    <%= f.check_box :registration_open %>
-  </div>
-  <div class="field">
-    <%= f.label :visible %><br />
-    <%= f.check_box :visible, :checked_value => 1, :unchecked_value => 0, :checked => true%>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+  <dl class="event-info form-list">
+    <fieldset>
+      <legend><%= _('Event Information') %></legend>
+      <dt><%= f.label :name %></dt>
+      <dd><%= f.text_field :name %></dd>
+
+      <dt><%= f.label :start %></dt>
+      <dd><%= f.datetime_select :start %></dd>
+
+      <dt><%= f.label :end %></dt>
+      <dd><%= f.datetime_select :end %></dd>
+
+      <dt><%= f.label :description %></dt>
+      <dd style="height: auto;"><%= f.text_area :description %></dd>
+    </fieldset>
+
+    <fieldset>
+      <legend><%= _('Address') %></legend>
+    <%= f.fields_for :addresses do |af| %>
+      <dt><%= af.label :line1 %></dt>
+	  <dd><%= af.text_field :line1 %></dd>
+
+	  <dt><%= af.label :line2 %></dt>
+	  <dd><%= af.text_field :line2 %></dd>
+
+	  <dt><%= af.label :line3 %></dt>
+	  <dd><%= af.text_field :line3 %></dd>
+
+	  <dt><%= af.label :neighborhood %></dt>
+      <dd><%= af.text_field :neighborhood %></dd>
+
+	  <dt><%= af.label :city %></dt>
+      <dd><%= af.text_field :city %></dd>
+
+	  <dt><%= af.label :region %></dt>
+      <dd><%= af.text_field :region %></dd>
+
+	  <dt><%= af.label :country %></dt>
+      <dd><%= af.text_field :country %></dd>
+
+	  <dt><%= af.label :postcode %></dt>
+      <dd><%= af.text_field :postcode %></dd>
+
+	  <dt><%= af.label :phone %></dt>
+      <dd><%= af.telephone_field :phone %></dd>
+
+      <dt><%= af.label :type %></dt>
+      <dd><%= af.select :type, Address::TYPES, :default => "event" %></dd>
+
+	  <%= af.hidden_field :primary, :value => true %>
+    <% end %>
+    </fieldset>
+
+    <fieldset>
+      <legend><%= _('Options') %></legend>
+      <dt><%= f.label :registration_open %></dt>
+      <dd><%= f.check_box :registration_open %></dd>
+
+      <dt><%= f.label :visible %></dt>
+      <dd><%= f.check_box :visible, :checked_value => 1, :unchecked_value => 0, :checked => true%></dd>
+    </fieldset>
+  </dl>
