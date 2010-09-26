@@ -1,8 +1,5 @@
 Plas::Application.routes.draw do
 
-  resources :registrations
-  resources :tickets
-
   resources :events do
     resource :address
     resources :registrations

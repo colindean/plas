@@ -2,7 +2,7 @@
 
 <p>
   <b>Event:</b>
-  <%= @ticket.event %>
+  <%= @ticket.event.name %>
 </p>
 
 <p>
@@ -25,21 +25,25 @@
   <%= @ticket.date_closed %>
 </p>
 
-<p>
-  <b>Package:</b>
-  <%= @ticket.package %>
-</p>
+<div>
+  <p>
+    <b>Package:</b>
+    <%= @ticket.package %>
+  </p>
+  <% if @ticket.package %>
+  <p>
+    <b>Generates ticket:</b>
+    <%= @ticket.generates_ticket %>
+  </p>
 
-<p>
-  <b>Generates ticket:</b>
-  <%= @ticket.generates_ticket %>
-</p>
-
-<p>
-  <b>Generates number:</b>
-  <%= @ticket.generates_number %>
-</p>
+  <p>
+    <b>Generates number:</b>
+    <%= @ticket.generates_number %>
+  </p>
+  <% end %>
+</div>
 
 
-<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
-<%= link_to 'Back', tickets_path %>
+
+<%= link_to _('Edit'), edit_event_ticket_path(@ticket) %> |
+<%= link_to _('Back'), event_tickets_path %>

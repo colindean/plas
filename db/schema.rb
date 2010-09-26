@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100922004030) do
+ActiveRecord::Schema.define(:version => 20100925223908) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -31,13 +31,6 @@ ActiveRecord::Schema.define(:version => 20100922004030) do
   end
 
   add_index "addresses", ["event_id"], :name => "index_addresses_on_event_id"
-
-  create_table "event_addresses", :force => true do |t|
-    t.integer  "event_id"
-    t.integer  "address_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -82,7 +75,6 @@ ActiveRecord::Schema.define(:version => 20100922004030) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "tickets", :force => true do |t|
-    t.integer  "event_id"
     t.float    "price"
     t.integer  "available"
     t.datetime "date_open"
@@ -92,6 +84,8 @@ ActiveRecord::Schema.define(:version => 20100922004030) do
     t.integer  "generates_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name",                :default => "Registration for one person", :null => false
+    t.integer  "event_id"
   end
 
   create_table "user_groups", :force => true do |t|

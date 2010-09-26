@@ -1,4 +1,4 @@
-<%= form_for(@ticket) do |f| %>
+<%= form_for ([@event, @ticket])  do |f| %>
   <% if @ticket.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
@@ -10,11 +10,12 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= f.label :event %><br />
-    <%= f.text_field :event %>
+    <%= f.label :name %><br/>
+    <%= f.text_field :name %>
   </div>
+
+
   <div class="field">
     <%= f.label :price %><br />
     <%= f.text_field :price %>
@@ -31,10 +32,11 @@
     <%= f.label :date_closed %><br />
     <%= f.datetime_select :date_closed %>
   </div>
-  <div class="field">
+<!--  <div class="field">
     <%= f.label :package %><br />
     <%= f.check_box :package %>
   </div>
+  <%#TODO these two fields must ONLY show if package is set, and generates_ticket has to be dynamically populated somehow %>
   <div class="field">
     <%= f.label :generates_ticket %><br />
     <%= f.text_field :generates_ticket %>
@@ -42,7 +44,7 @@
   <div class="field">
     <%= f.label :generates_number %><br />
     <%= f.text_field :generates_number %>
-  </div>
+  </div> -->
   <div class="actions">
     <%= f.submit %>
   </div>

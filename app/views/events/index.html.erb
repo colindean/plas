@@ -8,8 +8,8 @@
     <th>Address</th>
     <th>Registration open?</th>
     <% if current_user and current_user.can 'events.administrate' then %>
-    <th></th>
-    <th></th>
+    <th>Tickets</th>
+    <th>Operations</th>
     <% end %>
   </tr>
 
@@ -19,11 +19,19 @@
     <td><%= link_to event.name, event %><br/><small><%= event.description %></small></td>
     <td><%= event.start.to_date %></td>
     <td><%= event.end.to_date %></td>
-    <td><%= event.addresses[0].pretty %></td>
+    <td><%= event.addresses[0].pretty if event.addresses.count > 0 %></td>
     <td><%= event.registration_open %></td>
     <% if current_user and current_user.can 'events.administrate' %>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td>
+        <% if event.tickets.count > 0 %>
+        <ul>
+          <% event.tickets.each do |ticket| %>
+          <li><%= ticket.name %> - $<%= ticket.price %> - <%= ticket.available %> <%= _('tickets available') %></li>
+          <% end %>
+        </ul>
+        <% end %>
+      </td>
+    <td><%= link_to 'Edit', edit_event_path(event) %> <%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %></td>
     <% end %>
   </tr>
   <% end %>

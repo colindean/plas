@@ -1,8 +1,14 @@
 class TicketsController < ApplicationController
+  before_filter :get_event
+
+  def get_event
+    @event = Event.find(params[:event_id])
+  end
+
   # GET /tickets
   # GET /tickets.xml
   def index
-    @tickets = Ticket.all
+    @tickets = @event.tickets
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +19,7 @@ class TicketsController < ApplicationController
   # GET /tickets/1
   # GET /tickets/1.xml
   def show
-    @ticket = Ticket.find(params[:id])
+    @ticket = @event.tickets.find_by_id(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,8 +30,7 @@ class TicketsController < ApplicationController
   # GET /tickets/new
   # GET /tickets/new.xml
   def new
-    @ticket = Ticket.new
-
+    @ticket = @event.tickets.build
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @ticket }
@@ -34,18 +39,20 @@ class TicketsController < ApplicationController
 
   # GET /tickets/1/edit
   def edit
-    @ticket = Ticket.find(params[:id])
+    @ticket = @event.tickets.find_by_id(params[:id])
   end
 
   # POST /tickets
   # POST /tickets.xml
   def create
-    @ticket = Ticket.new(params[:ticket])
+    @event = Event.find(params[:event_id])
+    #@ticket = Ticket.new(params[:ticket])
+    @event.tickets.build(params[:ticket])
 
     respond_to do |format|
-      if @ticket.save
-        format.html { redirect_to(@ticket, :notice => 'Ticket was successfully created.') }
-        format.xml  { render :xml => @ticket, :status => :created, :location => @ticket }
+      if @event.save
+        format.html { redirect_to(@event, :notice => 'Ticket was successfully created.') }
+        format.xml  { render :xml => @event, :status => :created, :location => @ticket }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @ticket.errors, :status => :unprocessable_entity }
@@ -56,7 +63,7 @@ class TicketsController < ApplicationController
   # PUT /tickets/1
   # PUT /tickets/1.xml
   def update
-    @ticket = Ticket.find(params[:id])
+    @ticket = @event.tickets.find_by_id(params[:id])
 
     respond_to do |format|
       if @ticket.update_attributes(params[:ticket])
@@ -72,8 +79,7 @@ class TicketsController < ApplicationController
   # DELETE /tickets/1
   # DELETE /tickets/1.xml
   def destroy
-    @ticket = Ticket.find(params[:id])
-    @ticket.destroy
+    @event.tickets.find_by_id(params[:id]).destroy
 
     respond_to do |format|
       format.html { redirect_to(tickets_url) }
