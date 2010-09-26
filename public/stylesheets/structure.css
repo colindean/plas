@@ -45,24 +45,24 @@ section#content {
 	margin-bottom:5em;
 }
 
-dl.info-list {
+dl.info-list, dl.form-list {
     padding-bottom: 2em;
     margin-left: 25px;
 }
 
-dl.info-list fieldset {
+dl.info-list fieldset, dl.form-list fieldset {
     border-style:solid;
     border-width:1px;
     width: 650px;
     padding: 1em 0px 1em 0px;
 }
 
-dl.info-list legend {
+dl.info-list legend, dl.form-list legend {
     margin-left: 2em;
     font-size: 115%;
 }
 
-dl.info-list dt {
+dl.info-list dt, dl.form-list dt {
     float: left;
     margin-left: 2em;
 }
@@ -70,6 +70,15 @@ dl.info-list dt {
 dl.info-list dd {
     margin-left: 15em;
     height: 1em;
+}
+
+dl.form-list dd {
+    margin-left: 15em;
+    height: 1.5em;
+}
+
+.submit-options {
+    margin-left: 250px; /* hack, will make this look better later */
 }
 
 br.clear-footer {

@@ -6,7 +6,7 @@
 	<ul>
 		<li><%= link_to(_('Edit %s') % @user.handle , edit_user_path(@user), :class => 'edit') %></li>
 		<li><%= link_to(_('Delete %s') % @user.handle, user_path(@user), :confirm => _('Are you sure you want to delete %s?') % @user.handle, :method => :delete, :class => 'delete' ) %></li>
-		<li><%= link_to(_('Disable %s') % @user.handle, edit_user_path(@user), :class => 'disable' ) %></li>
+<!--		<li><%= link_to(_('Disable %s') % @user.handle, edit_user_path(@user), :class => 'disable' ) %></li> -->
 	</ul>
 </section>
 <% end %>
