@@ -1,66 +1,74 @@
 <p class="notice"><%= notice %></p>
 
+
 <dl class="user-info info-list">
-  <h2>User Information</h2>
+
+  <fieldset>
+    <legend><%= _('User Information') %></legend>
   
-  <dt><%= _('Name') %></dt>
-  <dd><%= @user.given_name %> <%= @user.family_name %></dd>
-  
-  <dt><%= _('Handle') %></dt>
-  <dd><%= 
-      if @user.handle and not @user.handle.empty?
-  		@user.handle
-  	else 
-  		_('This user has not set a handle :(') 
-  	end 
-  	%>
-  </dd>
-
-  <dt><%= _('Email') %></dt>
-  <dd><%= @user.email %></dd>
-
-  <dt><%= _('Gaming group') %></dt>
-  <dd><%= @user.gaming_group %></dd>
-
-  <dt><%= _('Date arrival') %></dt>
-  <dd><%= @user.date_arrival %></dd>
-
-  <dt><%= _('Date departure') %></dt>
-  <dd><%= @user.date_departure %></dd>
-
-  <dt><%= _('Gamer type') %></dt>
-  <dd><%= @user.gamer_type %></dd>
-
-  <dt><%= _('Birthdate') %></dt>
-  <dd><%= @user.birthdate %></dd>
-
-  <dt><%= _('Gender') %></dt>
-  <dd><%= @user.gender %></dd>
-
-  <h2>Internals</h2>
-
-  <dt><%= _('Disabled?') %></dt>
-  <dd><%= @user.disabled %></dd>
-
-  <dt><%= _('Login count') %></dt>
-  <dd><%= @user.login_count %></dd>
-
-  <dt><%= _('Last request at') %></dt>
-  <dd><%= @user.last_request_at %></dd>
-
-  <dt><%= _('Last login at') %></dt>
-  <dd><%= @user.last_login_at %></dd>
-
-  <dt><%= _('Current login at') %></dt>
-  <dd><%= @user.current_login_at %></dd>
-
-  <dt><%= _('Last login ip') %></dt>
-  <dd><%= @user.last_login_ip %></dd>
-
-  <dt><%= _('Current login ip') %></dt>
-  <dd><%= @user.current_login_ip %></dd>
-</dl>
-
 <%=
 render :partial => 'users/tools'
 %>
+
+
+    <dt><%= _('Name') %></dt>
+    <dd><%= @user.given_name %> <%= @user.family_name %></dd>
+    
+    <dt><%= _('Handle') %></dt>
+    <dd><%= 
+           if @user.handle and not @user.handle.empty?
+  		   @user.handle
+  	else 
+  		   _('This user has not set a handle :(') 
+  	       end 
+  	       %>
+    </dd>
+    
+    <dt><%= _('Email') %></dt>
+    <dd><%= @user.email %></dd>
+    
+    <dt><%= _('Gaming group') %></dt>
+    <dd><%= @user.gaming_group %></dd>
+    
+    <dt><%= _('Date arrival') %></dt>
+    <dd><%= @user.date_arrival %></dd>
+    
+    <dt><%= _('Date departure') %></dt>
+    <dd><%= @user.date_departure %></dd>
+    
+    <dt><%= _('Gamer type') %></dt>
+    <dd><%= @user.gamer_type %></dd>
+    
+    <dt><%= _('Birthdate') %></dt>
+    <dd><%= @user.birthdate %></dd>
+    
+    <dt><%= _('Gender') %></dt>
+    <dd><%= @user.gender %></dd>
+  </fieldset>
+
+  <fieldset>
+    <legend><%= _('Internals') %></legend>
+
+    <dt><%= _('Disabled?') %></dt>
+    <dd><%= @user.disabled %></dd>
+    
+    <dt><%= _('Login count') %></dt>
+    <dd><%= @user.login_count %></dd>
+    
+    <dt><%= _('Last request at') %></dt>
+    <dd><%= @user.last_request_at %></dd>
+    
+    <dt><%= _('Last login at') %></dt>
+    <dd><%= @user.last_login_at %></dd>
+    
+    <dt><%= _('Current login at') %></dt>
+    <dd><%= @user.current_login_at %></dd>
+    
+    <dt><%= _('Last login ip') %></dt>
+    <dd><%= @user.last_login_ip %></dd>
+    
+    <dt><%= _('Current login ip') %></dt>
+    <dd><%= @user.current_login_ip %></dd>
+  </fieldset>
+</dl>
+
