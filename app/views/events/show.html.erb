@@ -1,41 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @event.name %>
-</p>
+<dl class="even-info info-list">
+  <fieldset>   
+    <legend>Event Information</legend>
+    <%=render :partial => 'events/tools'%>
 
-<p>
-  <b>Start:</b>
-  <%= @event.start %>
-</p>
+    <dt><%= _('Name') %></dt>
+    <dd><%= @event.name %></dd>
 
-<p>
-  <b>End:</b>
-  <%= @event.end %>
-</p>
+    <dt>Start</dt>
+    <dd><%= @event.start %></dd>
 
-<% @event.addresses.each do |address| %>
-<p>
-  <b>Address:</b>
-  <%= address.pretty %>
-</p>
-<% end %>
+    <dt>End</dt>
+    <dd><%= @event.end %></dd>
 
-<p>
-  <b>Registration open:</b>
-  <%= @event.registration_open %>
-</p>
+    <dt>Description</dt>
+    <dd style="height: auto;"><%= @event.description %></dd>
+  </fieldset>
 
-<p>
-  <b>Visible:</b>
-  <%= @event.visible %>
-</p>
+  <fieldset>
+    <legend><%= _('Address') %></legend>
 
-<p>
-  <b>Description:</b>
-  <%= @event.description %>
-</p>
+  <% @event.addresses.each do |address| %>
+    <dt>Address</dt>
+    <dd style="height: auto;"><%= address.pretty %></dd>
+  <% end %>
+  </fieldset>
+
+  <fieldset>
+    <legend><%= _('Options') %></legend>
+
+    <dt>Registration Open</dt>
+    <dd><%= @event.registration_open %></dd>
+
+    <dt>Visible</dt>
+    <dd><%= @event.visible %></dd>
+
+  </fieldset>
+</dl>
 
 <p>
   <b>Tickets:</b>
@@ -53,7 +55,4 @@
     <% end %>
   
   </p>
-<% if current_user and current_user.can 'events.administrate' %>
-  <%= link_to 'Edit', edit_event_path(@event) %> 
-<% end %>
 <%= link_to 'Back', events_path %>
