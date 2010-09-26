@@ -1,28 +1,15 @@
 <p class="notice"><%= notice %></p>
 
-
 <dl class="user-info info-list">
-
   <fieldset>
     <legend><%= _('User Information') %></legend>
-  
-<%=
-render :partial => 'users/tools'
-%>
-
+    <%=render :partial => 'users/tools'%>
 
     <dt><%= _('Name') %></dt>
     <dd><%= @user.given_name %> <%= @user.family_name %></dd>
     
     <dt><%= _('Handle') %></dt>
-    <dd><%= 
-           if @user.handle and not @user.handle.empty?
-  		   @user.handle
-  	else 
-  		   _('This user has not set a handle :(') 
-  	       end 
-  	       %>
-    </dd>
+    <dd><%= ( @user.handle and not @user.handle.empty? ) ? @user.handle : _('This user has not set a handle :(') %></dd>
     
     <dt><%= _('Email') %></dt>
     <dd><%= @user.email %></dd>
