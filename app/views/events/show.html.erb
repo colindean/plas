@@ -15,10 +15,12 @@
   <%= @event.end %>
 </p>
 
+<% @event.addresses.each do |address| %>
 <p>
   <b>Address:</b>
-  <%= @event.addresses[0] %>
+  <%= address.pretty %>
 </p>
+<% end %>
 
 <p>
   <b>Registration open:</b>
@@ -35,6 +37,23 @@
   <%= @event.description %>
 </p>
 
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
+<p>
+  <b>Tickets:</b>
+  <% if @event.tickets.count == 0 %>
+    <i>No tickets have been created for this event.</i>
+  <% else %>
+    <ul>
+      <% @event.tickets.each do |t| %>
+        <li><%= link_to t.name, event_ticket_path(@event, t) %> - $<%= "%.2f" % t.price %></li>
+      <% end %>
+    </ul>
+  <% end %>
+    <% if current_user and current_user.can 'events.administrate' %>
+      (<%= link_to _('Create a ticket'), new_event_ticket_path(@event) %>)
+    <% end %>
+  
+  </p>
+<% if current_user and current_user.can 'events.administrate' %>
+  <%= link_to 'Edit', edit_event_path(@event) %> 
+<% end %>
 <%= link_to 'Back', events_path %>

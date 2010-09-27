@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100922031532) do
+ActiveRecord::Schema.define(:version => 20100925223908) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(:version => 20100922031532) do
     t.integer  "generates_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name",                :default => "Registration for one person", :null => false
   end
 
   create_table "user_groups", :force => true do |t|
