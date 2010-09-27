@@ -10,6 +10,8 @@ gem 'gettext', :git => 'git://github.com/colindean/gettext.git' #fixes Config de
 gem 'gettext_i18n_rails', :git => 'git://github.com/grosser/gettext_i18n_rails.git'
 
 group :development,:test do
+  gem 'factory_girl_rails'
+  gem 'watchr'
 	gem 'sqlite3-ruby', :require => 'sqlite3'
 	gem 'capybara'
 	gem 'cucumber', :git => 'git://github.com/colindean/cucumber.git' #fixes Config deprecation warnings
