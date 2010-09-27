@@ -75,7 +75,8 @@ dl.info-list dd {
 
 dl.form-list dd {
     margin-left: 15em;
-    height: 1.5em;
+    height: auto;
+    min-height: 1.5em;
 }
 
 .submit-options {
