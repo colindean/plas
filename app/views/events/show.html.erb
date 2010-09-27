@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<dl class="even-info info-list">
+<dl class="event-info info-list">
   <fieldset>   
     <legend>Event Information</legend>
     <%=render :partial => 'events/tools'%>
@@ -15,7 +15,7 @@
     <dd><%= @event.end %></dd>
 
     <dt>Description</dt>
-    <dd style="height: auto;"><%= @event.description %></dd>
+    <dd><%= @event.description %></dd>
   </fieldset>
 
   <fieldset>
@@ -23,7 +23,7 @@
 
   <% @event.addresses.each do |address| %>
     <dt>Address</dt>
-    <dd style="height: auto;"><%= address.pretty %></dd>
+    <dd><%= address.pretty %></dd>
   <% end %>
   </fieldset>
 

@@ -1,17 +1,17 @@
 a.delete {
-    background-image:url('../images/cross.png');
+    background-image:url('../images/icons/cross.png');
     background-repeat:no-repeat;
     padding-left: 1em;
 }
 
 a.edit {
-    background-image:url('../images/pencil.png');
+    background-image:url('../images/icons/pencil.png');
     background-repeat:no-repeat;
     padding-left: 1em;
 }
 
 a.disable {
-    background-image:url('../images/disable.png');
+    background-image:url('../images/icons/disable.png');
     background-repeat:no-repeat;
     padding-left: 1em;
 }

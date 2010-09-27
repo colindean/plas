@@ -1,0 +1,6 @@
+<% if current_user and current_user.can 'events.administrate' %>
+  <section id="event-admin-tools" class="admin-tools">
+    <%= link_to 'Edit', edit_event_path(@event), :class => 'edit' %> 
+  </section>
+<% end %>
+

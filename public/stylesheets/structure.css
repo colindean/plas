@@ -69,7 +69,8 @@ dl.info-list dt, dl.form-list dt {
 
 dl.info-list dd {
     margin-left: 15em;
-    height: 1em;
+    height: auto;
+    min-height: 1em;
 }
 
 dl.form-list dd {
