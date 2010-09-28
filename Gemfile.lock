@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: git://github.com/colindean/gettext.git
-  revision: 02a72851b50edfcd10c1a9ef08986b913fd2093a
+  revision: b3da7fe7373a7bbb106d90c30d4ccb69ed1d9c22
   specs:
     gettext (2.0.0)
       locale
@@ -24,9 +24,9 @@ GIT
 
 GIT
   remote: git://github.com/grosser/gettext_i18n_rails.git
-  revision: d8c0c2ea37f52430a1e952f249ec4634fef8cdd3
+  revision: 56771ece63ee9eea8ed2c23da633981be00bbbc4
   specs:
-    gettext_i18n_rails (0.2.4)
+    gettext_i18n_rails (0.2.6)
       fast_gettext
 
 GIT
@@ -108,7 +108,7 @@ GEM
     rack (1.2.1)
     rack-mount (0.6.13)
       rack (>= 1.0.0)
-    rack-test (0.5.5)
+    rack-test (0.5.6)
       rack (>= 1.0)
     rails (3.0.0)
       actionmailer (= 3.0.0)
