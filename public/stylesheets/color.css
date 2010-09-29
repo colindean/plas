@@ -1,17 +1,20 @@
-a.delete {
-    background-image:url('../images/icons/cross.png');
+a.icon {
     background-repeat:no-repeat;
     padding-left: 1em;
+}
+
+a.delete {
+    background-image:url('../images/icons/cross.png');
 }
 
 a.edit {
     background-image:url('../images/icons/pencil.png');
-    background-repeat:no-repeat;
-    padding-left: 1em;
 }
 
 a.disable {
     background-image:url('../images/icons/disable.png');
-    background-repeat:no-repeat;
-    padding-left: 1em;
+}
+
+a.create-ticket {
+    background-image:url('../images/icons/money_add.png');
 }

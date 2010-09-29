@@ -39,20 +39,20 @@
   </fieldset>
 </dl>
 
-<p>
-  <b>Tickets:</b>
-  <% if @event.tickets.count == 0 %>
-    <i>No tickets have been created for this event.</i>
-  <% else %>
-    <ul>
-      <% @event.tickets.each do |t| %>
-        <li><%= link_to t.name, event_ticket_path(@event, t) %> - $<%= "%.2f" % t.price %></li>
-      <% end %>
-    </ul>
-  <% end %>
-    <% if current_user and current_user.can 'events.administrate' %>
-      (<%= link_to _('Create a ticket'), new_event_ticket_path(@event) %>)
+<% if @event.tickets.count == 0 %>
+<i><%= _('No tickets have been created for this event.') %></i>
+<% else %>
+<dl class="event-tickets info-list">
+  <fieldset>
+    <legend><%= _('Tickets') %></legend>    
+    <%=render :partial => 'events/ticket_tools'%>
+
+    <% @event.tickets.each do |t| %>
+      <dt><%= link_to t.name, event_ticket_path(@event, t) %></dt>
+      <dd>$<%= "%.2f" % t.price %></dd>
     <% end %>
-  
-  </p>
+  </fieldset>
+</dl>
+<% end %>
+
 <%= link_to 'Back', events_path %>

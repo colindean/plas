@@ -1,0 +1,7 @@
+<% if current_user and current_user.can 'events.administrate' %>
+  <section id="event-admin-tools" class="admin-tools">
+    <ul>
+      <li><%= link_to _('Create a ticket'), new_event_ticket_path(@event), :class => 'icon create-ticket' %></li>
+    </ul>
+  </section>
+<% end %>
