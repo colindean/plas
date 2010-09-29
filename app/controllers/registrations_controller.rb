@@ -1,4 +1,20 @@
 class RegistrationsController < ApplicationController
+  before_filter :get_event
+
+  def get_event
+    @event = Event.find(params[:event_id])
+  end
+
+  # GET /register
+  def register
+    @tickets = @event.tickets
+
+    respond_to do |format|
+      format.html # register.html.erb
+      format.xml { render :xml => @tickets }
+    end
+  end
+  
   # GET /registrations
   # GET /registrations.xml
   def index

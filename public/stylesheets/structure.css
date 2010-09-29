@@ -78,6 +78,9 @@ dl.form-list dd {
     height: auto;
     min-height: 1.5em;
 }
+.ticket-list table {
+  width: 100%;
+}
 
 .submit-options {
     margin-left: 250px; /* hack, will make this look better later */

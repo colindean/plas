@@ -49,8 +49,11 @@
 
     <% @event.tickets.each do |t| %>
       <dt><%= link_to t.name, event_ticket_path(@event, t) %></dt>
-      <dd>$<%= "%.2f" % t.price %> [<%= link_to _("Purchase"), event_register_path(@event) %>]</dd>
+      <dd>$<%= "%.2f" % t.price %></dd>
     <% end %>
+    <div class="ticket-actions">
+      <%= link_to _("Purchase tickets for this event"), event_register_path(@event)%>
+    </div>
   </fieldset>
 </dl>
 <% end %>

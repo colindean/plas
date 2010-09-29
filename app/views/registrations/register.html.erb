@@ -1,0 +1,69 @@
+<% 
+#this logic might need to be in the controller, really
+#or not, because we're splitting them up for display purposes
+single_tickets = []
+package_tickets = []
+@tickets.each do |t| 
+  single_tickets << t if !t.package
+  package_tickets << t if t.package
+end
+
+%>
+<h1><%= _('Register for %s') % @event.name %></h1>
+
+<%= form_for(:registration) do |f| %>
+  <dl class="form-list ticket-list">
+    <fieldset>
+      <legend><%= _('Tickets') %></legend>
+      <table>
+        <thead>
+          <th><%= _('Number') %></th>
+          <th><%= _('Ticket') %></th>
+          <th><%= _('Price') %></th>
+        </thead>
+        <tbody>
+          <% single_tickets.each do |t| %>
+            <tr>
+              <% # this needs to be an actual field %>
+              <td><input type="text" name="ticket[<%=t.id%>][number]"/></td>
+              <td><%= t.name %></td>
+              <td><%= t.price %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </fieldset>
+    <% if package_tickets.count > 0 %>
+    <fieldset>
+      <legend><%= _('Ticket packages') %></legend>
+      <table>
+        <thead>
+          <th><%= _('Number') %></th>
+          <th><%= _('Ticket') %></th>
+          <th><%= _('Price') %></th>
+        </thead>
+        <tbody>
+          <% package_tickets.each do |t| %>
+            <tr>
+              <% # this needs to be an actual field %>
+              <td>
+                <input type="text" value="0" 
+                  name="ticket[<%=t.id%>][number]" />
+              </td>
+              <td>
+                <%= t.name %> 
+                <span class="ticket-package-yield">
+                  <%= _("buys %d %s") % [t.generates_number, t.generates_ticket.name] %>
+                </span>
+              </td>
+              <td><%= t.price %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </fieldset>
+    <%end%>
+  </dl>
+
+  <%= f.submit :value => _('Continue and pay for these tickets') %>
+<% end %>
