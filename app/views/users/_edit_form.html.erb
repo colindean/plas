@@ -9,52 +9,50 @@
   </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :given_name %>
-    <%= f.text_field :given_name %>
-		<br/>
-    <%= f.label :family_name %>
-    <%= f.text_field :family_name %>
-  </div>
-  <div class="field">
-    <%= f.label :handle %><br />
-    <%= f.text_field :handle %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password, f.object.new_record? ? nil : "Change password" %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :gaming_group %><br />
-    <%= f.text_field :gaming_group %>
-  </div>
-  <div class="field">
-    <%= f.label :date_arrival %><br />
-    <%= f.datetime_select :date_arrival %>
-  </div>
-  <div class="field">
-    <%= f.label :date_departure %><br />
-    <%= f.datetime_select :date_departure %>
-  </div>
-  <div class="field">
-    <%= f.label :gamer_type %><br />
-<% #TODO: i18n and put into User %>
-    <%= f.select :gamer_type, %w[computer console both] %>
+<dl class="user-info form-list">
+  <fieldset>
+    <legend><%= _('Edit User Information') %></legend>
 
-  </div>
-  <div class="field">
-    <%= f.label :birthdate %><br />
-    <%= f.date_select :birthdate, :start_year => Time.now.year - 100, 
-																	:end_year => Time.now.year - 13,
-																	:default => Time.now - 18.years %>
-		<%= _('If you are younger than this date, you may need your parents\' signature on the waiver to enter the event. No exceptions are granted to this rule.') %>
-  </div>
-  <div class="field">
-    <%= f.label :gender %><br />
+    <dt><%= f.label :given_name %></dt>
+    <dd><%= f.text_field :given_name %></dd>
+
+    <dt><%= f.label :family_name %></dt>
+    <dd><%= f.text_field :family_name %></dd>
+
+    <dt><%= f.label :handle %></dt>
+    <dd><%= f.text_field :handle %></dd>
+
+    <dt><%= f.label :email %></dt>
+    <dd><%= f.email_field :email %></dd>
+
+    <dt><%= f.label :password, f.object.new_record? ? nil : "Change password" %></dt>
+    <dd><%= f.password_field :password %></dd>
+
+    <dt><%= f.label :gaming_group %></dt>
+    <dd><%= f.text_field :gaming_group %></dd>
+
+    <dt><%= f.label :date_arrival %></dt>
+    <dd><%= f.datetime_select :date_arrival %></dd>
+
+    <dt><%= f.label :date_departure %></dt>
+    <dd><%= f.datetime_select :date_departure %></dd>
+
+    <dt><%= f.label :gamer_type %></dt>
 <% #TODO: i18n and put into User %>
-    <%= f.select :gender, %w[male female hermaphrodite transsexual pansexual adventurous], :include_blank => _('Prefer not to answer') %>
-  </div>
+    <dd><%= f.select :gamer_type, %w[computer console both] %></dd>
+
+    <dt><%= f.label :birthdate %></dt>
+    <dd><%= f.date_select :birthdate, :start_year => Time.now.year - 100, 
+																	:end_year => Time.now.year - 13,
+																	:default => Time.now - 18.years %></dd>
+
+	<dt>&nbsp;</dt>
+    <dd style="height: 4em;"><%= _('If you are younger than this date, you may need your parents\' signature on the waiver to enter the event. No exceptions are granted to this rule.') %></dd>
+
+    <dt><%= f.label :gender %></dt>
+<% #TODO: i18n and put into User %>
+   <dd><%= f.select :gender, %w[male female hermaphrodite transsexual pansexual adventurous], :include_blank => _('Prefer not to answer') %></dd>
+
+  </fieldset>
+</dl>
+

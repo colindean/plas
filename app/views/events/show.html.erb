@@ -1,59 +1,58 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @event.name %>
-</p>
+<dl class="event-info info-list">
+  <fieldset>   
+    <legend>Event Information</legend>
+    <%=render :partial => 'events/tools'%>
 
-<p>
-  <b>Start:</b>
-  <%= @event.start %>
-</p>
+    <dt><%= _('Name') %></dt>
+    <dd><%= @event.name %></dd>
 
-<p>
-  <b>End:</b>
-  <%= @event.end %>
-</p>
+    <dt>Start</dt>
+    <dd><%= @event.start %></dd>
 
-<% @event.addresses.each do |address| %>
-<p>
-  <b>Address:</b>
-  <%= address.pretty %>
-</p>
-<% end %>
+    <dt>End</dt>
+    <dd><%= @event.end %></dd>
 
-<p>
-  <b>Registration open:</b>
-  <%= @event.registration_open %>
-</p>
+    <dt>Description</dt>
+    <dd><%= @event.description %></dd>
+  </fieldset>
 
-<p>
-  <b>Visible:</b>
-  <%= @event.visible %>
-</p>
+  <fieldset>
+    <legend><%= _('Address') %></legend>
 
-<p>
-  <b>Description:</b>
-  <%= @event.description %>
-</p>
-
-<p>
-  <b>Tickets:</b>
-  <% if @event.tickets.count == 0 %>
-    <i>No tickets have been created for this event.</i>
-  <% else %>
-    <ul>
-      <% @event.tickets.each do |t| %>
-        <li><%= link_to t.name, event_ticket_path(@event, t) %> - $<%= "%.2f" % t.price %> [<%= link_to _("Purchase"), event_register_path(@event) %>]</li>
-      <% end %>
-    </ul>
+  <% @event.addresses.each do |address| %>
+    <dt>Address</dt>
+    <dd><%= address.pretty %></dd>
   <% end %>
-    <% if current_user and current_user.can 'events.administrate' %>
-      (<%= link_to _('Create a ticket'), new_event_ticket_path(@event) %>)
+  </fieldset>
+
+  <fieldset>
+    <legend><%= _('Options') %></legend>
+
+    <dt>Registration Open</dt>
+    <dd><%= @event.registration_open %></dd>
+
+    <dt>Visible</dt>
+    <dd><%= @event.visible %></dd>
+
+  </fieldset>
+</dl>
+
+<% if @event.tickets.count == 0 %>
+<i><%= _('No tickets have been created for this event.') %></i>
+<% else %>
+<dl class="event-tickets info-list">
+  <fieldset>
+    <legend><%= _('Tickets') %></legend>    
+    <%=render :partial => 'events/ticket_tools'%>
+
+    <% @event.tickets.each do |t| %>
+      <dt><%= link_to t.name, event_ticket_path(@event, t) %></dt>
+      <dd>$<%= "%.2f" % t.price %> [<%= link_to _("Purchase"), event_register_path(@event) %>]</dd>
     <% end %>
-  
-  </p>
-<% if current_user and current_user.can 'events.administrate' %>
-  <%= link_to 'Edit', edit_event_path(@event) %> 
+  </fieldset>
+</dl>
 <% end %>
+
 <%= link_to 'Back', events_path %>
