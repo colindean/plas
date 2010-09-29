@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+    <th>Name</th>
     <th>Price</th>
     <th>Available</th>
     <th>Date open</th>
@@ -21,11 +22,13 @@
     <td><%= ticket.date_open %></td>
     <td><%= ticket.date_closed %></td>
     <td><%= ticket.package %></td>
-    <td><%= ticket.generates_ticket %></td>
-    <td><%= ticket.generates_number %></td>
-    <td><%= link_to 'Show', ticket %></td>
+    <% if ticket.package %>
+      <td><%= ticket.generates_ticket %></td>
+      <td><%= ticket.generates_number %></td>
+    <% end %>
+    <td><%= link_to 'Show', event_ticket_path([@event, ticket]) %></td>
     <td><%= link_to 'Edit', edit_event_ticket_path(ticket) %></td>
-    <td><%= link_to 'Destroy', ticket, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', event_ticket_path([@event, ticket]), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

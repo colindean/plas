@@ -44,7 +44,7 @@
   <% else %>
     <ul>
       <% @event.tickets.each do |t| %>
-        <li><%= link_to t.name, event_ticket_path(@event, t) %> - $<%= "%.2f" % t.price %></li>
+        <li><%= link_to t.name, event_ticket_path(@event, t) %> - $<%= "%.2f" % t.price %> [<%= link_to _("Purchase"), event_register_path(@event) %>]</li>
       <% end %>
     </ul>
   <% end %>
