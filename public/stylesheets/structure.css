@@ -53,7 +53,7 @@ dl.info-list, dl.form-list {
 dl.info-list fieldset, dl.form-list fieldset {
     border-style:solid;
     border-width:1px;
-    width: 650px;
+    width: 95%;
     padding: 1em 0px 1em 0px;
 }
 
