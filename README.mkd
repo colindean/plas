@@ -9,6 +9,7 @@ Authors
 * Colin Dean <cdean@pittco.org>
 
 ### Contributors ###
+* Jonathan Daniel
 * Bill Turner
 
 ### Translators ###
