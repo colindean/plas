@@ -14,7 +14,26 @@ class RegistrationsController < ApplicationController
       format.xml { render :xml => @tickets }
     end
   end
-  
+
+  # POST /pay
+  def pay
+    @desired_tickets = params[:ticket]
+    @tickets = []
+    @desired_tickets.each do |k,v|
+      #TODO: I'm sure this can be done more efficiently and securely
+      ticket = Ticket.find(v["ticket_id"])
+      @desired_tickets[k]["name"] = ticket.name
+      @desired_tickets[k]["price"] = ticket.price
+      @desired_tickets[k]["total"] = v["number"].to_i * ticket.price
+    end
+
+
+    respond_to do |format|
+      format.html # pay.html.erb
+      #TODO: xml version should show provide ticket information and totals
+      format.xml { render :xml => _("Not yet implemented") }
+    end
+  end
   # GET /registrations
   # GET /registrations.xml
   def index

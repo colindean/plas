@@ -3,9 +3,9 @@ Plas::Application.routes.draw do
   resources :events do
     resource :address
     #resources :registrations
-    match '/register' => 'registrations#register', :as => 'register'
-    match '/register/pay' => 'registrations#pay', :as => 'registerpay'
-    match '/register/return' => 'registrations#return', :as => 'registerreturn'
+    match '/register' => 'registrations#register', :as => :register
+    match '/register/pay' => 'registrations#pay', :as => :registerpay
+    match '/register/return' => 'registrations#return', :as => :registerreturn
     match '/registration/:id' => 'registrations#show'
     match '/registration/:id/edit' => 'registrations#edit'
     match '/registrations' => 'registrations#index'

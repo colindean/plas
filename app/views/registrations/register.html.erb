@@ -11,7 +11,7 @@ end
 %>
 <h1><%= _('Register for %s') % @event.name %></h1>
 
-<%= form_for(:registration) do |f| %>
+<%= form_for :registration, :url => event_registerpay_path do |f| %>
   <dl class="form-list ticket-list">
     <fieldset>
       <legend><%= _('Tickets') %></legend>
@@ -22,10 +22,13 @@ end
           <th><%= _('Price') %></th>
         </thead>
         <tbody>
-          <% single_tickets.each do |t| %>
+          <% single_tickets.each_with_index do |t,i| %>
             <tr>
-              <% # this needs to be an actual field %>
-              <td><input type="text" name="ticket[<%=t.id%>][number]"/></td>
+              <% #TODO: these need to be actual fields somehow %>
+              <td>
+                <input type="text" name="ticket[<%=i%>][number]" value="0"/>
+                <input type="hidden" name="ticket[<%=i%>][ticket_id]" value="<%=t.id%>"/>
+              </td>
               <td><%= t.name %></td>
               <td><%= t.price %></td>
             </tr>

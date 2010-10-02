@@ -1,0 +1,27 @@
+<h1><%= _("Pay for your tickets for %s") % @event.name %></h1>
+
+<p><%= _("Please review your order and choose a payment method.") %></p>
+<table>
+  <thead>
+    <th><%= _("Number of Tickets") %></th>
+    <th><%= _("Ticket name") %></th>
+    <th><%= _("Ticket price") %></th>
+    <th><%= _("Total") %></th>
+  </thead>
+  <tbody>
+  <% @desired_tickets.each do |k,t| %>
+    <tr>
+      <td><%= t["number"] %></td>
+      <td><%= t["name"] %></td>
+      <td><%= t["price"] %></td>
+      <td><%= t["total"] %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<ul>
+  <li>Pay using PayPal</li>
+  <li>Pay using Google Checkout</li>
+  <li>Pay using a mailed check</li>
+</ul>
