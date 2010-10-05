@@ -32,8 +32,7 @@ Contributing
 ------------
 
 We have a GitHub mirror of our private repository set up
-at http://github.com/colindean/plas. Github will likely eventually become our
-favored repository.
+at http://github.com/colindean/plas. Github will likely eventually become our favored repository.
 
 We develop on ruby-head 1.9.3 and rails 3.0.0. See the Gemfile for 
 other stuff we require. We do provide an .rvmrc for rvm users (seriously makes life so much easier). 
@@ -72,3 +71,13 @@ Use
 ---
 Create a user to be able to do anything. As of this writing, the 
 permissions system is not yet working.
+
+Social
+------
+We're just using Pittco's existing accounts for announcements regarding PLAS.
+
+http://www.twitter.com/pittcolan
+http://www.facebook.com/pittco
+
+We're also listed on Ohloh!
+https://www.ohloh.net/p/plas
