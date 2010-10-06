@@ -9,6 +9,10 @@ gem "fast_gettext", :git => 'git://github.com/grosser/fast_gettext.git'
 gem 'gettext', :git => 'git://github.com/colindean/gettext.git' #fixes Config deprecation warnings
 gem 'gettext_i18n_rails', :git => 'git://github.com/grosser/gettext_i18n_rails.git'
 
+#payment stuff
+gem 'activemerchant'
+gem 'money'
+
 group :development,:test do
   gem 'factory_girl_rails'
   gem 'watchr'

@@ -11,7 +11,7 @@ end
 %>
 <h1><%= _('Register for %s') % @event.name %></h1>
 
-<%= form_for :registration, :url => event_registerpay_path do |f| %>
+<%= form_for :registration, :url => event_registerreview_path do |f| %>
   <dl class="form-list ticket-list">
     <fieldset>
       <legend><%= _('Tickets') %></legend>

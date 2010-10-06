@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: git://github.com/grosser/gettext_i18n_rails.git
-  revision: 56771ece63ee9eea8ed2c23da633981be00bbbc4
+  revision: 66c0a72261bbc53e85d91d70d10d00fa8f063147
   specs:
     gettext_i18n_rails (0.2.6)
       fast_gettext
@@ -54,6 +54,10 @@ GEM
       rack-mount (~> 0.6.12)
       rack-test (~> 0.5.4)
       tzinfo (~> 0.3.23)
+    activemerchant (1.8.0)
+      activesupport (>= 2.3.2)
+      braintree (>= 2.0.0)
+      builder (>= 2.0.0)
     activemodel (3.0.0)
       activesupport (= 3.0.0)
       builder (~> 2.1.2)
@@ -69,6 +73,8 @@ GEM
     activesupport (3.0.0)
     arel (1.0.1)
       activesupport (~> 3.0.0)
+    braintree (2.6.1)
+      builder
     builder (2.1.2)
     bzip2-ruby (0.2.6)
     capybara (0.3.9)
@@ -90,10 +96,9 @@ GEM
       rails (>= 3.0.0.beta4)
     ffi (0.6.3)
       rake (>= 0.8.7)
-    gherkin (2.2.4)
+    gherkin (2.2.8)
       json (~> 1.4.6)
       term-ansicolor (~> 1.0.5)
-      trollop (~> 1.16.2)
     i18n (0.4.1)
     json (1.4.6)
     json_pure (1.4.6)
@@ -103,6 +108,7 @@ GEM
       mime-types
       treetop (>= 1.4.5)
     mime-types (1.16)
+    money (3.1.0)
     nokogiri (1.4.3.1)
     polyglot (0.3.1)
     rack (1.2.1)
@@ -124,18 +130,18 @@ GEM
       rake (>= 0.8.4)
       thor (~> 0.14.0)
     rake (0.8.7)
-    rspec (2.0.0.beta.22)
-      rspec-core (= 2.0.0.beta.22)
-      rspec-expectations (= 2.0.0.beta.22)
-      rspec-mocks (= 2.0.0.beta.22)
-    rspec-core (2.0.0.beta.22)
-    rspec-expectations (2.0.0.beta.22)
+    rspec (2.0.0.rc)
+      rspec-core (= 2.0.0.rc)
+      rspec-expectations (= 2.0.0.rc)
+      rspec-mocks (= 2.0.0.rc)
+    rspec-core (2.0.0.rc)
+    rspec-expectations (2.0.0.rc)
       diff-lcs (>= 1.1.2)
-    rspec-mocks (2.0.0.beta.22)
-      rspec-core (= 2.0.0.beta.22)
-      rspec-expectations (= 2.0.0.beta.22)
-    rspec-rails (2.0.0.beta.22)
-      rspec (= 2.0.0.beta.22)
+    rspec-mocks (2.0.0.rc)
+      rspec-core (= 2.0.0.rc)
+      rspec-expectations (= 2.0.0.rc)
+    rspec-rails (2.0.0.rc)
+      rspec (= 2.0.0.rc)
     rubyzip (0.9.4)
     selenium-webdriver (0.0.28)
       ffi (>= 0.6.1)
@@ -146,10 +152,9 @@ GEM
     steam-condenser (0.11.2)
       bzip2-ruby (>= 0.2)
     term-ansicolor (1.0.5)
-    thor (0.14.2)
+    thor (0.14.3)
     treetop (1.4.8)
       polyglot (>= 0.3.1)
-    trollop (1.16.2)
     tzinfo (0.3.23)
     watchr (0.7)
 
@@ -157,6 +162,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activemerchant
   authlogic!
   capybara
   cucumber!
@@ -165,6 +171,7 @@ DEPENDENCIES
   fast_gettext!
   gettext!
   gettext_i18n_rails!
+  money
   rails (= 3.0.0)
   rspec (~> 2.0.0.beta.20)
   rspec-rails (~> 2.0.0.beta.20)

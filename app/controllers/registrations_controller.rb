@@ -1,4 +1,6 @@
 class RegistrationsController < ApplicationController
+  include ActiveMerchant::Billing
+  
   before_filter :get_event
 
   def get_event
@@ -15,8 +17,8 @@ class RegistrationsController < ApplicationController
     end
   end
 
-  # POST /pay
-  def pay
+  # POST /review
+  def review
     @desired_tickets = params[:ticket]
     @tickets = []
     @desired_tickets.each do |k,v|
@@ -27,6 +29,42 @@ class RegistrationsController < ApplicationController
       @desired_tickets[k]["total"] = v["number"].to_i * ticket.price
     end
 
+    session[:tickets] = @desired_tickets
+
+    respond_to do |format|
+      format.html # review.html.erb
+      #TODO: xml version should show provide ticket information and totals
+      format.xml { render :xml => _("Not yet implemented") }
+    end
+  end
+
+  #GET /pay
+  def pay
+    #this is where we redirect the user to paypal
+
+    respond_to do |format|
+      format.html # 
+      #TODO: xml version should show provide ticket information and totals
+      format.xml { render :xml => _("Not yet implemented") }
+    end
+  end
+
+  #GET /return
+  def return
+    #this is where paypal sends the user following the transaction
+    if payment_successful? 
+      render :action => "success"
+    else
+      render :action => "error"
+    end
+  end
+
+  #GET /success
+  def success
+    #shown if the paypal transaction succeeded
+    #create the registrations
+    #clear the session's tickets
+    session[:tickets] = nil
 
     respond_to do |format|
       format.html # pay.html.erb
@@ -34,6 +72,17 @@ class RegistrationsController < ApplicationController
       format.xml { render :xml => _("Not yet implemented") }
     end
   end
+
+  #GET /error
+  def error
+    #shown if the paypal transaction failed
+    respond_to do |format|
+      format.html # pay.html.erb
+      #TODO: xml version should show provide ticket information and totals
+      format.xml { render :xml => _("Not yet implemented") }
+    end
+  end
+  
   # GET /registrations
   # GET /registrations.xml
   def index

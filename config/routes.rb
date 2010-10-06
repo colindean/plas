@@ -4,8 +4,12 @@ Plas::Application.routes.draw do
     resource :address
     #resources :registrations
     match '/register' => 'registrations#register', :as => :register
+    match '/register/review' => 'registrations#review', :as => :registerreview
     match '/register/pay' => 'registrations#pay', :as => :registerpay
-    match '/register/return' => 'registrations#return', :as => :registerreturn
+    match '/register/return' => 'registrations#return', :as => :registerreturnpay
+    match '/register/success' => 'registrations#success', :as => :registersuccess
+    match '/register/error' => 'registrations#error', :as => :registererror
+    match '/register/reserve' => 'registrations#reserve', :as => :registerreserve
     match '/registration/:id' => 'registrations#show'
     match '/registration/:id/edit' => 'registrations#edit'
     match '/registrations' => 'registrations#index'
