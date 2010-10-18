@@ -1,3 +1,6 @@
+require 'money'
+require 'activemerchant'
+
 class RegistrationsController < ApplicationController
   include ActiveMerchant::Billing
   
@@ -21,12 +24,14 @@ class RegistrationsController < ApplicationController
   def review
     @desired_tickets = params[:ticket]
     @tickets = []
+    @order_total = 0
     @desired_tickets.each do |k,v|
       #TODO: I'm sure this can be done more efficiently and securely
       ticket = Ticket.find(v["ticket_id"])
       @desired_tickets[k]["name"] = ticket.name
       @desired_tickets[k]["price"] = ticket.price
       @desired_tickets[k]["total"] = v["number"].to_i * ticket.price
+      @order_total = @order_total +  @desired_tickets[k]["total"]
     end
 
     session[:tickets] = @desired_tickets
