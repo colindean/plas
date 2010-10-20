@@ -36,7 +36,7 @@ We use [GitHub](http://github.com/colindean/plas) for our primary repository, bu
 We develop on ruby 1.9.3 and rails 3. See the Gemfile for 
 other stuff we require. We do provide an .rvmrc for rvm users (seriously makes life so much easier). 
 
-Colin is currently using ruby 1.9.3dev (2010-08-24 trunk 29084) [x86\_64-darwin10.4.0].
+Colin is currently using ruby 1.9.3dev (2010-10-20 trunk 29539) [x86_64-darwin10.4.0].
 
 **What we really need are tests.** Colin has not been a good Rubyist and
 done proper test-driven development due to the time crunch. We use RSpec and
