@@ -19,5 +19,9 @@ Plas::Application.configure do
 
 	#log deprecations
 	config.active_support.deprecation = :log
-
+  
+  config.after_initialize do
+    #set activemerchant to use the gateways' test servers
+    ActiveMerchant::Billing::Base.mode = :test
+  end
 end

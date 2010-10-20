@@ -10,6 +10,16 @@ class RegistrationsController < ApplicationController
     @event = Event.find(params[:event_id])
   end
 
+  #store the gateway object
+  private
+  def gateway
+    @gateway ||= ActiveMerchant::Billing::PaypalExpressGateway.new(
+      :login => "", #Pcfg.get('paypal.login')
+      :password => "", #Pcfg.get('paypal.password')
+      :signature => "" #Pcfg.get('paypal.signature')
+    )
+  end
+
   # GET /register
   def register
     @tickets = @event.tickets
@@ -35,6 +45,7 @@ class RegistrationsController < ApplicationController
     end
 
     session[:tickets] = @desired_tickets
+    session[:order_total] = @order_total #is this safe to put in here? doubtful
 
     respond_to do |format|
       format.html # review.html.erb
@@ -43,14 +54,45 @@ class RegistrationsController < ApplicationController
     end
   end
 
+  #The paypal integration dance comes from here:
+  # http://webtempest.com/paypal-express-transactions-with-ruby-on-rails/
+
+  #redirect the user to paypal for login and confirmation there
+  def paypal_redirect
+    setup_response = gateway.setup_purchase(session[:order_total],
+                                            :ip => request.remote_ip,
+                                            :return_url => url_for(:action => 'confirm', :only_path => false),
+                                            :cancel_return_url => url_for(:action => 'register', :only_path => false)
+                                           )
+    redirect_to gateway.redirect_url_for(setup_response.token)
+  end
+  
+  def confirm
+    customer_detauls = gateway.details_for(params[:token])
+    if !details_response.success?
+      @message = details_response.message
+      render :action => 'error'
+      return
+    end
+    @address = customer_details.address
+  end
+
   #GET /pay
   def pay
-    #this is where we redirect the user to paypal
-
-    respond_to do |format|
-      format.html # 
-      #TODO: xml version should show provide ticket information and totals
-      format.xml { render :xml => _("Not yet implemented") }
+    #this is where we actually charge paypal
+    purchase = gateway.purchase(session[:order_total],
+                                :ip => request.remote_ip,
+                                :payer_id => params[:payer_id],
+                                :token => params[:token]
+                               )
+    if purchase.success?
+      respond_to do |format|
+       format.html # 
+       #TODO: xml version should show provide ticket information and totals
+       format.xml { render :xml => _("Not yet implemented") }
+      end
+    else
+      render :action => 'error'
     end
   end
 

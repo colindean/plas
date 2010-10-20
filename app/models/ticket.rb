@@ -6,4 +6,10 @@ class Ticket < ActiveRecord::Base
   validates_numericality_of :available, :greater_than => 0, :presence => true
   validates_numericality_of :generates_number, :greater_than => 0, :allow_blank => true
 
+#TODO: refactor to use Money instead of just having cents in price
+#  composed_of :price,
+#    :class_name => "Money",
+#    :mapping => [%w(cents cents), %w(currency currency_as_string)],
+#    :constructor => Proc.new { |cents, currency| Money.new(cents || 0, currency || Money.default_currency) }
+
 end
