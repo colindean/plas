@@ -8,10 +8,13 @@ class RegistrationsController < ApplicationController
 
   def get_event
     @event = Event.find(params[:event_id])
+    #this should be impossible, because the events controller will handle it
+    if !@event
+      redirect_to events_path
+    end
   end
 
-  #store the gateway object
-  private
+  #store the gateway objecti
   def gateway
     @gateway ||= ActiveMerchant::Billing::PaypalExpressGateway.new(
       :login => "", #Pcfg.get('paypal.login')
@@ -19,11 +22,11 @@ class RegistrationsController < ApplicationController
       :signature => "" #Pcfg.get('paypal.signature')
     )
   end
+  private :gateway
 
   # GET /register
   def register
     @tickets = @event.tickets
-
     respond_to do |format|
       format.html # register.html.erb
       format.xml { render :xml => @tickets }
@@ -33,6 +36,9 @@ class RegistrationsController < ApplicationController
   # POST /review
   def review
     @desired_tickets = params[:ticket]
+    if true
+      redirect_to event_register_url
+    end
     @tickets = []
     @order_total = 0
     @desired_tickets.each do |k,v|

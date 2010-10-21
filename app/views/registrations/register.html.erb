@@ -1,4 +1,10 @@
-<% 
+<h1><%= _('Register for %s') % @event.name %></h1>
+<%
+if !@tickets 
+  %>
+  <p><%= _("Currently, no tickets are available for this event.") %></p>
+  <p><%= link_to _("Back"), event_path(@event) %></p>
+<% else
 #this logic might need to be in the controller, really
 #or not, because we're splitting them up for display purposes
 single_tickets = []
@@ -9,7 +15,6 @@ package_tickets = []
 end
 
 %>
-<h1><%= _('Register for %s') % @event.name %></h1>
 
 <%= form_for :registration, :url => event_registerreview_path do |f| %>
   <dl class="form-list ticket-list">
@@ -69,4 +74,5 @@ end
   </dl>
 
   <%= f.submit :value => _('Continue and pay for these tickets') %>
-<% end %>
+<% end
+end #end of the main if %>
