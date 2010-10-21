@@ -1,0 +1,13 @@
+<h1>Listing pcfgs</h1>
+
+<dl>
+<% @pcfgs.each do |pcfg| %>
+  <dt title="<%= _("Last modified %s by %s") % [pcfg.updated_at, pcfg.last_modified_by.display_name] %>"><%= pcfg.key %> 
+    [<%= link_to _("e"), edit_pcfg_path(pcfg) %> 
+     <%= link_to _("d"), pcfg, :confirm => _("Are you sure you want to delete this configuration variable?"), :method => :delete %>]
+     </dt>
+  <dd><%= pcfg.value %></dd>
+<% end %>
+</dl>
+
+<%= link_to _('New config variable'), new_pcfg_path %>

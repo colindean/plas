@@ -1,0 +1,29 @@
+<%= form_for(@pcfg) do |f| %>
+  <% if @pcfg.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pcfg.errors.count, "error") %> prohibited this pcfg from being saved:</h2>
+
+      <ul>
+      <% @pcfg.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% if @pcfg.updated_at %>
+    <div>
+      This cfg was last updated <%= @pcfg.updated_at %> by <%= @pcfg.last_modified_by %>
+    </div>
+<% end %>
+  <div class="field">
+    <%= f.label :key %><br />
+    <%= f.text_field :key %>
+  </div>
+  <div class="field">
+    <%= f.label :value %><br />
+    <%= f.text_area :value %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

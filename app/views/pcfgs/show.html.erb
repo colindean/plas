@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Key:</b>
+  <%= @pcfg.key %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @pcfg.value %>
+</p>
+
+<p>
+  <b>Last modified by:</b>
+  <%= @pcfg.last_modified_by %>
+</p>
+
+
+<%= link_to 'Edit', edit_pcfg_path(@pcfg) %> |
+<%= link_to 'Back', pcfgs_path %>
