@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100925223908) do
+ActiveRecord::Schema.define(:version => 20101021023007) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(:version => 20100925223908) do
     t.boolean  "registration_open"
     t.boolean  "visible"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pcfgs", :force => true do |t|
+    t.text     "key"
+    t.text     "value"
+    t.integer  "last_modified_by_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -75,7 +83,6 @@ ActiveRecord::Schema.define(:version => 20100925223908) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "tickets", :force => true do |t|
-    t.integer  "event_id"
     t.float    "price"
     t.integer  "available"
     t.datetime "date_open"
@@ -86,6 +93,7 @@ ActiveRecord::Schema.define(:version => 20100925223908) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name",                :default => "Registration for one person", :null => false
+    t.integer  "event_id"
   end
 
   create_table "user_groups", :force => true do |t|

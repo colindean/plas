@@ -1,5 +1,7 @@
 Plas::Application.routes.draw do
 
+  resources :pcfgs
+
   resources :events do
     resource :address
     #resources :registrations

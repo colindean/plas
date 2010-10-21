@@ -17,9 +17,9 @@ class RegistrationsController < ApplicationController
   #store the gateway objecti
   def gateway
     @gateway ||= ActiveMerchant::Billing::PaypalExpressGateway.new(
-      :login => "", #Pcfg.get('paypal.login')
-      :password => "", #Pcfg.get('paypal.password')
-      :signature => "" #Pcfg.get('paypal.signature')
+      :login => Pcfg.get('paypal.login'),
+      :password => Pcfg.get('paypal.password'),
+      :signature => Pcfg.get('paypal.signature')
     )
   end
   private :gateway

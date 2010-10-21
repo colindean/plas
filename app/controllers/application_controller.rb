@@ -66,4 +66,14 @@ class ApplicationController < ActionController::Base
 			end
 			return true
 		end
+
+		def require_user_admin
+			unless current_user and current_user.can('app.administrate')
+				store_location
+				flash[:notice] = _("You must be an app administrator to access this page.")
+				redirect_to request.referrer
+				return false
+			end
+			return true
+		end
 end
