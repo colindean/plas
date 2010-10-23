@@ -36,7 +36,7 @@ We use [GitHub](http://github.com/colindean/plas) for our primary repository, bu
 We develop on ruby 1.9.3 and rails 3. See the Gemfile for 
 other stuff we require. We do provide an .rvmrc for rvm users (seriously makes life so much easier). 
 
-Colin is currently using ruby 1.9.3dev (2010-10-20 trunk 29539) [x86_64-darwin10.4.0].
+Colin is currently using ruby 1.9.3dev (2010-10-20 trunk 29539) [x86\_64-darwin10.4.0].
 
 **What we really need are tests.** Colin has not been a good Rubyist and
 done proper test-driven development due to the time crunch. We use RSpec and
@@ -70,6 +70,12 @@ Use
 ---
 Create a user to be able to do anything. As of this writing, the 
 permissions system is not yet working, so any user can do anything.
+
+In order to use PayPal, you must setup a [PayPal sandbox account](http://developer.paypal.com) and then set three Pfcgs: 
+ * paypal.login
+ * paypal.password
+ * paypal.signature
+This will be made easier at some point, such as when Pcfg starts to see heavier use. I'd entertain a patch/pull with these prepopulated, as well as a better way to edit Pcfg (I'd like it to be kinda like Firefox's about:config).For now, go to http://localhost:3000/pcfgs to set pcfg variables.
 
 Social
 ------
