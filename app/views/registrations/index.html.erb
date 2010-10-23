@@ -1,37 +1,16 @@
-<h1>Listing registrations</h1>
-
-<table>
-  <tr>
-    <th>Ticket</th>
-    <th>Price paid</th>
-    <th>Purchaser</th>
-    <th>User</th>
-    <th>Date given</th>
-    <th>Package parent</th>
-    <th>Checked in</th>
-    <th>Date checked in</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @registrations.each do |registration| %>
-  <tr>
-    <td><%= registration.ticket %></td>
-    <td><%= registration.price_paid %></td>
-    <td><%= registration.purchaser %></td>
-    <td><%= registration.user %></td>
-    <td><%= registration.date_given %></td>
-    <td><%= registration.package_parent %></td>
-    <td><%= registration.checked_in %></td>
-    <td><%= registration.date_checked_in %></td>
-    <td><%= link_to 'Show', registration %></td>
-    <td><%= link_to 'Edit', edit_registration_path(registration) %></td>
-    <td><%= link_to 'Destroy', registration, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Registration', new_registration_path %>
+<h1><%= _('Registrations for %s') % @event.name %></h1>
+<div id="registration-statistics">
+  <dl>
+    <dt><%= _("Registrations purchased") %></dt>
+    <dd><%= @registrations.count %></dd>
+    <dt><%= _("Registered users") %></dt>
+    <dd><%= @user_registrations.count %></dd>
+  </dl>
+</div>
+<ul>
+<% @user_registrations.each do |reg| %>
+  <li><%= link_to reg.user.display_name, user_url(reg.user) %></li>
+<%end%>
+</ul>
+<br/><br/>
+<%= link_to _("Back"), event_url(@event) %>

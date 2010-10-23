@@ -105,3 +105,16 @@ footer {
 	position:absolute;
 	/*width:100%;*/
 }
+
+article.event {
+  margin: 1em;
+  padding: 0.2em;
+}
+
+article.event h1 {
+  font-size: 2em;
+}
+
+article.event div.admin-actions {
+  text-align: right;
+}

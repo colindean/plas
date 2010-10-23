@@ -26,7 +26,7 @@
     <dd><%= address.pretty %></dd>
   <% end %>
   </fieldset>
-
+  <% if current_user and current_user.can 'events.administrate' %>
   <fieldset>
     <legend><%= _('Options') %></legend>
 
@@ -35,8 +35,8 @@
 
     <dt>Visible</dt>
     <dd><%= @event.visible %></dd>
-
   </fieldset>
+  <%end%>
 </dl>
 
 <% if @event.tickets.count == 0 %>
@@ -52,7 +52,8 @@
       <dd>$<%= "%.2f" % t.price %></dd>
     <% end %>
     <div class="ticket-actions">
-      <%= link_to _("Purchase tickets for this event"), event_register_path(@event)%>
+      <%= link_to _("Purchase tickets for this event"), event_register_path(@event) if @event.registration_open %><br/>
+      <%= link_to _("Who is registered?"), event_registrations_url(@event) %>
     </div>
   </fieldset>
 </dl>

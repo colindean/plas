@@ -181,7 +181,8 @@ class RegistrationsController < ApplicationController
   # GET /registrations
   # GET /registrations.xml
   def index
-    @registrations = Registration.all
+    @registrations = Registration.find_all_by_ticket_event(@event)
+    @user_registrations = @registrations.select {|f| f.user}
 
     respond_to do |format|
       format.html # index.html.erb

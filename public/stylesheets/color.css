@@ -18,3 +18,8 @@ a.disable {
 a.create-ticket {
     background-image:url('../images/icons/money_add.png');
 }
+
+article.event {
+  background-color: #eee;
+  border: 1px solid #000;
+}
