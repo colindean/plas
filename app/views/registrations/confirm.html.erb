@@ -1,0 +1,39 @@
+<h1><%= _("Confirm your registration, paid with PayPal") %></h1>
+
+<div class="super-important"><%= _("You have not paid until you click CONFIRM below.") %></div>
+
+<dl>
+  <dt>Address</dt>
+  <dd><%= @details_response.address.values.join(' ') %></dd>
+  <dt>Email</dt>
+  <dd><%= @details_response.email %></dd>
+  <dt>Name</dt>
+  <dd><%= @details_response.name%></dd>
+</dl>
+
+<table>
+  <thead>
+    <th><%= _("Number of Tickets") %></th>
+    <th><%= _("Ticket name") %></th>
+    <th><%= _("Ticket price") %></th>
+    <th><%= _("Total") %></th>
+  </thead>
+  <tbody>
+  <% @desired_tickets.each do |k,t| %>
+    <tr>
+      <td><%= t["number"] %></td>
+      <td><%= t["name"] %></td>
+      <td><%= t["price"] %></td>
+      <td><%= t["total"] %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<dl>
+  <dt><%= _('Order total:') %></dt>
+  <dd><%= @order_total %></dd>
+</dl>
+<%= link_to _("CONFIRM PAYMENT"), event_registerpay_url %>
+<%= link_to _("Go back to PayPal"), event_registerpaypal_url %>
+<%= link_to _("Cancel order"), event_url(@event) %>

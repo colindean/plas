@@ -1,0 +1,11 @@
+<h1><%= _("Successful payment for %s!") % @event.name %></h1>
+<div id="success" class="message">
+  <p><%= _("You have successfully paid for the event. You can now participate. Be sure to double check the times for the event so you don't miss anything!") %></p>
+</div>
+<% if @ticket_package %>
+<div id="ticket-package" class="message">
+  <p><%= _("Thank you for buying a ticket package. Your fellow gamers will truely appreciate your coordination!") %></p>
+  <p><%= _("You can now distribute your tickets to other users. They must be registered users on this tool.") %></p>
+  <p><%= link_to _("Distribute registrations"), register_distribute_url %></p>
+</div>
+<% end %>

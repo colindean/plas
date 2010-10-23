@@ -4,6 +4,7 @@ require 'activemerchant'
 class RegistrationsController < ApplicationController
   include ActiveMerchant::Billing
   
+  before_filter :require_user
   before_filter :get_event
 
   def get_event
@@ -36,8 +37,9 @@ class RegistrationsController < ApplicationController
   # POST /review
   def review
     @desired_tickets = params[:ticket]
-    if true
+    if !@desired_tickets 
       redirect_to event_register_url
+      return
     end
     @tickets = []
     @order_total = 0
@@ -70,52 +72,92 @@ class RegistrationsController < ApplicationController
                                             :return_url => url_for(:action => 'confirm', :only_path => false),
                                             :cancel_return_url => url_for(:action => 'register', :only_path => false)
                                            )
+
     redirect_to gateway.redirect_url_for(setup_response.token)
   end
   
   def confirm
-    customer_detauls = gateway.details_for(params[:token])
-    if !details_response.success?
-      @message = details_response.message
+    redirect_to :action => 'error' unless params[:token] and params[:PayerID]
+    session[:paypal_token] = params[:token]
+    session[:payer_id] = params[:PayerID]
+    @desired_tickets = session[:tickets]
+    @order_total = session[:order_total]
+
+    @details_response  = gateway.details_for(session[:paypal_token])
+    if !@details_response.success?
+      @message = @details_response.message
       render :action => 'error'
       return
     end
-    @address = customer_details.address
+    @address = @details_response.address
+
+    respond_to do |format|
+      format.html
+      #not sure if we're going to allow XML for payments...
+      format.xml { render :xml => _("Not yet implemented") }
+    end
   end
 
   #GET /pay
   def pay
+    redirect_to :action => 'error' unless session[:paypal_token] and session[:payer_id]
     #this is where we actually charge paypal
     purchase = gateway.purchase(session[:order_total],
                                 :ip => request.remote_ip,
-                                :payer_id => params[:payer_id],
-                                :token => params[:token]
+                                :payer_id => session[:payer_id],
+                                :token => session[:paypal_token]
                                )
     if purchase.success?
-      respond_to do |format|
-       format.html # 
-       #TODO: xml version should show provide ticket information and totals
-       format.xml { render :xml => _("Not yet implemented") }
-      end
+      redirect_to :action => 'success'
     else
       render :action => 'error'
     end
   end
 
-  #GET /return
-  def return
-    #this is where paypal sends the user following the transaction
-    if payment_successful? 
-      render :action => "success"
-    else
-      render :action => "error"
-    end
-  end
 
   #GET /success
   def success
     #shown if the paypal transaction succeeded
-    #create the registrations
+    #record the transaction somehow
+    details = gateway.details_for(session[:paypal_token])
+    #clear the paypal transaction session vars
+    session[:paypal_token] = nil
+    session[:payer_id] = nil
+    #create the registrations from what's in session[:tickets]
+    session[:tickets].each do |k,v|
+      number = v["number"]
+      tid = v["ticket_id"]
+      #TODO: I'm sure this can be done more efficiently and securely
+      ticket = Ticket.find(tid)
+      purchaser_ticket = true
+      number.to_i.times do #create number of tickets 
+        if ticket.package
+          @ticket_package = true
+          ticket.generates_number.to_i.times do
+            subreg = Registration.new
+            subreg.ticket = reg.ticket
+            subreg.purchaser = reg.purchaser
+            if purchaser_ticket
+              purchaser_ticket = false
+              reg.user = current_user
+            end
+            subreg.price_paid = 0
+            subreg.package_parent = reg
+          end
+        else
+          reg = Registration.new
+          reg.ticket = ticket
+          reg.purchaser = current_user
+          if purchaser_ticket
+            purchaser_ticket = false
+            reg.user = current_user
+          end
+          reg.price_paid = session[:order_total]
+          reg.save
+        end
+
+      end
+    end
     #clear the session's tickets
     session[:tickets] = nil
 

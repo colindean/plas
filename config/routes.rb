@@ -8,6 +8,8 @@ Plas::Application.routes.draw do
     match '/register' => 'registrations#register', :as => :register
     match '/register/review' => 'registrations#review', :as => :registerreview
     match '/register/pay' => 'registrations#pay', :as => :registerpay
+    match '/register/paypal' => 'registrations#paypal_redirect', :as => :registerpaypal
+    match '/register/confirm' => 'registrations#confirm', :as => :registerconfirm
     match '/register/return' => 'registrations#return', :as => :registerreturnpay
     match '/register/success' => 'registrations#success', :as => :registersuccess
     match '/register/error' => 'registrations#error', :as => :registererror

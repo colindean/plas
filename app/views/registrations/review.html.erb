@@ -1,5 +1,4 @@
 <h1><%= _("Pay for your tickets for %s") % @event.name %></h1>
-
 <p><%= _("Please review your order and choose a payment method.") %></p>
 <table>
   <thead>
@@ -26,6 +25,6 @@
 </dl>
 
 <ul>
-  <li><%= link_to _('Pay using PayPal'), event_registerpay_path %></li>
+  <li><%= link_to _('Pay using PayPal'), event_registerpaypal_path %></li>
   <li><%= link_to _('Pay using a mailed check'), event_registerreserve_path %></li>
 </ul>

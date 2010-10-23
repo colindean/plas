@@ -24,4 +24,12 @@ Plas::Application.configure do
     #set activemerchant to use the gateways' test servers
     ActiveMerchant::Billing::Base.mode = :test
   end
+
+  if $0 == "irb"
+    config.logger = Logger.new(STDOUT)
+  else
+    config.logger = Logger.new(Rails.root.join("log",Rails.env + ".log"),3,5*1024*1024)  
+  end
+
+
 end

@@ -30,7 +30,7 @@ class Pcfg < ActiveRecord::Base
     begin
       self.find_by_key(key).destroy
       true
-    rescue ActiveRecord:RecordNotFound
+    rescue ActiveRecord::RecordNotFound
       false
     end
   end
