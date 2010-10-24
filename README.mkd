@@ -6,18 +6,17 @@ payments, track users, schedule tournaments, and more.
 
 Authors
 -------
-* Colin Dean <cdean@pittco.org>
+* [Colin Dean](http://github.com/colindean)
 
 ### Contributors ###
-* Jonathan Daniel
-* Bill Turner
+* [Jonathan Daniel](http://github.com/binarycleric)
+* [Bill Turner](http://github.com/billturner)
 
 ### Translators ###
 * English: Colin Dean
 
 About Pittco
 ------------
-
 Pittco is the Pittsburgh LAN Coalition. Pittco is a not-for-profit
 LAN party video gaming organization based in Pittsburgh, Pennsylvania.
 
@@ -28,19 +27,46 @@ LAN party video gaming organization based in Pittsburgh, Pennsylvania.
  > held thirteen events and has received much attention in the LAN 
  > party community. Its web site is www.pittco.org.
 
+Social
+------
+We're just using Pittco's existing accounts for announcements regarding PLAS.
+
+ * [Twitter](http://www.twitter.com/pittcolan)
+ * [Facebook](http://www.facebook.com/pittco)
+ * [Ohloh](https://www.ohloh.net/p/plas)
+
+Download
+--------
+PLAS is still in heavy development and not ready for public use.
+
+Hell, it's not ready for our use!
+
+Installation
+------------
+PLAS requires at least ruby 1.9.2 and rails 3.0.0. Target release is 
+ruby 1.9.3 or ruby 2.0.0, whichever comes first.
+
+Use
+---
+Create a user to be able to do anything. As of this writing, the 
+permissions system is not yet working, so any user can do anything.
+
+In order to use PayPal, you must get your PayPal account's login, password, and signature from the API console, and then set three Pfcgs: 
+ * paypal.login
+ * paypal.password
+ * paypal.signature
+ 
+This will be made easier at some point, such as when Pcfg starts to see heavier use. I'd entertain a patch/pull with these prepopulated, as well as a better way to edit Pcfg (I'd like it to be kinda like Firefox's about:config).For now, go to http://localhost:3000/pcfgs to set pcfg variables.
+
+
 Contributing
 ------------
-
 We use [GitHub](http://github.com/colindean/plas) for our primary repository, but admittedly have a private repo on Dropbox which is really just a backup of GitHub.
 
 We develop on ruby 1.9.3 and rails 3. See the Gemfile for 
 other stuff we require. We do provide an .rvmrc for rvm users (seriously makes life so much easier). 
 
 Colin is currently using ruby 1.9.3dev (2010-10-20 trunk 29539) [x86\_64-darwin10.4.0].
-
-**What we really need are tests.** Colin has not been a good Rubyist and
-done proper test-driven development due to the time crunch. We use RSpec and
-Cucumber for tests, what few there are.
 
 Assuming you already have git, any ruby, and rvm installed, do these:
 
@@ -51,36 +77,51 @@ Assuming you already have git, any ruby, and rvm installed, do these:
 
 That should make your environment kosher. When you `cd` into `plas`, rvm will ask if you want to download, compile, and install ruby-head and create a gemset called `plas`. You should probably say yes, but if you have ruby 1.9.2 installed and in use, you're probably OK. You should create the gemset anyhow.
 
-One developer reported an issue getting ruby-head working with Rails because *iconv* wasn't available on his installation of OSX 10.6. If you encounter that, read [How to fix the iconv require error in Ruby 1.9](http://exceptionz.wordpress.com/2010/02/03/how-to-fix-the-iconv-require-error-in-ruby-1-9/).
+One developer reported an issue getting ruby-head working with Rails because*iconv* wasn't available on his installation of OSX 10.6. If you encounter that, read [How to fix the iconv require error in Ruby 1.9](http://exceptionz.wordpress.com/2010/02/03/how-to-fix-the-iconv-require-error-in-ruby-1-9/).
 
-Download
---------
+In order to interact with PayPal, setup a [PayPal sandbox account](http://developer.paypal.com) and get the API information. `config/environments/{development,testing}.rb` set the gateway to test mode, so you won't have to do that manually.
 
-PLAS is still in heavy development and not ready for public use.
+### Internationalization/Localization (i18n/l10n)###
+Please use gettext syntax when hardcoding strings anywhere in the application. For now, we're using po/mo file storage, but we may eventually move to database-backed translations if more roll in.
 
-Hell, it's not ready for our use!
+We plan to support any languages for which a translation is contributed. If you would like to contribute a translation, please contact colindean. 
 
-Installation
-------------
+### Testing ###
+**What we really need are tests.** Colin has not been a good Rubyist and
+done proper test-driven development due to the time crunch. 
 
-PLAS requires at least ruby 1.9.2 and rails 3.0.0. Target release is 
-ruby 1.9.3 or ruby 2.0.0, whichever comes first.
+Please write tests where possible. We use RSpec and Cucumber for tests, what few there are. billturner is in charge of the testing harness for now, so questions about it should be directed at him. If you alter any of the harness files (.watchr, etc.) and include stuff for developing PLAS on Windows, please ensure that your changes still work on OSX and Ubuntu before submitting a pull request.
 
-Use
----
-Create a user to be able to do anything. As of this writing, the 
-permissions system is not yet working, so any user can do anything.
+#### Browser Compatibility ####
+We only care about these browsers, current release and one major release back:
 
-In order to use PayPal, you must setup a [PayPal sandbox account](http://developer.paypal.com) and then set three Pfcgs: 
- * paypal.login
- * paypal.password
- * paypal.signature
-This will be made easier at some point, such as when Pcfg starts to see heavier use. I'd entertain a patch/pull with these prepopulated, as well as a better way to edit Pcfg (I'd like it to be kinda like Firefox's about:config).For now, go to http://localhost:3000/pcfgs to set pcfg variables.
+ * Firefox
+ * Chrome
+ * Opera
+  
+Nice to have Safari working, too, but it's lower priority.
 
-Social
-------
-We're just using Pittco's existing accounts for announcements regarding PLAS.
+I do not plan to support Internet Explorer at all. If it works, it works. If someone is adamant about Internet Explorer support, then they are welcome to submit pull requests.
 
-  * [Twitter](http://www.twitter.com/pittcolan)
-  * [Facebook](http://www.facebook.com/pittco)
-  * [Ohloh](https://www.ohloh.net/p/plas)
+#### Accessibility (a10y) ####
+As there is an assumption in the gaming community that users are sighted, we won't concern ourselves with screen readers and such. However, we do recognize colorblindness and will endeavor to ensure that colorblind users are able to use PLAS. 
+
+As of yet, none of the developers are colorblind and few have experience with colorblind-friendly interface design. We welcome pull requests, issues, and advice.
+
+If there's an issue preventing you from using PLAS because of a disability, please file an issue.
+
+Licensing
+---------
+PLAS is released under the terms of the GNU Affero General Public License. See `LICENSE.mkd` for the short license or (http://www.gnu.org/licenses/agpl.txt) for the full license text.
+
+To summarize the AGPL, it's essentially the GPLv3 plus a clause which requires that folks who enable use of the software via a network, e.g. the Internet, must provide source upon request.
+
+In short, if you modify PLAS for your organization, you must make available your source to anyone who uses your modified version. This is in hopes that customizations done to PLAS will find their way back into upstream sooner than later!
+
+ > **History lesson.** Pittco formerly used Autonomous LAN Party (ALP) for 
+ > its management needs. ALP was licensed under the Qt Public License. This
+ > prevented Pittco from releasing its modifications to ALP as anything
+ > other than a patch. This was annoying and, ultimately, no other 
+ > organization ever benefited from Pittco's enhancements to ALP for
+ > security, payment processing, new themes, and more.
+
