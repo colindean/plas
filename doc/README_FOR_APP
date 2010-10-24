@@ -1,2 +1,7 @@
-Use this README file to introduce your application and point to useful places in the API for learning more.
-Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+PLAS: Pittsburgh LAN Administration System
+
+Administrate your LAN party organization using this handy tool. Accept payments, track users, schedule tournaments, and more.
+
+Pittco is the Pittsburgh LAN Coalition. Pittco is a not-for-profit LAN party video gaming organization based in Pittsburgh, Pennsylvania.
+
+Pittsburgh LAN Coalition, Inc. ("Pittco") was founded in 2003 to organize the greater Pittsburgh LAN scene. The mission of Pittco is to provide a safe, entertaining, and competitive environment for video gamers of all ages. Since its inception, Pittco has held thirteen events and has received much attention in the LAN party community. Its web site is www.pittco.org.
