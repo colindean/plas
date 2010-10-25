@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101025044043) do
+ActiveRecord::Schema.define(:version => 20101025173403) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -103,13 +103,13 @@ ActiveRecord::Schema.define(:version => 20101025044043) do
     t.string   "payer_country"
     t.string   "processor_userid"
     t.string   "payment_id"
-    t.string   "type"
     t.integer  "recorded_by_id"
     t.integer  "amount"
     t.text     "comments"
     t.integer  "registration_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "payment_media"
   end
 
   create_table "user_groups", :force => true do |t|

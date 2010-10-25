@@ -4,7 +4,7 @@
   <tr>
     <th>Date</th>
     <th>Amount</th>
-    <th>Type</th>
+    <th>Payment Media</th>
     <th>Payer name</th>
     <th>Recorded by</th>
     <th>Comments</th>
@@ -15,9 +15,8 @@
   <tr>
     <td><%= link_to transaction.created_at, transaction %></td>
     <td><%= transaction.amount %></td>
-    <td><%= transaction.type %></td>
+    <td><%= transaction.payment_media %></td>
     <td><%= mail_to transaction.email, transaction.payer_name %></td>
-    <td><%= transaction.payment_id %></td>
     <td><%= transaction.recorded_by %></td>
     <td><%= transaction.comments %></td>
     <td><%= link_to transaction.registration %></td>

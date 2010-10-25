@@ -121,6 +121,7 @@ class RegistrationsController < ApplicationController
     #record the transaction somehow
     details = gateway.details_for(session[:paypal_token])
     transaction = Transaction.new_from_paypal_details(details)
+    transaction.amount = session[:order_total]
     #clear the paypal transaction session vars
     session[:paypal_token] = nil
     session[:payer_id] = nil
@@ -158,7 +159,7 @@ class RegistrationsController < ApplicationController
     end
   end
 
-  def create_new_registration_from_ticket
+  def create_new_registration_from_ticket(ticket)
     reg = Registration.new
     reg.ticket = ticket
     reg.purchaser = current_user

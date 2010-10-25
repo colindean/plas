@@ -9,7 +9,7 @@ amount, email, payer_name, payer_country are pretty self-explanatory
 processor_userid = Paypal's payer_id
 payment_id = PayPal's token, check number, or walk-in id, etc.
 
-type = paypal | check | walkin
+payment_media = paypal | check | walkin
 
 comments = Paypal's comments
 
@@ -33,7 +33,7 @@ registration links to the generated registration
     t.payer_country = details.payer_country
     t.processor_userid = details.payer_id
     t.payment_id = details.token
-    t.type = 'paypal'
+    t.payment_media = 'paypal'
     t.comments = nil
     t.recorded_by = nil
     t
