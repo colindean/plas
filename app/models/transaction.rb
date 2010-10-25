@@ -20,7 +20,7 @@ registration links to the generated registration
 =end
   belongs_to :address, :dependent => :destroy
   belongs_to :recorded_by, :class_name => "User"
-  belongs_to :registration
+  has_many :registrations
 
   #TODO: validations
   

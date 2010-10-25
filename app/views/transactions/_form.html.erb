@@ -36,8 +36,8 @@
     <%= f.text_field :payment_id %>
   </div>
   <div class="field">
-    <%= f.label :type %><br />
-    <%= f.text_field :type %>
+    <%= f.label :payment_media %><br />
+    <%= f.text_field :payment_media %>
   </div>
   <div class="field">
     <%= f.label :recorded_by %><br />
@@ -52,8 +52,10 @@
     <%= f.text_area :comments %>
   </div>
   <div class="field">
-    <%= f.label :registration %><br />
-    <%= f.text_field :registration %>
+    <% @transaction.registrations.each do |r| %>
+      <%= r.ticket.name %> bought by <%= r.purchaser.display_name %> 
+      <%= "(%s)" % r.user.display_name if r.user %>
+    <% end %>
   </div>
   <div class="actions">
     <%= f.submit %>

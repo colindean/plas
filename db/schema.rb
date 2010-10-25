@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101025173403) do
+ActiveRecord::Schema.define(:version => 20101025212928) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -21,13 +21,13 @@ ActiveRecord::Schema.define(:version => 20101025173403) do
     t.string   "region"
     t.string   "country"
     t.string   "postcode"
-    t.integer  "type"
     t.boolean  "primary"
     t.string   "phone"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "event_id"
+    t.string   "address_type"
   end
 
   add_index "addresses", ["event_id"], :name => "index_addresses_on_event_id"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20101025173403) do
     t.datetime "date_checked_in"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "transaction_id"
   end
 
   create_table "sessions", :force => true do |t|

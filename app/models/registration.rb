@@ -4,6 +4,7 @@ class Registration < ActiveRecord::Base
   belongs_to :purchaser, :class_name => "User"
   belongs_to :user
   belongs_to :package_parent, :class_name => "Registration"
+  belongs_to :transaction
 
 #TODO: refactor to use Money instead of just having cents in price_paid
 #  composed_of :price_paid,

@@ -2,7 +2,7 @@
 
 <p>
   <b>Address:</b>
-  <%= @transaction.address %>
+  <%= @transaction.address.pretty if @transaction.address %>
 </p>
 
 <p>
@@ -31,8 +31,8 @@
 </p>
 
 <p>
-  <b>Type:</b>
-  <%= @transaction.type %>
+  <b>Payment Media:</b>
+  <%= @transaction.payment_media %>
 </p>
 
 <p>
@@ -51,10 +51,11 @@
 </p>
 
 <p>
-  <b>Registration:</b>
-  <%= @transaction.registration %>
+  <b>Registrations:</b>
+    <% @transaction.registrations.each do |r| %>
+      <%= r.ticket.name %> bought by <%= r.purchaser.display_name %> 
+      <%= "(%s)" % r.user.display_name if r.user %>
+    <% end %>
 </p>
 
-
-<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
 <%= link_to 'Back', transactions_path %>

@@ -13,4 +13,8 @@ class Ticket < ActiveRecord::Base
 #    :mapping => [%w(cents cents), %w(currency currency_as_string)],
 #    :constructor => Proc.new { |cents, currency| Money.new(cents || 0, currency || Money.default_currency) }
 
+  composed_of :prix,
+    :class_name => "Money",
+    :mapping => [%w(price cents)],
+    :constructor => Proc.new { |price| Money.new(price || 0, Money.default_currency) }
 end

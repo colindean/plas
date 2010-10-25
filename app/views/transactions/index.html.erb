@@ -17,9 +17,27 @@
     <td><%= transaction.amount %></td>
     <td><%= transaction.payment_media %></td>
     <td><%= mail_to transaction.email, transaction.payer_name %></td>
-    <td><%= transaction.recorded_by %></td>
-    <td><%= transaction.comments %></td>
-    <td><%= link_to transaction.registration %></td>
+    <td><% if transaction.recorded_by %>
+        <%= transaction.recorded_by.display_name %>
+      <% else %>
+        <%= _("(automated)") %>
+      <% end %>
+    </td>
+    <td><% if transaction.comments %>
+        <%= transaction.comments %>
+      <% else %>
+        <%= _("(no comments)") %>
+      <% end %>
+    </td>
+    <td>
+      <ol>
+        <% transaction.registrations.each do |r| %>
+          <li><%= _("%s bought by %s") % [r.ticket.name, r.purchaser.display_name] %>
+              <%= _("(for %s)") % r.user.display_name if r.user %>
+          </li>
+        <% end %>
+      </ol>
+    </td>
   </tr>
 <% end %>
 </table>

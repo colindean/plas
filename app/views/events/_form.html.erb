@@ -56,8 +56,8 @@
 	  <dt><%= af.label :phone %></dt>
       <dd><%= af.telephone_field :phone %></dd>
 
-      <dt><%= af.label :type %></dt>
-      <dd><%= af.select :type, Address::TYPES, :default => "event" %></dd>
+      <dt><%= af.label :address_type %></dt>
+      <dd><%= af.select :address_type, Address::TYPES, :default => "event" %></dd>
 
 	  <%= af.hidden_field :primary, :value => true %>
     <% end %>

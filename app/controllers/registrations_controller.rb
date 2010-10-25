@@ -108,6 +108,40 @@ class RegistrationsController < ApplicationController
                                 :token => session[:paypal_token]
                                )
     if purchase.success?
+      #record the transaction somehow
+      details = gateway.details_for(session[:paypal_token])
+      transaction = Transaction.new_from_paypal_details(details)
+      transaction.amount = session[:order_total]
+      #clear the paypal transaction session vars
+      session[:paypal_token] = nil
+      session[:payer_id] = nil
+      #create the registrations from what's in session[:tickets]
+      session[:tickets].each do |k,v|
+        number = v["number"]
+        tid = v["ticket_id"]
+        #TODO: I'm sure this can be done more efficiently and securely
+        ticket = Ticket.find(tid)
+        number.to_i.times do #create number of tickets 
+          reg = create_new_registration_from_ticket(ticket)
+          transaction.registrations << reg
+          if ticket.package
+            @ticket_package = true
+            (ticket.generates_number.to_i - 1).times do #we already have one
+              subreg = Registration.new
+              subreg.ticket = reg.ticket
+              subreg.purchaser = reg.purchaser
+              subreg.price_paid = 0
+              subreg.package_parent = reg
+              subreg.save
+              transaction.registrations << subreg
+            end
+          end
+        end
+      end
+      transaction.save
+      #clear the session's tickets
+      session[:tickets] = nil
+
       redirect_to :action => 'success'
     else
       render :action => 'error'
@@ -118,40 +152,6 @@ class RegistrationsController < ApplicationController
   #GET /success
   def success
     #shown if the paypal transaction succeeded
-    #record the transaction somehow
-    details = gateway.details_for(session[:paypal_token])
-    transaction = Transaction.new_from_paypal_details(details)
-    transaction.amount = session[:order_total]
-    #clear the paypal transaction session vars
-    session[:paypal_token] = nil
-    session[:payer_id] = nil
-    #create the registrations from what's in session[:tickets]
-    session[:tickets].each do |k,v|
-      number = v["number"]
-      tid = v["ticket_id"]
-      #TODO: I'm sure this can be done more efficiently and securely
-      ticket = Ticket.find(tid)
-      number.to_i.times do #create number of tickets 
-        reg = create_new_registration_from_ticket(ticket)
-        transaction.registration = reg
-        transaction.save
-        if ticket.package
-          @ticket_package = true
-          (ticket.generates_number.to_i - 1).times do #we already have one
-            subreg = Registration.new
-            subreg.ticket = reg.ticket
-            subreg.purchaser = reg.purchaser
-            subreg.price_paid = 0
-            subreg.package_parent = reg
-            subreg.save
-          end
-        end
-
-      end
-    end
-    #clear the session's tickets
-    session[:tickets] = nil
-
     respond_to do |format|
       format.html # pay.html.erb
       #TODO: xml version should show provide ticket information and totals

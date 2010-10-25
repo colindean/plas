@@ -22,7 +22,7 @@ These classes use it:
     #eventually, this method will need to look at the country's address format
     #and output based on that. just join crap for now
     o = [line1, line2, line3, neighborhood, city, region, postcode, country]
-    o.select! do |x| !x.empty? end
+    o.select! do |x| x != nil and !x.empty? end
     o.join(', ')
   end
 
@@ -34,7 +34,7 @@ These classes use it:
     a.region = address["state"]
     a.country = address["country"]
     a.postcode = address["zip"]
-    a.type = "paypal"
+    a.address_type = "paypal"
     a.phone = address["phone"]
     a.save
     a
