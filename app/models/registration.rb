@@ -1,4 +1,5 @@
 class Registration < ActiveRecord::Base
+  #TODO: validations
   belongs_to :ticket
   belongs_to :purchaser, :class_name => "User"
   belongs_to :user

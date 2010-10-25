@@ -1,4 +1,5 @@
 class Pcfg < ActiveRecord::Base
+  #TODO: validations
   belongs_to :last_modified_by, :class_name => "User"
 
   def self.get(key)

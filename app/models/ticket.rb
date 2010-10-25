@@ -5,7 +5,8 @@ class Ticket < ActiveRecord::Base
   validates_numericality_of :price, :greater_than => 0, :presence => true
   validates_numericality_of :available, :greater_than => 0, :presence => true
   validates_numericality_of :generates_number, :greater_than => 0, :allow_blank => true
-
+  #TODO: more validations
+  #
 #TODO: refactor to use Money instead of just having cents in price
 #  composed_of :price,
 #    :class_name => "Money",
