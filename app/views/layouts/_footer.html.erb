@@ -3,6 +3,15 @@
 <br class="clear-footer"/>
 </div>
 <footer>
-<p>PLAS v<%= Plas::VERSION %> | &copy; Pittsburgh LAN Coalition, Inc.</p>
+<% if current_user and current_user.can('app.administrate') %>
+<nav id="admin-links" class="inline">
+<ul>
+<li><%= link_to _("Transactions"), transactions_path %></li>
+<li><%= link_to _("Pcfgs"), pcfgs_path %></li>
+<li><%= link_to _("Permissions"), permissions_path %></li>
+</ul>
+</nav>
+<% end %>
+<div id="copyright-notice"><p>PLAS v<%= Plas::VERSION %> | &copy; Pittsburgh LAN Coalition, Inc.</p>
 </footer>
 </section>
