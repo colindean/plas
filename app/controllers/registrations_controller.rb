@@ -15,7 +15,7 @@ class RegistrationsController < ApplicationController
     end
   end
 
-  #store the gateway objecti
+  #store the gateway object
   def gateway
     @gateway ||= ActiveMerchant::Billing::PaypalExpressGateway.new(
       :login => Pcfg.get('paypal.login'),
@@ -120,6 +120,7 @@ class RegistrationsController < ApplicationController
     #shown if the paypal transaction succeeded
     #record the transaction somehow
     details = gateway.details_for(session[:paypal_token])
+    transaction = Transaction.new_from_paypal_details(details)
     #clear the paypal transaction session vars
     session[:paypal_token] = nil
     session[:payer_id] = nil
@@ -129,31 +130,20 @@ class RegistrationsController < ApplicationController
       tid = v["ticket_id"]
       #TODO: I'm sure this can be done more efficiently and securely
       ticket = Ticket.find(tid)
-      purchaser_ticket = true
       number.to_i.times do #create number of tickets 
+        reg = create_new_registration_from_ticket(ticket)
+        transaction.registration = reg
+        transaction.save
         if ticket.package
           @ticket_package = true
-          ticket.generates_number.to_i.times do
+          (ticket.generates_number.to_i - 1).times do #we already have one
             subreg = Registration.new
             subreg.ticket = reg.ticket
             subreg.purchaser = reg.purchaser
-            if purchaser_ticket
-              purchaser_ticket = false
-              reg.user = current_user
-            end
             subreg.price_paid = 0
             subreg.package_parent = reg
+            subreg.save
           end
-        else
-          reg = Registration.new
-          reg.ticket = ticket
-          reg.purchaser = current_user
-          if purchaser_ticket
-            purchaser_ticket = false
-            reg.user = current_user
-          end
-          reg.price_paid = session[:order_total]
-          reg.save
         end
 
       end
@@ -166,6 +156,15 @@ class RegistrationsController < ApplicationController
       #TODO: xml version should show provide ticket information and totals
       format.xml { render :xml => _("Not yet implemented") }
     end
+  end
+
+  def create_new_registration_from_ticket
+    reg = Registration.new
+    reg.ticket = ticket
+    reg.purchaser = current_user
+    reg.price_paid = session[:order_total]
+    reg.save
+    reg
   end
 
   #GET /error

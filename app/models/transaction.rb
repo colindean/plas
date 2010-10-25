@@ -23,4 +23,21 @@ registration links to the generated registration
   belongs_to :registration
 
   #TODO: validations
+  
+  def self.new_from_paypal_details(details)
+    #note that this is not saved on creation!
+    t = self.new
+    t.address = Address.new_from_paypal_address(details.address)
+    t.email = details.email
+    t.payer_name = details.name
+    t.payer_country = details.payer_country
+    t.processor_userid = details.payer_id
+    t.payment_id = details.token
+    t.type = 'paypal'
+    t.comments = nil
+    t.recorded_by = nil
+    t
+  end
+
+
 end

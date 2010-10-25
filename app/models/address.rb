@@ -1,4 +1,16 @@
 class Address < ActiveRecord::Base
+=begin
+This class is the central container for addresses in PLAS. 
+
+These classes use it:
+
+ * User
+ * Event
+ * Transaction
+
+*Please keep this list up to date.*
+=end
+
 	TYPES = [ 'billing', 'shipping', 'emergency', 'event' ]
 	
   belongs_to :event
@@ -12,5 +24,19 @@ class Address < ActiveRecord::Base
     o = [line1, line2, line3, neighborhood, city, region, postcode, country]
     o.select! do |x| !x.empty? end
     o.join(', ')
+  end
+
+  def self.new_from_paypal_address(address)
+    a = self.new
+    a.line1 = address["address1"]
+    a.line2 = address["address2"]
+    a.city = address["city"]
+    a.region = address["state"]
+    a.country = address["country"]
+    a.postcode = address["zip"]
+    a.type = "paypal"
+    a.phone = address["phone"]
+    a.save
+    a
   end
 end
