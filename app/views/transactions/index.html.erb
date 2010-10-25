@@ -1,0 +1,43 @@
+<h1>Listing transactions</h1>
+
+<table>
+  <tr>
+    <th>Address</th>
+    <th>Email</th>
+    <th>Payer name</th>
+    <th>Payer country</th>
+    <th>Processor userid</th>
+    <th>Payment</th>
+    <th>Type</th>
+    <th>Recorded by</th>
+    <th>Amount</th>
+    <th>Comments</th>
+    <th>Registration</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @transactions.each do |transaction| %>
+  <tr>
+    <td><%= transaction.address %></td>
+    <td><%= transaction.email %></td>
+    <td><%= transaction.payer_name %></td>
+    <td><%= transaction.payer_country %></td>
+    <td><%= transaction.processor_userid %></td>
+    <td><%= transaction.payment_id %></td>
+    <td><%= transaction.type %></td>
+    <td><%= transaction.recorded_by %></td>
+    <td><%= transaction.amount %></td>
+    <td><%= transaction.comments %></td>
+    <td><%= transaction.registration %></td>
+    <td><%= link_to 'Show', transaction %></td>
+    <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
+    <td><%= link_to 'Destroy', transaction, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Transaction', new_transaction_path %>

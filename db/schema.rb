@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101021023007) do
+ActiveRecord::Schema.define(:version => 20101025044043) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -94,6 +94,22 @@ ActiveRecord::Schema.define(:version => 20101021023007) do
     t.datetime "updated_at"
     t.string   "name",                :default => "Registration for one person", :null => false
     t.integer  "event_id"
+  end
+
+  create_table "transactions", :force => true do |t|
+    t.integer  "address_id"
+    t.string   "email"
+    t.string   "payer_name"
+    t.string   "payer_country"
+    t.string   "processor_userid"
+    t.string   "payment_id"
+    t.string   "type"
+    t.integer  "recorded_by_id"
+    t.integer  "amount"
+    t.text     "comments"
+    t.integer  "registration_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_groups", :force => true do |t|

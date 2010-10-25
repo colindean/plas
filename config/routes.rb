@@ -1,5 +1,7 @@
 Plas::Application.routes.draw do
 
+  resources :transactions
+
   resources :pcfgs
 
   resources :events do
