@@ -41,15 +41,16 @@ class RegistrationsController < ApplicationController
       redirect_to event_register_url
       return
     end
-    @tickets = []
+    #@tickets = []
+    #TODO: Use the Money class here, will need to refactor this and view
     @order_total = 0
     @desired_tickets.each do |k,v|
       #TODO: I'm sure this can be done more efficiently and securely
       ticket = Ticket.find(v["ticket_id"])
       @desired_tickets[k]["name"] = ticket.name
-      @desired_tickets[k]["price"] = ticket.price
-      @desired_tickets[k]["total"] = v["number"].to_i * ticket.price
-      @order_total = @order_total +  @desired_tickets[k]["total"]
+      @desired_tickets[k]["price"] = ticket.prix.cents
+      @desired_tickets[k]["total"] = ticket.prix.cents * v["number"].to_i
+      @order_total = @order_total + @desired_tickets[k]["total"]
     end
 
     session[:tickets] = @desired_tickets
@@ -121,7 +122,7 @@ class RegistrationsController < ApplicationController
         tid = v["ticket_id"]
         #TODO: I'm sure this can be done more efficiently and securely
         ticket = Ticket.find(tid)
-        number.to_i.times do #create number of tickets 
+        number.to_i.times do |index| #create number of tickets 
           reg = create_new_registration_from_ticket(ticket)
           transaction.registrations << reg
           if ticket.package

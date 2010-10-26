@@ -35,7 +35,7 @@ end
                 <input type="hidden" name="ticket[<%=i%>][ticket_id]" value="<%=t.id%>"/>
               </td>
               <td><%= t.name %></td>
-              <td><%= t.price %></td>
+              <td><%= "%s %s" % [t.prix.currency.symbol, t.prix] %></td>
             </tr>
           <% end %>
         </tbody>
@@ -64,7 +64,7 @@ end
                   <%= _("buys %d %s") % [t.generates_number, t.generates_ticket.name] %>
                 </span>
               </td>
-              <td><%= t.price %></td>
+              <td><<%= "%s %s" % [t.prix.currency.symbol, t.prix] %></td>
             </tr>
           <% end %>
         </tbody>

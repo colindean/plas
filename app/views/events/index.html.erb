@@ -18,7 +18,7 @@
         <% if event.tickets.count > 0 %>
         <ul>
           <% event.tickets.each do |ticket| %>
-          <li><%= ticket.name %> - $<%= ticket.price %> - <%= ticket.available %> <%= _('tickets available') %></li>
+          <li><%= ticket.name %> - $<%= ticket.prix %> - <%= ticket.available %> <%= _('tickets available') %></li>
           <% end %>
         </ul>
         <% end %>

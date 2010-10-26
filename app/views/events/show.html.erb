@@ -49,7 +49,7 @@
 
     <% @event.tickets.each do |t| %>
       <dt><%= link_to t.name, event_ticket_path(@event, t) %></dt>
-      <dd>$<%= "%.2f" % t.price %></dd>
+      <dd><%= "%s %s" % [t.prix.currency.symbol, t.prix] %></dd>
     <% end %>
     <div class="ticket-actions">
       <%= link_to _("Purchase tickets for this event"), event_register_path(@event) if @event.registration_open %><br/>
