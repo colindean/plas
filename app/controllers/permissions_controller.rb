@@ -25,7 +25,8 @@ class PermissionsController < ApplicationController
   # GET /permissions/new.xml
   def new
     @permission = Permission.new
-
+    @all_permissions = Permission.find(:all, :order => "name").collect {|p| [p.name, p.id] }
+    @default_parent = Permission.find_by_code('app.administrate').id
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @permission }
