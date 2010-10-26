@@ -10,12 +10,12 @@ class CreatePermissions < ActiveRecord::Migration
 		Permission.create :name => "Edit Users", :code => "users.edit"
 		Permission.create :name => "Delete Users", :code => "users.delete"
 		Permission.create :name => "Enable Maintenance Mode", :code => "mode.maintenance"
-		Permission.create :name => "Start tournament", :code => "tournament.start"
-		Permission.create :name => "Create tournament", :code => "tournament.create"
-		Permission.create :name => "Change players' tournament team", :code => "tournament.change_team", :category => "Tournaments"
-		Permission.create :name => "Record tournament results", :code => "tournament.record", :category => "Tournaments"
+		Permission.create :name => "Start tournament", :code => "tournaments.start"
+		Permission.create :name => "Create tournament", :code => "tournaments.create"
+		Permission.create :name => "Change players' tournament team", :code => "tournaments.change_team", :category => "Tournaments"
+		Permission.create :name => "Record tournament results", :code => "tournaments.record", :category => "Tournaments"
 		Permission.create :name => "Mark users paid", :code => "payments.accept", :category => "Payments"
-		Permission.create :name => "Start event", :code => "event.start", :category => "Event"
+		Permission.create :name => "Start event", :code => "events.start", :category => "Event"
   end
 
   def self.down

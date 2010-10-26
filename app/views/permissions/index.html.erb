@@ -3,16 +3,18 @@
 <table>
   <tr>
     <th>Name</th>
-    <th></th>
-    <th></th>
+    <th>Code</th>
+    <th>Category</th>
+    <th>Parent</th>
     <th></th>
   </tr>
 
 <% @permissions.each do |permission| %>
   <tr>
     <td><%= permission.name %></td>
-    <td><%= link_to 'Show', permission %></td>
-    <td><%= link_to 'Edit', edit_permission_path(permission) %></td>
+    <td><%= permission.code %></td>
+    <td><%= permission.category %></td>
+    <td><%= permission.parent.name if permission.parent %></td>
     <td><%= link_to 'Destroy', permission, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
