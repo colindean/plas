@@ -13,6 +13,9 @@ gem 'gettext_i18n_rails', :git => 'git://github.com/grosser/gettext_i18n_rails.g
 gem 'activemerchant'
 gem 'money'
 
+#for permissions
+gem 'acts_as_tree', :git => "git://github.com/parasew/acts_as_tree.git"
+
 group :development,:test do
   gem 'factory_girl_rails'
   gem 'watchr'

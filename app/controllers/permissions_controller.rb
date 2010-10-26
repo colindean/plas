@@ -41,11 +41,15 @@ class PermissionsController < ApplicationController
   # POST /permissions
   # POST /permissions.xml
   def create
-    @permission = Permission.new(params[:permission])
+    @permission = Permission.new
+    @permission.name = params[:permission]["name"]
+    @permission.code = params[:permission]["code"]
+    @permission.category = params[:permission]["category"]
+    @permission.parent = Permission.find(params[:permission]["parent"]) if Permission.exists?(params[:permission]["parent"])
 
     respond_to do |format|
       if @permission.save
-        format.html { redirect_to(@permission, :notice => 'Permission was successfully created.') }
+        format.html { redirect_to(permissions_url, :notice => 'Permission was successfully created.') }
         format.xml  { render :xml => @permission, :status => :created, :location => @permission }
       else
         format.html { render :action => "new" }
