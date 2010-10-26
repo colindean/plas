@@ -1,14 +1,24 @@
-<h1>Login</h1>
-
+<h1><%= _('Login') %></h1>
+<div id="form-login">
 <%= form_for @user_session, :url => user_sessions_path do |f| %>
   <%= f.error_messages %>
-  <%= f.label :email %><br />
-  <%= f.text_field :email %><br />
-  <br />
-  <%= f.label :password %><br />
-  <%= f.password_field :password %><br />
-  <br />
-  <%= f.check_box :remember_me %><%= f.label :remember_me %><br />
-  <br />
-  <%= f.submit "Login" %>
+  <dl class="form-list">
+    <fieldset>
+      <legend>
+        <%= _('Login or') %> 
+        <%= link_to _("create an account"), new_user_url %>
+      </legend>
+      <dt><%= f.label :email %></dt>
+      <dd><%= f.text_field :email %></dd>
+      <dt><%= f.label :password %></dt>
+      <dd><%= f.password_field :password %></dd>
+      <dd><%= f.submit _("Login") %>
+        <span class="remember-me"><%= f.check_box :remember_me %><%= f.label :remember_me %></span>
+      </dd>
+    </fieldset>
+  </dl>
+  <p id="password-note">
+  <%= _("There is currently no way of recovering a forgotten password. If this happens, contact a staff member to have it reset.") %>
+  </p>
 <% end %>
+</div>
