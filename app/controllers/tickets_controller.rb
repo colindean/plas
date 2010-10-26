@@ -1,5 +1,10 @@
 class TicketsController < ApplicationController
+  before_filter :require_permission_tickets_administrate, :except => [:index,:show]
   before_filter :get_event
+
+  def require_permission_tickets_administrate
+    user_can('tickets.administrate', _("You are not permitted to create, edit, or destroy tickets."))
+  end
 
   def get_event
     @event = Event.find(params[:event_id])

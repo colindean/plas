@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-	before_filter :require_user_eventadmin, :only => [:new, :create, :edit, :update, :destroy]
+	before_filter :require_permission_events_administrate, :only => [:new, :create, :edit, :update, :destroy]
   # GET /events
   # GET /events.xml
   def index
