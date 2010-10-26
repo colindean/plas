@@ -1,5 +1,5 @@
 class PcfgsController < ApplicationController
-	before_filter :require_user_admin, :only => [:index, :show, :new, :create, :edit, :update, :destroy]
+	before_filter :require_permission_app_administrate, :only => [:index, :show, :new, :create, :edit, :update, :destroy]
   # GET /pcfgs
   # GET /pcfgs.xml
   def index
@@ -46,7 +46,7 @@ class PcfgsController < ApplicationController
 
     respond_to do |format|
       if @pcfg.save
-        format.html { redirect_to(pcfgs_url, :notice => 'Pcfg was successfully created.') }
+        format.html { redirect_to(pcfgs_url, :notice => _('Pcfg was successfully created.')) }
         format.xml  { render :xml => @pcfg, :status => :created, :location => @pcfg }
       else
         format.html { render :action => "new" }
@@ -62,7 +62,7 @@ class PcfgsController < ApplicationController
 
     respond_to do |format|
       if @pcfg.update_attributes(params[:pcfg])
-        format.html { redirect_to(pcfgs_url, :notice => 'Pcfg was successfully updated.') }
+        format.html { redirect_to(pcfgs_url, :notice => _('Pcfg was successfully updated.')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
