@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user, :only => [:show, :edit, :update]
+  before_filter :require_user, :only => [:show, :edit, :update, :destroy ]
   
+  def is_user_current_or_admin?(user) 
+    user == current_user or current_user.can('users.administrate')   
+  end
   # GET /users
   # GET /users.xml
   def index
@@ -42,9 +45,10 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @u = params[:id] ? User.find(params[:id]) : current_user
-    if @u == current_user
+    if is_user_current_or_admin?(@u)
       @user = current_user
     else
+      flash[:notice] = _("You aren't permitted to change this user")
       render :action => :show
     end
   end
@@ -57,7 +61,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         format.html { 
-          redirect_to(account_url, :notice => _('Your account  was successfully created.')) 
+          redirect_to(account_url, :notice => _('Your account was successfully created.')) 
         }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
@@ -71,10 +75,10 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     @u = User.find(params[:id])
-    if @u == current_user
+    if is_user_current_or_admin? @u
       @user = current_user
     else
-      redirect_to(account_url, :notice => _("You cannot update someone who isn't you!"))
+      redirect_to(account_url, :notice => _("You do not have permission to update %s") % @u.display_name)
     end
     
     respond_to do |format|
@@ -92,10 +96,10 @@ class UsersController < ApplicationController
   # DELETE /users/1.xml
   def destroy
     @user = User.find(params[:id])
-    if current_user.can('users.administrate')
+    if is_user_current_or_admin? @user
       @user.destroy
     else
-      redirect_to(account_url, :notice => _("You cannot destroy someone who isn't you!"))
+      redirect_to(account_url, :notice => _("You do not have permission to destroy %s") % @user.display_name)
     end
     
     respond_to do |format|

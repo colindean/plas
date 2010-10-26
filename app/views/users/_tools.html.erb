@@ -5,8 +5,7 @@
 	</header>
 	<ul>
 		<li><%= link_to(_('Edit %s') % @user.handle , edit_user_path(@user), :class => 'icon edit') %></li>
-		<li><%= link_to(_('Delete %s') % @user.handle, user_path(@user), :confirm => _('Are you sure you want to delete %s?') % @user.handle, :method => :delete, :class => 'icon delete' ) %></li>
-<!--		<li><%= link_to(_('Disable %s') % @user.handle, edit_user_path(@user), :class => 'icon disable' ) %></li> -->
+		<li><%= link_to(_('Delete %s') % @user.handle, user_path(@user), :confirm => _('Are you sure you want to delete %s? This could destroy some referential integrity and cripple the application. It is better to disable the user.') % @user.handle, :method => :delete, :class => 'icon delete' ) %></li>
 	</ul>
 </section>
 <% end %>

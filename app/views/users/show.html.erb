@@ -31,10 +31,16 @@
     
     <dt><%= _('Gender') %></dt>
     <dd><%= @user.gender %></dd>
+    
+    <dt><%= _('Created') %></dt>
+    <dd><%= @user.created_at %></dd>
   </fieldset>
 
+  <% if current_user.can('users.administrate') %>
   <fieldset>
     <legend><%= _('Internals') %></legend>
+    <dt><%= _('Last updated') %></dt>
+    <dd><%= @user.updated_at %></dd>
 
     <dt><%= _('Disabled?') %></dt>
     <dd><%= @user.disabled %></dd>
@@ -57,5 +63,6 @@
     <dt><%= _('Current login ip') %></dt>
     <dd><%= @user.current_login_ip %></dd>
   </fieldset>
+<% end %>
 </dl>
 

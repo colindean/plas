@@ -46,34 +46,30 @@ class ApplicationController < ActionController::Base
       session[:return_to] = nil
     end
 
+    #makes for shorter before_filter methods
+    def user_can(permission, fail_notice)
+			unless current_user and current_user.can(permission)
+				store_location
+				flash[:notice] = fail_notice
+				redirect_to request.referrer
+				return false
+			end
+			return true
+    end
+
 		#TODO: refactor these into their own file, as there's likely to be a lot of them
-		def require_user_useradmin
-			unless current_user and current_user.can('users.administrate')
-				store_location
-				flash[:notice] = _("You must be a user administrator to access this page.")
-				redirect_to request.referrer
-				return false
-			end
-			return true
-		end
+		def require_permission_users_administrate
+		  user_can 'users.administrate', _("You must be an event administrator to access this page.")
+    end
 		
-		def require_user_eventadmin
-			unless current_user and current_user.can('events.administrate')
-				store_location
-				flash[:notice] = _("You must be an event administrator to access this page.")
-				redirect_to request.referrer
-				return false
-			end
-			return true
+		def require_permission_events_administrate
+      user_can 'events.administrate', _("You must be an event administrator to access this page.")
 		end
 
-		def require_user_admin
-			unless current_user and current_user.can('app.administrate')
-				store_location
-				flash[:notice] = _("You must be an app administrator to access this page.")
-				redirect_to request.referrer
-				return false
-			end
-			return true
-		end
+		def require_permission_app_administrate
+			user_can 'app.administrate', _("You must be an app administrator to access this page.")
+    end
+
+      
+
 end

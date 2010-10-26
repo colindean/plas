@@ -53,6 +53,8 @@
 <% #TODO: i18n and put into User %>
    <dd><%= f.select :gender, %w[male female hermaphrodite transsexual pansexual adventurous], :include_blank => _('Prefer not to answer') %></dd>
 
+   <dt><%= f.label :disabled %></dt>
+   <dd><%= f.check_box :disabled %> <%= _("Checking this will disable your account. You will be able to login, but others will not be able to see your profile and will not be able to otherwise interact with you other than remove you from tournaments and such.") %></dd>
   </fieldset>
 </dl>
 
