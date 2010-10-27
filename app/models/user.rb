@@ -11,13 +11,14 @@ class User < ActiveRecord::Base
 
   has_many :user_to_user_group
   has_many :user_groups, :through => :user_to_user_group
-  has_many :permissions, :source => :user_groups
+  #TODO: make this work and get rid of #permissions and #build_permissions
+  #has_many :permissions, :through => :user_groups, :source => :user_groups
 
 	acts_as_authentic do |c|
 		c.require_password_confirmation = false
 	end
-
-	def self.find_one_by_handle(handle)
+	
+  def self.find_one_by_handle(handle)
 		@l = find(:all, :conditions => ["LOWER(handle) = ?", handle.downcase])
 		if @l.length > 1
 			@l
@@ -29,9 +30,31 @@ class User < ActiveRecord::Base
 		find(:all, :conditions => ["LOWER(handle) = ?", handle.downcase])
 	end
 
-	def can(permission)
-		#TODO: Make permission stuff resolve
-		true
+  def build_permissions
+    #ideally, this would be handled by the has_many :permissions, but that
+    #doesn't work no matter what I try
+    #
+    #TODO: improve efficiency of this giant thing
+    groups = self.user_groups
+    perms = groups.collect do |g|
+      g.permissions.collect do |p|
+        [p, p.descendants]
+      end
+    end
+    perms.flatten.uniq
+  end
+  private :build_permissions
+
+  def permissions
+    #we only should calculate this once, because it's expensive
+    @permissions ||= build_permissions
+  end
+
+	def can(permission_code)
+		#TODO: Implement some kind of cache, as it's likely that the same
+    #permission will hit more than once is a page load, no sense in going
+    #through all of the permissions again every time.
+		permissions.select {|p| p.code == permission_code }.count != 0
 	end
 
 	def has_handle

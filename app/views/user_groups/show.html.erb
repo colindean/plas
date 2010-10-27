@@ -1,10 +1,47 @@
+<h1><%= _("%s group") % @user_group.name %></h1>
 <p class="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @user_group.name %>
-</p>
 
+<div id="user-group-users">
+  <h2><%= _("Users for %s") % @user_group.name %></h2>
+  <% if @user_group.users.count == 0 %>
+    <span><%= _("There are no users in this group.") %></span>
+  <% else %>
+    <ul id="user-group-users-list">
+      <% @user_group.users.each do |user|%>
+        <li class="user"><%= link_to user.display_name, user %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <fieldset>
+    <legend><%= _("Add users to %s") % @user_group.name %></legend>
+    <input type="text" value="Type to find"/>
+    <select>
+      <option>or select from a list</option>
+    </select>
+  </fieldset>
+</div>
 
+<div id="user-group-permissions">
+  <h2><%= _("Permissions for %s") % @user_group.name %></h2>
+  <% if @user_group.permissions.count == 0 %>
+    <span><%= _("There are no permissions for this group.") %></span>
+  <% else %>
+    <ul id="user-group-permissions-list">
+      <% @user_group.permissions.each do |perm|%>
+        <li class="permission"><%= perm.name %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <fieldset>
+    <legend><%= _("Add permissions to %s") % @user_group.name %></legend>
+    <input type="text" value="Type to find"/>
+    <select>
+      <option>or select from a list</option>
+    </select>
+  </fieldset>
+</div>
 <%= link_to 'Edit', edit_user_group_path(@user_group) %> |
+<%= link_to 'Destroy', @user_group, :confirm => 'Are you sure?', :method => :delete %>
+<br/><br/>
 <%= link_to 'Back', user_groups_path %>
