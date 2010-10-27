@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101026181156) do
+ActiveRecord::Schema.define(:version => 20101027004002) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -47,6 +47,13 @@ ActiveRecord::Schema.define(:version => 20101026181156) do
     t.text     "key"
     t.text     "value"
     t.integer  "last_modified_by_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "permission_to_user_groups", :force => true do |t|
+    t.integer  "permission_id"
+    t.integer  "user_group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -116,6 +123,13 @@ ActiveRecord::Schema.define(:version => 20101026181156) do
 
   create_table "user_groups", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_to_user_groups", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "user_group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

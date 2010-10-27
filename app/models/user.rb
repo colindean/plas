@@ -8,7 +8,10 @@ class User < ActiveRecord::Base
 			:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
 	has_many :addresses, :dependent => :destroy
-  belongs_to :usergroups
+
+  has_many :user_to_user_group
+  has_many :user_groups, :through => :user_to_user_group
+  has_many :permissions, :source => :user_groups
 
 	acts_as_authentic do |c|
 		c.require_password_confirmation = false
