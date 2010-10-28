@@ -55,6 +55,7 @@ class User < ActiveRecord::Base
     #permission will hit more than once is a page load, no sense in going
     #through all of the permissions again every time.
 		permissions.select {|p| p.code == permission_code }.count != 0
+    #true
 	end
 
 	def has_handle
