@@ -8,7 +8,7 @@
     <span><%= _("There are no users in this group.") %></span>
   <% else %>
     <ul id="user-group-users-list">
-      <% @user_group.users.each do |user|%>
+      <% @user_group.users.sort{|a,b| a.display_name <=> b.display_name}.each do |user|%>
         <li class="user"><%= link_to user.display_name, user %></li>
       <% end %>
     </ul>
@@ -16,12 +16,10 @@
   <fieldset>
     <legend><%= _("Add users to %s") % @user_group.name %></legend>
     <input type="text" value="Type to find"/>
-    <select>
-      <option>or select from a list</option>
-    </select>
+    <%= render :partial => "user_groups/list_select", :locals => {:ul => User.all - @user_group.users, :ug => @user_group }  %>
   </fieldset>
 </div>
-
+<hr/>
 <div id="user-group-permissions">
   <h2><%= _("Permissions for %s") % @user_group.name %></h2>
   <% if @user_group.permissions.count == 0 %>

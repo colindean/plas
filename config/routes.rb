@@ -7,6 +7,7 @@ Plas::Application.routes.draw do
   resources :events do
     resource :address
     #resources :registrations
+    #is there not a better way to do this?
     match '/register' => 'registrations#register', :as => :register
     match '/register/review' => 'registrations#review', :as => :registerreview
     match '/register/pay' => 'registrations#pay', :as => :registerpay
@@ -34,8 +35,13 @@ Plas::Application.routes.draw do
 	match '/login' => 'user_sessions#new', :as => 'login'
 	match '/logout' => 'user_sessions#destroy', :as => 'logout'
   resources :permissions
-  resources :user_groups
-	root :to => "home#index"
+  resources :user_groups do
+    #is this really necessary?
+    match '/list_candidates' => 'user_groups#list_candidates', :as => 'list_candidates'
+    match '/add_user' => 'user_groups#add_user', :as => 'add_user'
+    match '/remove_user' => 'user_group#remove_user', :as => 'remove_user'
+  end
+  root :to => "home#index"
 
 
   #get "home/index"

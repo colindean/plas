@@ -1,0 +1,14 @@
+<% if !ul or ul.count == 0 %>
+  <span class="message warning">
+    <%= _("There are no users who are not already in this group.")%>
+  </span>
+<% else %>
+  <% form_for :user_to_user_groups, 
+              :html => { :id => "user-groups-list-candidates"}, 
+              :as => :post, 
+              :url => user_group_add_user_url(ug) do |f| %>
+                <%= f.select "user_id", ul.collect {|u| [u.display_name, u.id]}, {:include_blank => true } %>
+                <%= f.submit %>
+  <% end %>
+<% end %>
+

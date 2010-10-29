@@ -1,4 +1,67 @@
 class UserGroupsController < ApplicationController
+
+=begin
+######
+these methods deal with adding users to a group
+####
+=end
+  
+  def list_candidates
+    @user_group = UserGroup.find(params[:user_group_id])
+    @users = User.all
+    #get the list of users NOT in the group already
+    @user_list = @users - @user_group.users
+
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @user_list }
+      format.json { render :json => @user_list }
+    end
+
+  end
+
+  def add_user
+    @user_group = UserGroup.find(params[:user_group_id])
+    @user = User.find(params[:user_to_user_groups][:user_id])
+
+    @user_group.users<< @user
+
+    respond_to do |format|
+      if @user_group.save
+        format.html { redirect_to(request.referrer, :notice => _("%s added to %s") % [@user.display_name, @user_group.name]) }
+        format.json { render :json => true }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @user_group.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def remove_user
+    @user_group = UserGroup.find(params[:user_group_id])
+    @user = User.find(params[:user_id])
+
+    @user_group.delete @user
+  
+    respond_to do |format|
+      if @user_group.save
+        format.html
+        format.json { render :json => true }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "list_users", :notice => _("Unable to remove user %s from group %s") % [@user.display_name,@user_group.name] }
+        format.json { render :json => @user_group.errors, :status => :failure }
+        format.xml  { render :xml => @user_group.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+=begin
+######
+method below here deal with the CRUD of the UserGroup itself
+####
+=end
+  
   # GET /user_groups
   # GET /user_groups.xml
   def index
