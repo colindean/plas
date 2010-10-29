@@ -99,7 +99,7 @@ We only care about these browsers, current release and one major release back:
  * Chrome
  * Opera
   
-Nice to have Safari working, too, but it's lower priority.
+Nice to have Safari working, too, but it's lower priority. I'd also like to keep it small-screen friendly for mobile and netbook browsers, so please keep that in mind when adding anything which has significant width (minimize horizontal scrolling as much as possible.
 
 I do not plan to support Internet Explorer at all. If it works, it works. If someone is adamant about Internet Explorer support, then they are welcome to submit pull requests.
 
