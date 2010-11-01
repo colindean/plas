@@ -1,5 +1,5 @@
 body {
-	padding: 0.2em;
+	/*padding: 0.2em;*/
 	font-size: 16px;
 	font-family: "Droid Sans", Arial, sans-serif;
 }
@@ -26,8 +26,8 @@ section#header {
 }
 section#header nav#user {
 	position: absolute;
-	top: 0.2em;
-	right: 0.2em;
+	right: 0.6em;
+  padding: .4em .5em .3em;
 }
 section#header nav#modules {
 	clear: both;
