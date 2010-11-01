@@ -42,6 +42,9 @@ section#header header h2 {
 	color: #ddd;
   padding: 0 0 0.3em 0.3em;
 }
+section#header nav#modules {
+  padding: 0.3em;
+}  
 section#content {
 	margin-bottom:5em;
 }
