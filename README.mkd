@@ -52,6 +52,7 @@ Create a user to be able to do anything. As of this writing, the
 permissions system is not yet working, so any user can do anything.
 
 In order to use PayPal, you must get your PayPal account's login, password, and signature from the API console, and then set three Pfcgs: 
+
  * paypal.login
  * paypal.password
  * paypal.signature
