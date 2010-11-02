@@ -7,6 +7,8 @@ class Pcfg < ActiveRecord::Base
       self.find_by_key(key).value
     rescue ActiveRecord::RecordNotFound
       nil
+    rescue NoMethodError
+      nil
     end
   end
 

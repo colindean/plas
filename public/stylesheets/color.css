@@ -76,4 +76,8 @@ section#header nav#modules {
 
 section#header {
   overflow: hidden;
-}i
+}
+section#footer footer div#copyright-notice span.company:before
+{
+  content: url('../images/logos/pittco_logo_11x12.png');
+}

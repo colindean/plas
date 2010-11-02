@@ -24,6 +24,9 @@ nav.inline ul li {
 section#header {
 	margin-bottom: 1em;
 }
+section#header header {
+  padding-bottom: 0.3em;
+}
 section#header nav#user {
 	position: absolute;
 	right: 0.6em;
