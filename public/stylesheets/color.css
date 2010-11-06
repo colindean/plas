@@ -50,11 +50,11 @@ section#header header {
   color: white;
   font-weight: bold;
   text-shadow: .1em .1em .1em rgba(0,0,0,.7);
-  /*
+  
   -moz-box-shadow:.1em .1em .5em black;
   -webkit-box-shadow:.1em .1em .5em black;
   box-shadow:.1em .1em .5em black;
-  margin-bottom: 1em;
+ /* margin-bottom: 1em;
  */
 }
 
