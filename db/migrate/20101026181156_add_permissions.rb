@@ -1,6 +1,6 @@
 class AddPermissions < ActiveRecord::Migration
   def self.up
-    add_column :permissions, :parent_id, :integer
+#    add_column :permissions, :parent_id, :integer
     god = Permission.create :code => "app.administrate", :name => "Administrate Everything (godmode)", :category => "Application Administration"
     ea = Permission.create :code => "events.administrate", :name => "Administrate Events", :category => "Events", :parent => god
     ua = Permission.create :code => "users.administrate", :name => "Administrate Users", :category => "Users", :parent => god

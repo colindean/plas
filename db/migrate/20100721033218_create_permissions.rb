@@ -4,7 +4,7 @@ class CreatePermissions < ActiveRecord::Migration
       t.string :name, :null => false
 			t.string :code, :null => false
 			t.string :category, :null => false, :default => "General"
-
+      t.integer :parent_id
       t.timestamps
     end
 		Permission.create :name => "Edit Users", :code => "users.edit"
