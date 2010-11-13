@@ -11,6 +11,8 @@ Authors
 ### Contributors ###
 * [Jonathan Daniel](http://github.com/binarycleric)
 * [Bill Turner](http://github.com/billturner)
+* [Dan Motles](http://github.com/jungleralph)
+* [Justin Ritter](http://github.com/erad1cate)
 
 ### Translators ###
 * English: Colin Dean

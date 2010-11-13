@@ -19,24 +19,27 @@ Event ticketing and registration
 
 A ticket is a prototype for a registration, that is, the admin creates an Event and then creates Tickets for the event. 
 When the User wants to attend an Event, he selects a Ticket. 
-Upon completion of his order, the Ticket creates a Registration, or multiple Registrations if it's a ticket package. 
+Upon completion of his order, the Transaction is logged and the controller creates a Registration, or multiple Registrations if it's a ticket package. 
 A package Ticket is always comprised of other Tickets, and a Registration purchased as a part of a package refers to its parent Registration.
 
 Group and permission management
 -------------------------------
 
-Users belong to groups. By default, there are three groups: 
-*  Anonymous
-*  Users
-*  Administrators
+Users belong to groups. By default, there are several groups, but these are the most important: 
 
-**Anonymous** can view the list of users, tournaments, events, seating map, etc. They can also create an account.
+* Application Administrators
+* Regular Users
+* Anonymous
 
-**Users** can do everything Anonymous can, but they can also register, receive gift tickets, sit on the map, join tournaments, etc.
+**Anonymous** can view the list of users, tournaments, events, seating map, etc. They can also create an account. This isn't a group *per se*, but is effectively the group for users who are not logged in.
 
-**Administrators** have godmode and can do anything to anything.
+**Regular Users** can do everything Anonymous can, but they can also register, receive gift tickets, sit on the map, join tournaments, etc.
+
+**Application Administrators** have godmode and can do anything to anything.
 
 Future groups for consideration include:
+* Event Administrators (create, modify, delete events)
+* User Administrators (modify, disable users)
 * Tournament Administrators (create, modify, delete tournaments)
 * Tournament Reporters (report winners of matches)
 * Shoutbox Moderators (delete offensive posts)
@@ -50,4 +53,22 @@ Permissions are strings like
 * events.update
 * shoutbox.moderate
 
+The **key** thing to understand is the relation between users, user groups, and permissions. A UserGroup has Users and Permissions. Users themselves *do not* have Permissions. A user's permissions are resolved via the UserGroups to which the user belongs.
+
+1. If a user belongs to no groups, he has no permissions.
+2. If a user belongs to a group, he has the permissions the group has.
+3. A user may have the same permission from multiple groups.
+4. Permissions have parent permissions, so assigning a group a permission also gives that group any permission which is a child permission of the permission assigned.
+
+Some objects, such as Tournaments and Event, may eventually have instance-specific permissions. Those will use Permissions, but will point to individual users or point to groups which have the necessary permissions.
+
 It's always **noun**.*verb*.
+
+PLAS Configs (Pcfgs)
+--------------------
+
+Pcfgs are instance-specific variables. These variables are kept in the database and are set for a particular installation of PLAS. Examples of candidates for Pcfgs are PayPal vendor information, header titles, and other "set once at installation" variables.
+
+Things which should *not* be put in Pcfgs are PLAS-internal variables, such as the version number or project URLs. These are hardcoded in initializers.
+
+
