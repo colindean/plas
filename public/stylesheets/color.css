@@ -81,3 +81,12 @@ section#footer footer div#copyright-notice span.company:before
 {
   content: url('../images/logos/pittco_logo_11x12.png');
 }
+section#footer footer div#copyright-notice span.project:before
+{
+  content: url('../images/logos/plas/plas_logo12.png');
+}
+section#header header h1 {
+  background: transparent url("../images/logos/plas/plas_logo64.png") no-repeat left center;
+  padding-left: 60px;
+}
+

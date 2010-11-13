@@ -113,6 +113,8 @@ footer {
 	height:4em;
 	position:absolute;
 	/*width:100%;*/
+  text-align: right;
+  right:0;
 }
 
 article.event {
