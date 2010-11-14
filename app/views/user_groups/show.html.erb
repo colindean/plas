@@ -19,7 +19,8 @@
   <% end %>
   <fieldset>
     <legend><%= _("Add users to %s") % @user_group.name %></legend>
-    <input type="text" value="Type to find"/>
+    <% #TODO: autocomplete %>
+    <!--<input type="text" value="Type to find"/>-->
     <%= render :partial => "user_groups/select_users", :locals => {:ul => User.all - @user_group.users, :ug => @user_group }  %>
   </fieldset>
 </div>
@@ -41,6 +42,8 @@
   <% end %>
   <fieldset>
     <legend><%= _("Add permissions to %s") % @user_group.name %></legend>
+    <% #TODO: autocomplete %>
+    <!--<input type="text" value="Type to find"/>-->
     <input type="text" value="Type to find"/>
     <%= render :partial => "user_groups/select_permissions", :locals => {:pl => Permission.all - @user_group.permissions, :ug => @user_group }  %>
   </fieldset>
