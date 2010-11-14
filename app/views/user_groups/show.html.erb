@@ -9,14 +9,18 @@
   <% else %>
     <ul id="user-group-users-list">
       <% @user_group.users.sort{|a,b| a.display_name <=> b.display_name}.each do |user|%>
-        <li class="user"><%= link_to user.display_name, user %></li>
+        <li class="user">
+          <%= link_to user.display_name, user %>
+          <% #TODO: this should be async! %>
+          <%= link_to "X", user_group_remove_user_path(@user_group, :user_id => user)  %>
+        </li>
       <% end %>
     </ul>
   <% end %>
   <fieldset>
     <legend><%= _("Add users to %s") % @user_group.name %></legend>
     <input type="text" value="Type to find"/>
-    <%= render :partial => "user_groups/list_select", :locals => {:ul => User.all - @user_group.users, :ug => @user_group }  %>
+    <%= render :partial => "user_groups/select_users", :locals => {:ul => User.all - @user_group.users, :ug => @user_group }  %>
   </fieldset>
 </div>
 <hr/>
@@ -27,19 +31,22 @@
   <% else %>
     <ul id="user-group-permissions-list">
       <% @user_group.permissions.each do |perm|%>
-        <li class="permission"><%= perm.name %></li>
+        <li class="permission">
+          <%= perm.name %>
+          <% #TODO: this should be async! %>
+          <%= link_to "X", user_group_remove_permission_path(@user_group, :permission_id => perm)  %>
+        </li>
       <% end %>
     </ul>
   <% end %>
   <fieldset>
     <legend><%= _("Add permissions to %s") % @user_group.name %></legend>
     <input type="text" value="Type to find"/>
-    <select>
-      <option>or select from a list</option>
-    </select>
+    <%= render :partial => "user_groups/select_permissions", :locals => {:pl => Permission.all - @user_group.permissions, :ug => @user_group }  %>
   </fieldset>
 </div>
-<%= link_to 'Edit', edit_user_group_path(@user_group) %> |
-<%= link_to 'Destroy', @user_group, :confirm => 'Are you sure?', :method => :delete %>
-<br/><br/>
+<div id="admin-tools">
+<%= link_to _("Edit %s") % @user_group.name, edit_user_group_path(@user_group) %> |
+<%= link_to _("Destroy %s") % @user_group.name, @user_group, :confirm => _('Are you sure? This cannot be undone and you may regret it.'), :method => :delete %>
+</div>
 <%= link_to 'Back', user_groups_path %>

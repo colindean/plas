@@ -38,8 +38,10 @@ Plas::Application.routes.draw do
   resources :user_groups do
     #is this really necessary?
     match '/list_candidates' => 'user_groups#list_candidates', :as => 'list_candidates'
+    match '/add_permission' => 'user_groups#add_permission', :as => 'add_permission'
+    match '/remove_permission/:permission_id' => 'user_groups#remove_permission', :as => 'remove_permission'
     match '/add_user' => 'user_groups#add_user', :as => 'add_user'
-    match '/remove_user' => 'user_group#remove_user', :as => 'remove_user'
+    match '/remove_user/:user_id' => 'user_groups#remove_user', :as => 'remove_user'
   end
   root :to => "home#index"
 

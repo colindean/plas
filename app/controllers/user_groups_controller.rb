@@ -17,14 +17,50 @@ these methods deal with adding users to a group
       format.xml { render :xml => @user_list }
       format.json { render :json => @user_list }
     end
+  end
 
+  def add_permission
+    @user_group = UserGroup.find(params[:user_group_id])
+    @permission = Permission.find(params[:permission_to_user_groups][:permission_id])
+
+    @user_group.permissions << @permission
+
+    respond_to do |format|
+      if @user_group.save
+        format.html { redirect_to(request.referrer, :notice => _("%s added to %s") % [@permission.name, @user_group.name]) }
+        format.json { render :json => true }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @user_group.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def remove_permission
+    @user_group = UserGroup.find(params[:user_group_id])
+    @permission = Permission.find(params[:permission_id])
+
+    @user_group.permissions.delete @permission
+  
+    respond_to do |format|
+      if @user_group.save
+        format.html { redirect_to(request.referrer, :notice => _("%s removed from %s.") % [@permission.name, @user_group.name]) }
+        format.json { render :json => true }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "show", :notice => _("Unable to remove permission %s from group %s") % [@permission.name, @user_group.name] }
+        format.json { render :json => @user_group.errors, :status => :failure }
+        format.xml  { render :xml => @user_group.errors, :status => :unprocessable_entity }
+      end
+    end
   end
 
   def add_user
     @user_group = UserGroup.find(params[:user_group_id])
     @user = User.find(params[:user_to_user_groups][:user_id])
 
-    @user_group.users<< @user
+    @user_group.users << @user
 
     respond_to do |format|
       if @user_group.save
@@ -42,15 +78,15 @@ these methods deal with adding users to a group
     @user_group = UserGroup.find(params[:user_group_id])
     @user = User.find(params[:user_id])
 
-    @user_group.delete @user
+    @user_group.users.delete @user
   
     respond_to do |format|
       if @user_group.save
-        format.html
+        format.html { redirect_to(request.referrer, :notice => _("%s removed from %s.") % [@user.display_name, @user_group.name]) }
         format.json { render :json => true }
         format.xml  { head :ok }
       else
-        format.html { render :action => "list_users", :notice => _("Unable to remove user %s from group %s") % [@user.display_name,@user_group.name] }
+        format.html { render :action => "show", :notice => _("Unable to remove user %s from group %s") % [@user.display_name,@user_group.name] }
         format.json { render :json => @user_group.errors, :status => :failure }
         format.xml  { render :xml => @user_group.errors, :status => :unprocessable_entity }
       end

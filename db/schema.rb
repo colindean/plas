@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101028015853) do
+ActiveRecord::Schema.define(:version => 20101113051714) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -62,9 +62,9 @@ ActiveRecord::Schema.define(:version => 20101028015853) do
     t.string   "name",                              :null => false
     t.string   "code",                              :null => false
     t.string   "category",   :default => "General", :null => false
-    t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "parent_id"
   end
 
   create_table "registrations", :force => true do |t|
@@ -92,7 +92,6 @@ ActiveRecord::Schema.define(:version => 20101028015853) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "tickets", :force => true do |t|
-    t.integer  "event_id"
     t.float    "price"
     t.integer  "available"
     t.datetime "date_open"
@@ -103,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20101028015853) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name",                :default => "Registration for one person", :null => false
+    t.integer  "event_id"
   end
 
   create_table "transactions", :force => true do |t|

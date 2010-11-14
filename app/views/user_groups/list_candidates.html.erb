@@ -1,6 +1,6 @@
 <h1><%= _("Add a user to %s") % @user_group.name %></h1>
 
-<%= render :partial => "user_groups/list_select", :locals => { :ul => @user_list, :ug => @user_group } %>
+<%= render :partial => "user_groups/select_users", :locals => { :ul => @user_list, :ug => @user_group } %>
 
 <br/><br/>
 <%= link_to _("Back to %s") % @user_group.name, @user_group %>
