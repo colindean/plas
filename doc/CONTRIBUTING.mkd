@@ -1,0 +1,113 @@
+PLAS Environment Setup
+======================
+
+One of the hardest parts of contributing to a project is setting up an environment in which to work.
+
+It's easiest to do this at the command line. If you're not comfortable using the command line for your operating system of choice, then you may want to look for other ways to contribute to PLAS. We can always use help with translations and user testing.
+
+GitHub
+------
+
+We use GitHub for issue tracking and source management. Sign up for an account at [GitHub.com](https://github.com). Be sure to add your ssh keys to your account and set your Gravatar. Instructions for those are on GitHub and are beyond the scope of this document.
+
+Once you've created the account, go to the [PLAS repository](https://github.com/colindean/plas) and **FORK** it. This will create a repository just for you. For demonstration purposes, we'll call this repository `https://github.com/PLASNEWBIE/plas` herein.
+
+
+Linux
+-----
+
+These instructions were written using a fresh, but fully updated Ubuntu 10.10 installation.
+
+First, install the some of the tools available in the repository. 
+
+    sudo apt-get install build-essential bison openssl libreadline5 libreadline5-dev curl git zlib1g zlib1g-dev libssl-dev libsqlite3-0 libsqlite3-dev sqlite3 libxml2-dev subversion autoconf git libbz2-dev libxslt1-dev
+
+`build-essential` through `libxml2-dev` are needed for ruby, `subversion` and `autoconf` are needed for ruby-head, and `git` through the end are needed for PLAS and its gems.
+
+OSX
+---
+
+These instructions are unfortunately taken primarily from memory. Any contributor is welcome to set it up and fix these instructions!
+
+Ensure you have Xcode installed. This is available from [Apple's developer site](http://developer.apple.com). Next, install [MacPorts](http://www.macports.org/) and install the packages with:
+
+    sudo port install git-core autoconf readline zlib sqlite3 openssl m4 bison libxslt libxml2 libiconv libffi curl ncurses bzip2
+
+Xcode provides most of what we need, but there are some other things. It may be wise to peruse RVM's [Using MacPorts with RVM](http://rvm.beginrescueend.com/integration/macports/) if you're a gung-ho MacPorts user. It may also be wise to install `ruby` from MacPorts in order to catch the dependencies which may have been missed from the above list.
+
+The `ruby19` port is kept very up to date for stable 1.9 releases. As long as PLAS doesn't beging relying on 1.9.3/2.0 features, it may be easier to simply install `ruby19` from MacPorts and dispense with installing RVM in the next step.
+
+
+Install RVM
+-----------
+
+[Install RVM next](http://rvm.beginrescueend.com/rvm/install/), using the instructions linked at RVM's web site, or follow here:
+
+    bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
+
+Next, add this line to the bottom of `~/.bashrc`. It will load RVM and your installed rubies.
+
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+    [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion # This enables bash completion for rvm
+
+A pain in the ass thing you'll have to do is change line 6 from `[ -z "$PS1" ] && return` to `if [[ -z "$PS1" ]]; then` and add `fi` just before the above RVM line. This makes RVM and your rubies always work.
+
+To check that RVM is installed correctly, the output of `type rvm | head -n1` should be "rvm is a function". If it is, you're in business. If not, make sure that your edit to .bashrc is kosher. If you haven't made any edits to your .bashrc, you can probably just [download the .bashrc I made](https://gist.github.com/704555) while writing this.
+
+Now, the moment of truth and justice:
+
+    rvm install ruby-head
+    rvm --default use ruby-head
+
+RVM will first download and build ruby-1.8.7. It's needed for build scripts in 1.9.x. Then it will download and build ruby-head (1.9.3dev). **You can safely walk away for ~20-30 minutes depending on your computer's CPU and RAM.** This will install the latest, greatest ruby-head.
+
+Sometimes, though, the latest and greatest is broken. If `make: *** [miniprelude.c] Error 1
+` appears in the error logs, check your clock and ensure that it is set accurately. You may need to `rvm implode` if your clock was set inaccurately, then start again at the RVM installation. You won't have to remodify `.bashrc`, though.
+
+Sometimes, you may have to specify a version.
+
+    rvm install ruby-head-r29539
+
+Revision 29539 is a known working revision and the one which [colindean](https://github.com/colindean) is using on his development machine as of this writing.
+
+We will likely stop using ruby-head when 1.9.3 or 2.0.0 is released (whichever is first).
+
+If all else fails and you can't get ruby-head to install after a few tries, just install ruby 1.9.2. It will probably be sufficient.
+
+    rvm install 1.9.2
+    rvm --default use 1.9.2
+
+Periodically update rvm and see if a newer build of ruby-head will work.
+
+    rvm update
+    rvm install ruby-head
+
+Getting the source and installing gems (Linux and OSX)
+------------------------------------------------------
+
+You already have git installed from the initial installation steps above.
+
+Go to wherever you want to stick the source, and use the URL that GitHub displays at the top of your repository (e.g., at `https://github.com/PLASNEWBIE/plas` it will display `git@github.com:PLASNEWBIE/plas.git`):
+
+    git clone git@github.com:PLASNEWBIE/plas.git
+
+This will create the `plas` directory in the current working directory. `cd plas` to enter the directory. You'll see a message from RVM asking if you want to trust the `.rvmrc` in the plas directory. Say `y` for yes.
+
+Next, install the bundler gem with `gem install bundler` and then run `bundle install` to install the necessary gems. If there are any errors, talk to colindean. Some of the gems are versions patched for ruby 1.9.3 or rails 3.0.
+
+Getting PLAS up and running
+---------------------------
+
+First, create the `log` directory with `mkdir log` if it doesn't exist.
+
+Second, run `rake db:migrate` to set up the database. If you see *any* errors in migrations, run `rake db:migrate` again and do one of these two:
+
+1. Post the output of the second run as a new issue on the main repository.
+2. Try to resolve it yourself and submit a pull request
+
+Migration errors are critical, as they preclude new contributors from getting a sane environment up and running.
+
+If you see no errors, then you have successfully built the database and are ready to begin working on PLAS!
+
+Run `rails server` and WEBrick will start (that's the built-in webserver for development and testing). Connect to http://localhost:3000 and you'll see your instance of PLAS.
+
