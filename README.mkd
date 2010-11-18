@@ -6,13 +6,13 @@ payments, track users, schedule tournaments, and more.
 
 Authors
 -------
-* [Colin Dean](http://github.com/colindean)
+* [Colin Dean](https://github.com/colindean)
 
 ### Contributors ###
-* [Jonathan Daniel](http://github.com/binarycleric)
-* [Bill Turner](http://github.com/billturner)
-* [Dan Motles](http://github.com/jungleralph)
-* [Justin Ritter](http://github.com/erad1cate)
+* [Jonathan Daniel](https://github.com/binarycleric)
+* [Bill Turner](https://github.com/billturner)
+* [Dan Motles](https://github.com/jungleralph)
+* [Justin Ritter](https://github.com/erad1cate)
 
 ### Translators ###
 * English: Colin Dean
@@ -64,7 +64,7 @@ This will be made easier at some point, such as when Pcfg starts to see heavier 
 
 Contributing
 ------------
-We use [GitHub](http://github.com/colindean/plas) for our primary repository, but admittedly have a private repo on Dropbox which is really just a backup of GitHub.
+We use [GitHub](https://github.com/colindean/plas) for our primary repository, but admittedly have a private repo on Dropbox which is really just a backup of GitHub.
 
 We develop on ruby 1.9.3 and rails 3. See the Gemfile for 
 other stuff we require. We do provide an .rvmrc for rvm users (seriously makes life so much easier). 
@@ -73,7 +73,7 @@ Colin is currently using ruby 1.9.3dev (2010-10-20 trunk 29539) [x86\_64-darwin1
 
 Assuming you already have git, any ruby, and rvm installed, do these:
 
-    git clone http://github.com/colindean/plas.git
+    git clone https://github.com/colindean/plas.git
     cd plas
     gem install bundler
     bundle install
@@ -81,6 +81,8 @@ Assuming you already have git, any ruby, and rvm installed, do these:
 That should make your environment kosher. When you `cd` into `plas`, rvm will ask if you want to download, compile, and install ruby-head and create a gemset called `plas`. You should probably say yes, but if you have ruby 1.9.2 installed and in use, you're probably OK. You should create the gemset anyhow.
 
 One developer reported an issue getting ruby-head working with Rails because*iconv* wasn't available on his installation of OSX 10.6. If you encounter that, read [How to fix the iconv require error in Ruby 1.9](http://exceptionz.wordpress.com/2010/02/03/how-to-fix-the-iconv-require-error-in-ruby-1-9/).
+
+For more in-depth contributing instructions, including instructions for folks who want to be fully-fledged contributors to the project, see `doc/CONTRIBUTING.mkd`.
 
 In order to interact with PayPal, setup a [PayPal sandbox account](http://developer.paypal.com) and get the API information. `config/environments/{development,testing}.rb` set the gateway to test mode, so you won't have to do that manually.
 
