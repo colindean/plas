@@ -1,5 +1,8 @@
 [required] { background-color: lightyellow; }
 :invalid { background-color: red; }
+tbody tr:nth-child(odd) {
+     background-color: #eee;
+}
 
 a.icon {
     background-repeat:no-repeat;
