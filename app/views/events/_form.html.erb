@@ -54,7 +54,7 @@
       <dd><%= af.text_field :postcode %></dd>
 
 	  <dt><%= af.label :phone %></dt>
-      <dd><%= af.telephone_field :phone %></dd>
+    <dd><%= af.telephone_field :phone, { :pattern => '^\(?\d{3}\)?[-\s]?\d{3}[-\s]?\d{4}.*?$' } %></dd>
 
       <dt><%= af.label :address_type %></dt>
       <dd><%= af.select :address_type, Address::TYPES, :default => "event" %></dd>

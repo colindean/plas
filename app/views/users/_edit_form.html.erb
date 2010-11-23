@@ -23,9 +23,10 @@
     <dd><%= f.text_field :handle %></dd>
 
     <dt><%= f.label :email %></dt>
-    <dd><%= f.email_field :email %></dd>
+    <dd><%= f.email_field :email, {:required => true, :pattern => "[^ @]*@[^ @]*\.[^@]*", :placeholder => _("Your email address") }%></dd>
+ 
 
-    <dt><%= f.label :password, f.object.new_record? ? nil : "Change password" %></dt>
+    <dt><%= f.label :password, f.object.new_record? ? nil : _("Change password") %></dt>
     <dd><%= f.password_field :password %></dd>
 
     <dt><%= f.label :gaming_group %></dt>
