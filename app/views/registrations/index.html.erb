@@ -1,15 +1,20 @@
 <h1><%= _('Registrations for %s') % @event.name %></h1>
 <div id="registration-statistics">
   <dl>
-    <dt><%= _("Registrations purchased") %></dt>
+    <dt><%= _("Registrations created") %></dt>
     <dd><%= @registrations.count %></dd>
     <dt><%= _("Registered users") %></dt>
     <dd><%= @user_registrations.count %></dd>
+    <dt><%= _("Registrations paid") %></dt>
+    <dd><%= @registrations.select {|r| r.paid? }.count %></dd>
   </dl>
 </div>
 <ul>
 <% @user_registrations.each do |reg| %>
-  <li><%= link_to reg.user.display_name, user_url(reg.user) %></li>
+  <li>
+    <%= link_to reg.user.display_name, user_url(reg.user) %>
+    <%= _("(Not paid!)") if !reg.paid? %>
+  </li>
 <%end%>
 </ul>
 <br/><br/>
