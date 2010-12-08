@@ -30,5 +30,12 @@
 
 <ul>
   <li><%= link_to _('Pay using PayPal'), event_registerpaypal_path %></li>
-  <li><%= link_to _('Pay using a mailed check'), event_registerreserve_path %></li>
+  <li><%= link_to _('Pay offline (e.g., check, cash in person)'), event_registerreserve_path %></li>
 </ul>
+
+<% if @instructions.length > 0 %>
+<div id="offline-payment-instructions">
+  <h3><%= _("Offline payment instructions") %></h3>
+  <%= @instructions %>
+</div>
+<% end %>

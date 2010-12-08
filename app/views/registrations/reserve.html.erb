@@ -1,0 +1,8 @@
+<h1><%= _("Your registration has been reserved.") %></h1>
+
+<% if @instructions.length > 0 %>
+<div id="offline-payment-instructions">
+  <h3><%= _("Offline payment instructions") %></h3>
+  <%= @instructions %>
+</div>
+<% end %>

@@ -36,6 +36,7 @@ class RegistrationsController < ApplicationController
 
   # POST /review
   def review
+    @instructions = Pcfg.get("payments.offline-instructions")
     @desired_tickets = params[:ticket]
     if !@desired_tickets 
       redirect_to event_register_url
@@ -146,6 +147,37 @@ class RegistrationsController < ApplicationController
       redirect_to :action => 'success'
     else
       render :action => 'error'
+    end
+  end
+
+  #GET /reserve
+  #manual payment 
+  def reserve
+    @instructions = Pcfg.get("payments.offline-instructions")
+
+    session[:tickets].each do |k,v|
+      number = v["number"]
+      tid = v["ticket_id"]
+      #TODO: I'm sure this can be done more efficiently and securely
+      ticket = Ticket.find(tid)
+      number.to_i.times do |index| #create number of tickets 
+        reg = create_new_registration_from_ticket(ticket)
+        if ticket.package
+          @ticket_package = true
+          (ticket.generates_number.to_i - 1).times do #we already have one
+            subreg = Registration.new
+            subreg.ticket = reg.ticket
+            subreg.purchaser = reg.purchaser
+            subreg.price_paid = 0
+            subreg.package_parent = reg
+            subreg.save
+          end
+        end
+      end
+    end
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => _("Not yet implemented") }
     end
   end
 
