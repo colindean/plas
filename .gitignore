@@ -1,7 +1,7 @@
 *.swp
 .bundle
 db/*.sqlite3
-log/*.log
+log/*log*
 tmp/**/*
 vendor/cache/
 public/stylesheets/scaffold.css
