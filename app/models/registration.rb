@@ -15,4 +15,7 @@ class Registration < ActiveRecord::Base
     Registration.find_all_by_ticket_id(Ticket.find_all_by_event_id(event))
   end
 
+  def paid?
+    transaction != nil
+  end
 end
