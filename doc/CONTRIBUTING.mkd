@@ -111,3 +111,10 @@ If you see no errors, then you have successfully built the database and are read
 
 Run `rails server` and WEBrick will start (that's the built-in webserver for development and testing). Connect to http://localhost:3000 and you'll see your instance of PLAS.
 
+Writing code
+------------
+
+Please maintain a standard Ruby coding style, but ensure that it's readable. If you must choose between a Rubyism and readability for non-Rubyists, choose the latter. It's possible that many developers (especially from Pittco) haven't used Ruby and may not be accustomed to seeing things like `foo if bar` instead of `if bar then return foo` (although you *should* do this--it's proper Ruby!).
+
+Reporting issues
+----------------
