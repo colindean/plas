@@ -48,8 +48,22 @@
     <%=render :partial => 'events/ticket_tools'%>
 
     <% @event.tickets.each do |t| %>
-      <dt><%= link_to t.name, event_ticket_path(@event, t) %></dt>
-      <dd><%= "%s %s" % [t.prix.currency.symbol, t.prix] %></dd>
+      <dt class="<%= t.available? ? "available" : "unavailable" %>"><%= link_to t.name, event_ticket_path(@event, t) %></dt>
+      <dd class="<%= t.available? ? "available" : "unavailable" %>">
+        <%= "%s %s" % [t.prix.currency.symbol, t.prix] %>
+        <%= 
+          if t.available?
+            _("%s tickets available, %s tickets remaining") % [t.available, t.remaining] 
+          else
+            if t.sold_out?
+              _("This ticket is sold out.")
+            else
+              _("This ticket is no longer available.")
+            end
+          end
+        %>
+
+      </dd>
     <% end %>
     <div class="ticket-actions">
       <%= link_to _("Purchase tickets for this event"), event_register_path(@event) if @event.registration_open %><br/>
