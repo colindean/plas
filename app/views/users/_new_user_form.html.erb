@@ -29,8 +29,7 @@
   </div>
   <div class="field">
     <%= f.label :gender %><br />
-<% #TODO: i18n and put into User %>
-    <%= f.select :gender, %w[male female hermaphrodite transsexual pansexual adventurous], :include_blank => _('Prefer not to answer') %>
+    <%= f.text_field :gender %>
   </div>
   <div class="field">
     <%= f.label :email %><br />
