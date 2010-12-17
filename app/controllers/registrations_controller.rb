@@ -27,7 +27,7 @@ class RegistrationsController < ApplicationController
 
   # GET /register
   def register
-    @tickets = @event.tickets
+    @tickets = @event.find_available_tickets
     respond_to do |format|
       format.html # register.html.erb
       format.xml { render :xml => @tickets }

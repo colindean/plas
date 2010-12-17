@@ -40,12 +40,14 @@
 </dl>
 
 <% if @event.tickets.count == 0 %>
-<i><%= _('No tickets have been created for this event.') %></i>
+<i><%= _('No tickets have been created for this event. No seats are available.') %></i>
 <% else %>
 <dl class="event-tickets info-list">
   <fieldset>
     <legend><%= _('Tickets') %></legend>    
     <%=render :partial => 'events/ticket_tools'%>
+    <p><%= _("There are %d seats remaining of %d seats available for this event.") % [@event.seats_remaining, @event.seats_available] %></p>
+
 
     <% @event.tickets.each do |t| %>
       <dt class="<%= t.available? ? "available" : "unavailable" %>"><%= link_to t.name, event_ticket_path(@event, t) %></dt>
@@ -53,7 +55,7 @@
         <%= "%s %s" % [t.prix.currency.symbol, t.prix] %>
         <%= 
           if t.available?
-            _("%s tickets available, %s tickets remaining") % [t.available, t.remaining] 
+            _("%d tickets available, %d tickets remaining") % [t.available, t.remaining] 
           else
             if t.sold_out?
               _("This ticket is sold out.")
