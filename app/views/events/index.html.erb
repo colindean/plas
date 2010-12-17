@@ -1,4 +1,9 @@
 <h1>Listing events</h1>
+<% if @events.count == 0 %>
+  <p class="message">
+    <%= _("There are no events scheduled.") %>
+  </p>
+<% end %>
 
 <% @events.each do |event| %>
   <% if event.visible or (current_user and current_user.can 'events.administrate') %>
