@@ -1,6 +1,7 @@
 class Ticket < ActiveRecord::Base
   belongs_to :event
   has_one :generates_ticket, :class_name => "Ticket"
+  has_many :registrations
 
   validates_numericality_of :price, :greater_than => 0, :presence => true
   validates_numericality_of :available, :greater_than => 0, :presence => true
@@ -17,4 +18,21 @@ class Ticket < ActiveRecord::Base
     :class_name => "Money",
     :mapping => [%w(price cents)],
     :constructor => Proc.new { |price| Money.new(price || 0, Money.default_currency) }
+
+  def sold_out?
+    registrations.count >= available
+  end
+
+  def within_sales_period?
+    now = Time.now
+    date_open < now and now < date_closed
+  end
+
+  def remaining
+    available - registrations.count
+  end
+
+  def available?
+    not sold_out? and within_sales_period?
+  end
 end
