@@ -61,8 +61,13 @@ Now, the moment of truth and justice:
 
 RVM will first download and build ruby-1.8.7. It's needed for build scripts in 1.9.x. Then it will download and build ruby-head (1.9.3dev). **You can safely walk away for ~20-30 minutes depending on your computer's CPU and RAM.** This will install the latest, greatest ruby-head.
 
-Sometimes, though, the latest and greatest is broken. If `make: *** [miniprelude.c] Error 1
-` appears in the error logs, check your clock and ensure that it is set accurately. You may need to `rvm implode` if your clock was set inaccurately, then start again at the RVM installation. You won't have to remodify `.bashrc`, though.
+### When bad things happen here ###
+
+Sometimes the latest and greatest is broken. rvm will tell you to look at the log in `~/.rvm/log/ruby-head/make.log`. 
+
+If `executable host ruby is required. use --with-baseruby option.` appears in your log, execute `rvm use 1.8.7` in order to temporarily use ruby 1.8.7 as the host ruby. 
+
+If `make: *** [miniprelude.c] Error 1` appears in the error logs, check your clock and ensure that it is set accurately. You may need to `rvm implode` if your clock was set inaccurately, then start again at the RVM installation. You won't have to remodify `.bashrc`, though.
 
 Sometimes, you may have to specify a version.
 
@@ -76,6 +81,8 @@ If all else fails and you can't get ruby-head to install after a few tries, just
 
     rvm install 1.9.2
     rvm --default use 1.9.2
+
+### Update periodically ###
 
 Periodically update rvm and see if a newer build of ruby-head will work.
 
@@ -118,3 +125,7 @@ Please maintain a standard Ruby coding style, but ensure that it's readable. If 
 
 Reporting issues
 ----------------
+
+For now, we use GitHub's issues system. It's not as robust as we'd like to to be. 
+
+When committing code that fixes a bug, be sure to include *Closes #<number>* somewhere in the commit message. This will mark it as closed when your code is merged and will attach your commit to the issue.
