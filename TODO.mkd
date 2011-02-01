@@ -1,1 +1,3 @@
-See http://github.com/colindean/plas/issues for major TODOs, or run `grep -r TODO app` to see opportunities for optimizations and refactoring.
+See http://github.com/colindean/plas/issues for major TODOs. 
+
+Run `script/todo` to see opportunities for optimizations, refactoring, and validation fixes.
