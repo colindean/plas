@@ -1,5 +1,13 @@
 source 'http://rubygems.org'
 gem 'rails', '3.0.1'
+
+#these next few lines address problems building on ubuntu natty
+gem 'bzip2-ruby', :git =>'git://github.com/colindean/bzip2-ruby'
+gem 'nokogiri', '~>1.5.0.beta.3'
+gem 'ffi', '~>1.0.0'
+gem 'gherkin', :git => 'git://github.com/colindean/gherkin'
+#end
+
 gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
 
 #i18n stuff
@@ -19,13 +27,13 @@ gem 'acts_as_tree', :git => "git://github.com/parasew/acts_as_tree.git"
 group :development,:test do
   gem 'factory_girl_rails'
   gem 'watchr'
-	gem 'sqlite3-ruby', :require => 'sqlite3'
-	gem 'capybara'
-	gem 'cucumber', :git => 'git://github.com/colindean/cucumber.git' #fixes Config deprecation warnings
-	gem 'rspec', '~>2.0.0.beta.20'
-	gem 'rspec-rails', '~>2.0.0.beta.20'
+  gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem 'capybara'
+  gem 'cucumber', :git => 'git://github.com/colindean/cucumber.git' #fixes Config deprecation warnings
+  gem 'rspec', '~>2.0.0.beta.20'
+  gem 'rspec-rails', '~>2.0.0.beta.20'
   gem 'cucumber-rails'
-	gem 'spork'
+  gem 'spork'
 end
 
 #app-specific stuff
