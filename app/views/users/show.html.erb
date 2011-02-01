@@ -2,29 +2,23 @@
 
 <dl class="user-info info-list">
   <fieldset>
-    <legend><%= _('User Information') %></legend>
+    <legend><%= _('User Information for %s') % @user.full_name %></legend>
     <%=render :partial => 'users/tools'%>
 
     <dt><%= _('Name') %></dt>
     <dd><%= @user.given_name %> <%= @user.family_name %></dd>
     
     <dt><%= _('Handle') %></dt>
-    <dd><%= ( @user.handle and not @user.handle.empty? ) ? @user.handle : _('This user has not set a handle :(') %></dd>
+    <dd><%= ( @user.handle and not @user.handle.empty? ) ? @user.handle : _('%s has not set a handle.') % @user.display_name %></dd>
     
     <dt><%= _('Email') %></dt>
     <dd><%= @user.email %></dd>
     
     <dt><%= _('Gaming group') %></dt>
-    <dd><%= @user.gaming_group %></dd>
-    
-    <dt><%= _('Date arrival') %></dt>
-    <dd><%= @user.date_arrival %></dd>
-    
-    <dt><%= _('Date departure') %></dt>
-    <dd><%= @user.date_departure %></dd>
+    <dd><%= ( @user.gaming_group and not @user.gaming_group.empty? ) ? @user.gaming_group : _('%s has not allied with a group.') % @user.display_name %></dd>
     
     <dt><%= _('Gamer type') %></dt>
-    <dd><%= @user.gamer_type %></dd>
+    <dd><%= ( @user.gamer_type ) ? @user.gamer_type : _('%s has not set a gamer type.') % @user.display_name %></dd>
     
     <dt><%= _('Birthdate') %></dt>
     <dd><%= @user.birthdate %></dd>
