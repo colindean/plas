@@ -1,5 +1,5 @@
 <ul class="guest-user">
-  <li><%= Time.now %></li>
-	<li><%= link_to _('Sign up'), new_user_path %></li>
-	<li><%= link_to _('Login'), login_path %></li>
+  <li id="current-time"><%= Time.now.strftime("%Y-%m-%d %H:%M:%S") %></li>
+  <li><%= link_to _('Sign up'), new_user_path %></li>
+  <li><%= link_to _('Login'), login_path %></li>
 </ul>

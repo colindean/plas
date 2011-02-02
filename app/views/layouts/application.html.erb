@@ -3,7 +3,8 @@
 <head>
   <title><%= Pcfg.get('organization.name') || _("Pittco") %></title>
   <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag :all %>
+  <%= javascript_include_tag "date" %>
   <%= csrf_meta_tag %>
   <link rel="icon" type="image/vnd.microsoft.icon" href="../images/logos/plas/plas_logo.ico"/>
   <link rel="apple-touch-icon" href="../images/logos/plas/plas_logo.ico">
