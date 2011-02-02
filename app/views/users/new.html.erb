@@ -1,7 +1,6 @@
 <h1><%= _('Register') %></h1>
 
 <% form_for @user, :url => account_path do |f| %>
-	<%= f.error_messages %>
 	<%= render :partial => "new_user_form", :locals => { :f => f } %>
 	<%= f.submit _('Register') %>
 <% end %>

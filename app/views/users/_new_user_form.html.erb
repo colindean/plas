@@ -5,11 +5,11 @@
 			_('%s prevented you from joining our ranks:') % pluralize(@user.errors.count, "error") 
 			%>
 		</h2>
-    <ul>
+    <ol>
     <% @user.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
-    </ul>
+    </ol>
   </div>
   <% end %>
 

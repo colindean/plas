@@ -105,3 +105,14 @@ p.notice {
   box-shadow:.1em .1em 2em black;
 }
   
+div#errorExplanation {
+  border: 1px solid #800;
+  background: #e99;
+  padding: 0.5em;
+  -moz-border-radius: 0 0 0.3em 0.3em;
+  -webkit-border-radius: 0 0 0.3em 0.3em;
+  border-radius: 0.3em;
+  -moz-box-shadow:.1em .1em 2em black;
+  -webkit-box-shadow:.1em .1em 2em black;
+  box-shadow:.1em .1em 0.3em black;
+}
