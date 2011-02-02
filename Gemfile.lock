@@ -23,13 +23,6 @@ GIT
       locale
 
 GIT
-  remote: git://github.com/colindean/gherkin
-  revision: 11c7988abc737bcccd8e79b437433b19b8df0f04
-  specs:
-    gherkin (2.3.3)
-      json (~> 1.4.6)
-
-GIT
   remote: git://github.com/grosser/fast_gettext.git
   revision: d7981583d327a2a7a1b589d78c313daebbe6b584
   specs:
@@ -55,6 +48,12 @@ GIT
   revision: ed52495d1671c99e1add582628403bf8104e9077
   specs:
     acts_as_tree (1.2.3)
+
+PATH
+  remote: ~/Source/gherkin
+  specs:
+    gherkin (2.3.3)
+      json (~> 1.4.6)
 
 GEM
   remote: http://rubygems.org/
@@ -118,6 +117,9 @@ GEM
     ffi (1.0.5)
       rake (>= 0.8.7)
     i18n (0.4.2)
+    jquery-rails (0.2.6)
+      rails (~> 3.0)
+      thor (~> 0.14.4)
     json (1.4.6)
     json_pure (1.5.1)
     locale (2.0.5)
@@ -199,6 +201,7 @@ DEPENDENCIES
   gettext!
   gettext_i18n_rails!
   gherkin!
+  jquery-rails
   money
   nokogiri (~> 1.5.0.beta.3)
   rails (= 3.0.1)

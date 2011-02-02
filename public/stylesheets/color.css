@@ -95,4 +95,13 @@ section#header header h1 {
   background: transparent url("../images/logos/plas/plas_logo64.png") no-repeat left center;
   padding-left: 60px;
 }
-
+p.notice {
+  background: #9e9;
+  -moz-border-radius: 0 0 0.3em 0.3em;
+  -webkit-border-radius: 0 0 0.3em 0.3em;
+  border-radius: 0 0 0.3em 0.3em;
+  -moz-box-shadow:.1em .1em 2em black;
+  -webkit-box-shadow:.1em .1em 2em black;
+  box-shadow:.1em .1em 2em black;
+}
+  

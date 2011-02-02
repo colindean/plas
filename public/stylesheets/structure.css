@@ -135,3 +135,9 @@ article.event div.admin-actions {
   top: 0.2em;
   right: 0.2em;
 }
+p.notice {
+  position: absolute;
+  top: 0;
+  left: 45%;
+  padding: 0.5em;
+}

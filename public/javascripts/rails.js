@@ -1,118 +1,148 @@
-document.observe("dom:loaded", function() {
-  function handleRemote(element) {
-    var method, url, params;
+/**
+ * Unobtrusive scripting adapter for jQuery
+ *
+ * Requires jQuery 1.4.3 or later.
+ * https://github.com/rails/jquery-ujs
+ */
 
-    if (element.tagName.toLowerCase() === 'form') {
-      method = element.readAttribute('method') || 'post';
-      url    = element.readAttribute('action');
-      params = element.serialize(true);
-    } else {
-      method = element.readAttribute('data-method') || 'get';
-      url    = element.readAttribute('href');
-      params = {};
-    }
+(function($) {
+	// Triggers an event on an element and returns the event result
+	function fire(obj, name, data) {
+		var event = new $.Event(name);
+		obj.trigger(event, data);
+		return event.result !== false;
+	}
 
-    var event = element.fire("ajax:before");
-    if (event.stopped) return false;
+	// Submits "remote" forms and links with ajax
+	function handleRemote(element) {
+		var method, url, data,
+			dataType = element.attr('data-type') || ($.ajaxSettings && $.ajaxSettings.dataType);
 
-    new Ajax.Request(url, {
-      method: method,
-      parameters: params,
-      asynchronous: true,
-      evalScripts: true,
+		if (element.is('form')) {
+			method = element.attr('method');
+			url = element.attr('action');
+			data = element.serializeArray();
+			// memoized value from clicked submit button
+			var button = element.data('ujs:submit-button');
+			if (button) {
+				data.push(button);
+				element.data('ujs:submit-button', null);
+			}
+		} else {
+			method = element.attr('data-method');
+			url = element.attr('href');
+			data = null;
+		}
 
-      onLoading:     function(request) { element.fire("ajax:loading", {request: request}); },
-      onLoaded:      function(request) { element.fire("ajax:loaded", {request: request}); },
-      onInteractive: function(request) { element.fire("ajax:interactive", {request: request}); },
-      onComplete:    function(request) { element.fire("ajax:complete", {request: request}); },
-      onSuccess:     function(request) { element.fire("ajax:success", {request: request}); },
-      onFailure:     function(request) { element.fire("ajax:failure", {request: request}); }
-    });
+		$.ajax({
+			url: url, type: method || 'GET', data: data, dataType: dataType,
+			// stopping the "ajax:beforeSend" event will cancel the ajax request
+			beforeSend: function(xhr, settings) {
+				if (settings.dataType === undefined) {
+					xhr.setRequestHeader('accept', '*/*;q=0.5, ' + settings.accepts.script);
+				}
+				return fire(element, 'ajax:beforeSend', [xhr, settings]);
+			},
+			success: function(data, status, xhr) {
+				element.trigger('ajax:success', [data, status, xhr]);
+			},
+			complete: function(xhr, status) {
+				element.trigger('ajax:complete', [xhr, status]);
+			},
+			error: function(xhr, status, error) {
+				element.trigger('ajax:error', [xhr, status, error]);
+			}
+		});
+	}
 
-    element.fire("ajax:after");
-  }
+	// Handles "data-method" on links such as:
+	// <a href="/users/5" data-method="delete" rel="nofollow" data-confirm="Are you sure?">Delete</a>
+	function handleMethod(link) {
+		var href = link.attr('href'),
+			method = link.attr('data-method'),
+			csrf_token = $('meta[name=csrf-token]').attr('content'),
+			csrf_param = $('meta[name=csrf-param]').attr('content'),
+			form = $('<form method="post" action="' + href + '"></form>'),
+			metadata_input = '<input name="_method" value="' + method + '" type="hidden" />';
 
-  function handleMethod(element) {
-    var method, url, token_name, token;
+		if (csrf_param !== undefined && csrf_token !== undefined) {
+			metadata_input += '<input name="' + csrf_param + '" value="' + csrf_token + '" type="hidden" />';
+		}
 
-    method     = element.readAttribute('data-method');
-    url        = element.readAttribute('href');
-    csrf_param = $$('meta[name=csrf-param]').first();
-    csrf_token = $$('meta[name=csrf-token]').first();
+		form.hide().append(metadata_input).appendTo('body');
+		form.submit();
+	}
 
-    var form = new Element('form', { method: "POST", action: url, style: "display: none;" });
-    element.parentNode.appendChild(form);
+	function disableFormElements(form) {
+		form.find('input[data-disable-with]').each(function() {
+			var input = $(this);
+			input.data('ujs:enable-with', input.val())
+				.val(input.attr('data-disable-with'))
+				.attr('disabled', 'disabled');
+		});
+	}
 
-    if (method != 'post') {
-      var field = new Element('input', { type: 'hidden', name: '_method', value: method });
-      form.appendChild(field);
-    }
+	function enableFormElements(form) {
+		form.find('input[data-disable-with]').each(function() {
+			var input = $(this);
+			input.val(input.data('ujs:enable-with')).removeAttr('disabled');
+		});
+	}
 
-    if (csrf_param) {
-      var param = csrf_param.readAttribute('content');
-      var token = csrf_token.readAttribute('content');
-      var field = new Element('input', { type: 'hidden', name: param, value: token });
-      form.appendChild(field);
-    }
+	function allowAction(element) {
+		var message = element.attr('data-confirm');
+		return !message || (fire(element, 'confirm') && confirm(message));
+	}
 
-    form.submit();
-  }
+	function requiredValuesMissing(form) {
+		var missing = false;
+		form.find('input[name][required]').each(function() {
+			if (!$(this).val()) missing = true;
+		});
+		return missing;
+	}
 
-  $(document.body).observe("click", function(event) {
-    var message = event.findElement().readAttribute('data-confirm');
-    if (message && !confirm(message)) {
-      event.stop();
-      return false;
-    }
+	$('a[data-confirm], a[data-method], a[data-remote]').live('click.rails', function(e) {
+		var link = $(this);
+		if (!allowAction(link)) return false;
 
-    var element = event.findElement("a[data-remote]");
-    if (element) {
-      handleRemote(element);
-      event.stop();
-      return true;
-    }
+		if (link.attr('data-remote')) {
+			handleRemote(link);
+			return false;
+		} else if (link.attr('data-method')) {
+			handleMethod(link);
+			return false;
+		}
+	});
 
-    var element = event.findElement("a[data-method]");
-    if (element) {
-      handleMethod(element);
-      event.stop();
-      return true;
-    }
-  });
+	$('form').live('submit.rails', function(e) {
+		var form = $(this);
+		if (!allowAction(form)) return false;
 
-  // TODO: I don't think submit bubbles in IE
-  $(document.body).observe("submit", function(event) {
-    var element = event.findElement(),
-        message = element.readAttribute('data-confirm');
-    if (message && !confirm(message)) {
-      event.stop();
-      return false;
-    }
+		// skip other logic when required values are missing, but don't cancel the event
+		if (requiredValuesMissing(form)) return;
 
-    var inputs = element.select("input[type=submit][data-disable-with]");
-    inputs.each(function(input) {
-      input.disabled = true;
-      input.writeAttribute('data-original-value', input.value);
-      input.value = input.readAttribute('data-disable-with');
-    });
+		if (form.attr('data-remote')) {
+			handleRemote(form);
+			return false;
+		} else {
+			disableFormElements(form);
+		}
+	});
 
-    var element = event.findElement("form[data-remote]");
-    if (element) {
-      handleRemote(element);
-      event.stop();
-    }
-  });
+	$('form input[type=submit], form button[type=submit], form button:not([type])').live('click.rails', function() {
+		var button = $(this);
+		if (!allowAction(button)) return false;
+		// register the pressed submit button
+		var name = button.attr('name'), data = name ? {name:name, value:button.val()} : null;
+		button.closest('form').data('ujs:submit-button', data);
+	});
+	
+	$('form').live('ajax:beforeSend.rails', function(event) {
+		if (this == event.target) disableFormElements($(this));
+	});
 
-  $(document.body).observe("ajax:after", function(event) {
-    var element = event.findElement();
-
-    if (element.tagName.toLowerCase() === 'form') {
-      var inputs = element.select("input[type=submit][disabled=true][data-disable-with]");
-      inputs.each(function(input) {
-        input.value = input.readAttribute('data-original-value');
-        input.writeAttribute('data-original-value', null);
-        input.disabled = false;
-      });
-    }
-  });
-});
+	$('form').live('ajax:complete.rails', function(event) {
+		if (this == event.target) enableFormElements($(this));
+	});
+})( jQuery );
