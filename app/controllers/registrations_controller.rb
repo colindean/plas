@@ -36,7 +36,7 @@ class RegistrationsController < ApplicationController
 
   # POST /review
   def review
-    @instructions = Pcfg.get("payments.offline-instructions")
+    @instructions = Pcfg.get("payments.offline-instructions") || ""
     @desired_tickets = params[:ticket]
     if !@desired_tickets 
       redirect_to event_register_url
@@ -153,7 +153,7 @@ class RegistrationsController < ApplicationController
   #GET /reserve
   #manual payment 
   def reserve
-    @instructions = Pcfg.get("payments.offline-instructions")
+    @instructions = Pcfg.get("payments.offline-instructions") || ""
 
     session[:tickets].each do |k,v|
       number = v["number"]
