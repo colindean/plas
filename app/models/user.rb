@@ -54,7 +54,13 @@ class User < ActiveRecord::Base
 		#TODO: Implement some kind of cache, as it's likely that the same
     #permission will hit more than once is a page load, no sense in going
     #through all of the permissions again every time.
-		permissions.select {|p| p.code == permission_code }.count != 0
+    if permissions.select {|p| p.code == permission_code }.count != 0
+      true
+    else
+      if RAILS_ENV == "development" and not Permission.exists?(permission_code)
+        raise _("Permission code %s does not exist") % permission_code
+      end
+    end
     #true
 	end
 
