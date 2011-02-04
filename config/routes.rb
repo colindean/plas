@@ -43,6 +43,7 @@ Plas::Application.routes.draw do
     match '/add_user' => 'user_groups#add_user', :as => 'add_user'
     match '/remove_user/:user_id' => 'user_groups#remove_user', :as => 'remove_user'
   end
+  match '/godmode' => 'user_groups#godmode', :as => 'godmode'
   root :to => "home#index"
 
 

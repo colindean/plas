@@ -5,7 +5,7 @@ class UserGroupsController < ApplicationController
 these methods deal with adding users to a group
 ####
 =end
-  
+
   def list_candidates
     @user_group = UserGroup.find(params[:user_group_id])
     @users = User.all
@@ -92,6 +92,42 @@ these methods deal with adding users to a group
       end
     end
   end
+
+=begin
+######
+#This method makes someone god if there are no admins
+######
+=end
+
+  def godmode
+    paa = Permission.find_by_code('app.administrate')
+    if paa.users.count == 0
+      g = paa.user_groups[0] #get the first group which has admin
+                             #permissions, usually Applications Admins
+      
+      g.users << current_user
+      if g.save
+        respond_to do |format|
+          format.html { 
+            redirect_to(root_path, 
+                        :notice => _("You, %s, are now a part of %s, which has administrator permissions.") % [current_user.display_name, g.name]
+                       ) 
+          }
+          format.xml { head :ok }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html {
+          redirect_to(root_path,
+                      :notice => _("You cannot play god!")
+                     )
+        }
+        format.xml { head :error }
+      end
+    end
+  end
+
 =begin
 ######
 method below here deal with the CRUD of the UserGroup itself

@@ -13,6 +13,14 @@
 </ul>
 </nav>
 <% end %>
+<% if current_user and Permission.find_by_code('app.administrate').users.count == 0 
+#TODO: find a better place for this 
+%>
+<div id="become-god">
+  <%= _('There is currently no administrator.') %>
+  <%= link_to _("Become administrator?"), godmode_path %>
+</div>
+<% end %>
 <div id="copyright-notice">
   <p>
     <span class="project">
