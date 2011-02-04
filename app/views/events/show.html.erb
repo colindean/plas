@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<% if notice and not notice.empty? %><p class="notice"><%= notice %></p><%end%>
 
 <dl class="event-info info-list">
   <fieldset>   
@@ -39,13 +39,13 @@
   <%end%>
 </dl>
 
-<% if @event.tickets.count == 0 %>
-<i><%= _('No tickets have been created for this event. No seats are available.') %></i>
-<% else %>
 <dl class="event-tickets info-list">
   <fieldset>
     <legend><%= _('Tickets') %></legend>    
     <%=render :partial => 'events/ticket_tools'%>
+    <% if @event.tickets.count == 0 %>
+      <p><i><%= _('No tickets have been created for this event. No seats are available.') %></i></p>
+    <% else %>
     <p><%= _("There are %d seats remaining of %d seats available for this event.") % [@event.seats_remaining, @event.seats_available] %></p>
 
 
@@ -71,8 +71,8 @@
       <%= link_to _("Purchase tickets for this event"), event_register_path(@event) if @event.registration_open %><br/>
       <%= link_to _("Who is registered?"), event_registrations_url(@event) %>
     </div>
+<% end %>
   </fieldset>
 </dl>
-<% end %>
 
 <%= link_to 'Back', events_path %>
