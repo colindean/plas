@@ -25,6 +25,9 @@
     <% if ticket.package %>
       <td><%= ticket.generates_ticket %></td>
       <td><%= ticket.generates_number %></td>
+    <% else %>
+      <td>&nsbp;</td>
+      <td>&nbsp;</td>
     <% end %>
     <td><%= link_to 'Show', event_ticket_path([@event, ticket]) %></td>
     <td><%= link_to 'Edit', edit_event_ticket_path(ticket) %></td>

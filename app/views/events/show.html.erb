@@ -1,7 +1,7 @@
 <% if notice and not notice.empty? %><p class="notice"><%= notice %></p><%end%>
 
 <dl class="event-info info-list">
-  <fieldset>   
+  <fieldset>
     <legend>Event Information</legend>
     <%=render :partial => 'events/tools'%>
 
@@ -41,7 +41,7 @@
 
 <dl class="event-tickets info-list">
   <fieldset>
-    <legend><%= _('Tickets') %></legend>    
+    <legend><%= _('Tickets') %></legend>
     <%=render :partial => 'events/ticket_tools'%>
     <% if @event.tickets.count == 0 %>
       <p><i><%= _('No tickets have been created for this event. No seats are available.') %></i></p>
@@ -52,10 +52,10 @@
     <% @event.tickets.each do |t| %>
       <dt class="<%= t.available? ? "available" : "unavailable" %>"><%= link_to t.name, event_ticket_path(@event, t) %></dt>
       <dd class="<%= t.available? ? "available" : "unavailable" %>">
-        <%= "%s %s" % [t.prix.currency.symbol, t.prix] %>
-        <%= 
+        <%= "%s %s" % [t.price.currency.symbol, t.price] %>
+        <%=
           if t.available?
-            _("%d tickets available, %d tickets remaining") % [t.available, t.remaining] 
+            _("%d tickets available, %d tickets remaining") % [t.available, t.remaining]
           else
             if t.sold_out?
               _("This ticket is sold out.")

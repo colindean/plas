@@ -3,7 +3,7 @@ require 'activemerchant'
 
 class RegistrationsController < ApplicationController
   include ActiveMerchant::Billing
-  
+
   before_filter :require_user
   before_filter :get_event
 
@@ -38,7 +38,7 @@ class RegistrationsController < ApplicationController
   def review
     @instructions = Pcfg.get("payments.offline-instructions") || ""
     @desired_tickets = params[:ticket]
-    if !@desired_tickets 
+    if !@desired_tickets
       redirect_to event_register_url
       return
     end
@@ -49,8 +49,8 @@ class RegistrationsController < ApplicationController
       #TODO: I'm sure this can be done more efficiently and securely
       ticket = Ticket.find(v["ticket_id"])
       @desired_tickets[k]["name"] = ticket.name
-      @desired_tickets[k]["price"] = ticket.prix.cents
-      @desired_tickets[k]["total"] = ticket.prix.cents * v["number"].to_i
+      @desired_tickets[k]["price"] = ticket.price.cents
+      @desired_tickets[k]["total"] = ticket.price.cents * v["number"].to_i
       @order_total = @order_total + @desired_tickets[k]["total"]
     end
 
@@ -77,7 +77,7 @@ class RegistrationsController < ApplicationController
 
     redirect_to gateway.redirect_url_for(setup_response.token)
   end
-  
+
   def confirm
     redirect_to :action => 'error' unless params[:token] and params[:PayerID]
     session[:paypal_token] = params[:token]
@@ -123,7 +123,7 @@ class RegistrationsController < ApplicationController
         tid = v["ticket_id"]
         #TODO: I'm sure this can be done more efficiently and securely
         ticket = Ticket.find(tid)
-        number.to_i.times do |index| #create number of tickets 
+        number.to_i.times do |index| #create number of tickets
           reg = create_new_registration_from_ticket(ticket)
           transaction.registrations << reg
           if ticket.package
@@ -151,7 +151,7 @@ class RegistrationsController < ApplicationController
   end
 
   #GET /reserve
-  #manual payment 
+  #manual payment
   def reserve
     @instructions = Pcfg.get("payments.offline-instructions") || ""
 
@@ -160,7 +160,7 @@ class RegistrationsController < ApplicationController
       tid = v["ticket_id"]
       #TODO: I'm sure this can be done more efficiently and securely
       ticket = Ticket.find(tid)
-      number.to_i.times do |index| #create number of tickets 
+      number.to_i.times do |index| #create number of tickets
         reg = create_new_registration_from_ticket(ticket)
         if ticket.package
           @ticket_package = true
@@ -210,7 +210,7 @@ class RegistrationsController < ApplicationController
       format.xml { render :xml => _("Not yet implemented") }
     end
   end
-  
+
   # GET /registrations
   # GET /registrations.xml
   def index

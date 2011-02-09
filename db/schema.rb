@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110204031301) do
+ActiveRecord::Schema.define(:version => 20110209020229) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -91,9 +91,17 @@ ActiveRecord::Schema.define(:version => 20110204031301) do
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
+##  create_table "shouts", :force => true do |t|
+##    t.string   "title"
+##    t.text     "shout"
+##    t.datetime "created_at"
+##    t.integer  "user_id"
+##    t.datetime "updated_at"
+##  end
+
   create_table "tickets", :force => true do |t|
     t.integer  "event_id"
-    t.float    "price"
+    t.float    "cents"
     t.integer  "available"
     t.datetime "date_open"
     t.datetime "date_closed"
@@ -103,6 +111,7 @@ ActiveRecord::Schema.define(:version => 20110204031301) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name",                :default => "Registration for one person", :null => false
+    t.string   "currency"
   end
 
   create_table "transactions", :force => true do |t|

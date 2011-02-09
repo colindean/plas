@@ -1,6 +1,6 @@
 <h1><%= _('Register for %s') % @event.name %></h1>
 <%
-if !@tickets 
+if !@tickets
   %>
   <p><%= _("Currently, no tickets are available for this event.") %></p>
   <p><%= link_to _("Back"), event_path(@event) %></p>
@@ -9,7 +9,7 @@ if !@tickets
 #or not, because we're splitting them up for display purposes
 single_tickets = []
 package_tickets = []
-@tickets.each do |t| 
+@tickets.each do |t|
   single_tickets << t if !t.package
   package_tickets << t if t.package
 end
@@ -35,7 +35,7 @@ end
                 <input type="hidden" name="ticket[<%=i%>][ticket_id]" value="<%=t.id%>"/>
               </td>
               <td><%= t.name %></td>
-              <td><%= "%s %s" % [t.prix.currency.symbol, t.prix] %></td>
+              <td><%= "%s %s" % [t.price.currency.symbol, t.price] %></td>
             </tr>
           <% end %>
         </tbody>
@@ -55,16 +55,16 @@ end
             <tr>
               <% # this needs to be an actual field %>
               <td>
-                <input type="text" value="0" 
+                <input type="text" value="0"
                   name="ticket[<%=t.id%>][number]" />
               </td>
               <td>
-                <%= t.name %> 
+                <%= t.name %>
                 <span class="ticket-package-yield">
                   <%= _("buys %d %s") % [t.generates_number, t.generates_ticket.name] %>
                 </span>
               </td>
-              <td><<%= "%s %s" % [t.prix.currency.symbol, t.prix] %></td>
+              <td><<%= "%s %s" % [t.price.currency.symbol, t.price] %></td>
             </tr>
           <% end %>
         </tbody>

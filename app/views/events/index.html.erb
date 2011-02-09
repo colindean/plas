@@ -12,10 +12,10 @@
     <h2><%= event.description %></h2>
     <p><%= event.start.to_date %> - <%= event.end.to_date %></p>
     <p><%= event.addresses[0].pretty if event.addresses.count > 0 %></p>
-    <p><%= 
-      if event.registration_open 
-        _("Registration is open") 
-      else 
+    <p><%=
+      if event.registration_open
+        _("Registration is open")
+      else
         _("Registration is closed")
       end%></p>
     <% if current_user and current_user.can 'events.administrate' %>
@@ -23,7 +23,7 @@
         <% if event.tickets.count > 0 %>
         <ul>
           <% event.tickets.each do |ticket| %>
-          <li><%= ticket.name %> - $<%= ticket.prix %> - <%= ticket.available %> <%= _('tickets available') %></li>
+          <li><%= ticket.name %> - $<%= ticket.price %> - <%= ticket.available %> <%= _('tickets available') %></li>
           <% end %>
         </ul>
         <% end %>
