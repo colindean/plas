@@ -18,4 +18,12 @@ class Registration < ActiveRecord::Base
   def paid?
     transaction != nil
   end
+
+  def gift?
+    purchaser != user
+  end
+
+  def given?
+    gift? and user != nil
+  end
 end
