@@ -27,6 +27,9 @@ gem 'acts_as_tree', :git => "git://github.com/parasew/acts_as_tree.git"
 #jquery uber alles
 gem 'jquery-rails'
 
+#for tournament brackets...
+#gem 'challonge-api' #https://bitbucket.org/corneldm/challonge-api/wiki/Home
+
 group :development,:test do
   gem 'factory_girl_rails'
   gem 'watchr'

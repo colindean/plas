@@ -45,29 +45,38 @@ Hell, it's not ready for our use!
 
 Installation
 ------------
-PLAS requires at least ruby 1.9.2 and rails 3.0.0. Target release is 
+PLAS requires at least ruby 1.9.2 and rails 3.x. Target release is 
 ruby 1.9.3 or ruby 2.0.0, whichever comes first.
 
 Use
 ---
-Create a user to be able to do anything. As of this writing, the 
-permissions system is not yet working, so any user can do anything.
+Create a user to be able to do anything. Go to /god\_mode as your freshly
+created user in order to put that user into the Application Administrators
+group. Don't worry, that URL will only work when there are no members in that
+group.
 
-In order to use PayPal, you must get your PayPal account's login, password, and signature from the API console, and then set three Pfcgs: 
+In order to use PayPal, you must get your PayPal account's login, password, and
+signature from the API console, and then set three Pfcgs: 
 
  * paypal.login
  * paypal.password
  * paypal.signature
  
-This will be made easier at some point, such as when Pcfg starts to see heavier use. I'd entertain a patch/pull with these prepopulated, as well as a better way to edit Pcfg (I'd like it to be kinda like Firefox's about:config).For now, go to http://localhost:3000/pcfgs to set pcfg variables.
+This will be made easier at some point, such as when Pcfg starts to see heavier 
+use. I'd entertain a patch/pull with these prepopulated, as well as a better 
+way to edit Pcfg (I'd like it to be kinda like Firefox's about:config). For 
+now, go to http://localhost:3000/pcfgs to set pcfg variables.
 
 
 Contributing
 ------------
-We use [GitHub](https://github.com/colindean/plas) for our primary repository, but admittedly have a private repo on Dropbox which is really just a backup of GitHub.
+We use [GitHub](https://github.com/colindean/plas) for our primary repository, 
+but admittedly have a private repo on Dropbox which is really just a backup of 
+GitHub.
 
 We develop on ruby 1.9.3 and rails 3. See the Gemfile for 
-other stuff we require. We do provide an .rvmrc for rvm users (seriously makes life so much easier). 
+other stuff we require. We do provide an .rvmrc for rvm users (seriously 
+makes life so much easier). 
 
 Colin is currently using ruby 1.9.3dev (2010-10-20 trunk 29539) [x86\_64-darwin10.4.0].
 
