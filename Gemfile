@@ -34,12 +34,13 @@ group :development,:test do
   gem 'factory_girl_rails'
   gem 'watchr'
   gem 'sqlite3-ruby', :require => 'sqlite3'
-  gem 'capybara'
-  gem 'cucumber', :git => 'git://github.com/colindean/cucumber.git' #fixes Config deprecation warnings
-  gem 'rspec', '~>2.0.0.beta.20'
-  gem 'rspec-rails', '~>2.0.0.beta.20'
-  gem 'cucumber-rails'
+  gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
+  #gem 'cucumber' # , :git => 'git://github.com/colindean/cucumber.git' #fixes Config deprecation warnings
+  #gem 'rspec' #, '~>2.0.0.beta.20'
+  #gem 'rspec-rails' #, '~>2.0.0.beta.20'
+  #gem 'cucumber-rails'
   gem 'spork'
+
 end
 
 #app-specific stuff
