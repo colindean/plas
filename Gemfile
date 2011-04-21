@@ -1,11 +1,11 @@
 source 'http://rubygems.org'
-gem 'rails', '3.0.1'
+gem 'rails', '3.0.5'
 
 #these next few lines address problems building on ubuntu natty
-gem 'bzip2-ruby', :git =>'git://github.com/colindean/bzip2-ruby'
+gem 'bzip2-ruby' #, :git =>'git://github.com/colindean/bzip2-ruby'
 gem 'nokogiri', '~>1.5.0.beta.3'
 gem 'ffi', '~>1.0.0'
-gem 'gherkin', :git => 'git://github.com/colindean/gherkin'
+gem 'gherkin' #, :git => 'git://github.com/colindean/gherkin'
 #end
 
 gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
