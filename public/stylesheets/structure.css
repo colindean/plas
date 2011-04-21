@@ -27,12 +27,13 @@ section#header {
 section#header header {
   padding-bottom: 0.3em;
 }
-section#header nav#user {
+section#header nav#global {
 	position: absolute;
 	right: 0.6em;
   padding: .4em .5em .3em;
 }
-section#header nav#modules {
+section#header nav#event-modules {
+  padding: 0.3em;
 	clear: both;
 }
 section#header header h1 {
@@ -45,9 +46,6 @@ section#header header h2 {
 	color: #ddd;
   padding: 0 0 0.3em 0.3em;
 }
-section#header nav#modules {
-  padding: 0.3em;
-}  
 section#content {
 	margin-bottom:5em;
 }

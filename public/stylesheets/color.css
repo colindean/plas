@@ -30,7 +30,7 @@ article.event {
   border: 1px solid #000;
 }
 
-section#header nav#user {
+section#header nav#global {
   background: #F3E17B;
   background: -webkit-gradient(linear, left top, left bottom, from(#F3E17B), to(#D1C059));
   background: -moz-linear-gradient(#f3e17b, #d1c059);
@@ -64,7 +64,7 @@ section#header header {
  */
 }
 
-section#header nav#modules {
+section#header nav#event-modules {
   background: #EEE;
   background: -webkit-gradient(linear, left top, left bottom, from(#EEE), to(#BBB));
   background: -moz-linear-gradient(#EEE, #BBB);

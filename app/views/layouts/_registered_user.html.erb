@@ -1,5 +1,7 @@
 <ul class="registered-user">
 	<li id="current-time"><%= Time.now.strftime("%Y-%m-%d %H:%M:%S") %></li>
+  <li><%= link_to _("Users"), users_path %></li>
+  <li><%= link_to _("Events"), events_path %></li>
 	<li><%= link_to current_user.display_name, account_url %></li>
 	<li><%= link_to _('Logout'), logout_path %></li>
 </ul>

@@ -28,7 +28,11 @@
         </ul>
         <% end %>
       </div>
-    <div class="admin-actions"><%= link_to 'Edit', edit_event_path(event) %> <%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %></div>
+      <div class="admin-actions">
+        <%= link_to 'Edit', edit_event_path(event) %> 
+        <%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %>
+        <%= (current_event == event) ? _("Current event") : link_to(_("Set current"), event_setcurrent_path(event)) %>
+      </div>
     <% end %>
   </article>
   <% end %>

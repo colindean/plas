@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-	before_filter :require_permission_events_administrate, :only => [:new, :create, :edit, :update, :destroy]
+	before_filter :require_permission_events_administrate, :only => [:new, :create, :edit, :update, :destroy, :set_current]
   # GET /events
   # GET /events.xml
   def index
@@ -83,5 +83,17 @@ class EventsController < ApplicationController
       format.html { redirect_to(events_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def set_current
+    @event = Event.find(params[:event_id])
+    @pc = Pcfg.find_by_key('event.current')
+    if @event and @pc
+      @pc.value = @event.id
+    else
+      @pc = Pcfg.create({:key => 'event.current', :value => @event.id, :last_modified_by => current_user })
+      @pc.save
+    end
+    redirect_to request.referrer
   end
 end

@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 	before_filter :set_gettext_locale
 #	filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
-
+  helper_method :current_event
 	private
     def current_user_session
       return @current_user_session if defined?(@current_user_session)
@@ -70,6 +70,13 @@ class ApplicationController < ActionController::Base
 			user_can 'app.administrate', _("You must be an app administrator to access this page.")
     end
 
-      
+    def current_event
+      return @current_event if defined?(@current_event)
+      @current_event = nil
+      eid = Pcfg.get('event.current')
+      if eid
+        @current_event = Event.find(eid)
+      end
+    end
 
 end
