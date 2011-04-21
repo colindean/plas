@@ -86,13 +86,8 @@ class EventsController < ApplicationController
   end
 
   def set_current
-    @event = Event.find(params[:event_id])
-    @pc = Pcfg.find_by_key('event.current')
-    if @event and @pc
-      @pc.value = @event.id
-    else
-      @pc = Pcfg.create({:key => 'event.current', :value => @event.id, :last_modified_by => current_user })
-      @pc.save
+    if Event.find(params[:event_id])
+      Pcfg.set('event.current',params[:event_id])
     end
     redirect_to request.referrer
   end
