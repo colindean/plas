@@ -1,1 +1,1 @@
-rvm --create use ruby-head@plas > /dev/null
+rvm --create use 1.9.2@plas > /dev/null

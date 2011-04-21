@@ -74,11 +74,9 @@ We use [GitHub](https://github.com/colindean/plas) for our primary repository,
 but admittedly have a private repo on Dropbox which is really just a backup of 
 GitHub.
 
-We develop on ruby 1.9.3 and rails 3. See the Gemfile for 
+We develop on ruby 1.9.2 and rails 3. See the Gemfile for 
 other stuff we require. We do provide an .rvmrc for rvm users (seriously 
 makes life so much easier). 
-
-Colin is currently using ruby 1.9.3dev (2010-10-20 trunk 29539) [x86\_64-darwin10.4.0].
 
 Assuming you already have git, any ruby, and rvm installed, do these:
 
