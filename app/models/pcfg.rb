@@ -2,6 +2,9 @@ class Pcfg < ActiveRecord::Base
   #TODO: validations
   belongs_to :last_modified_by, :class_name => "User"
 
+  validates_presence_of :last_modified_by
+  validates_presence_of :key
+
   def self.get(key)
     begin
       self.find_by_key(key).value
