@@ -22,6 +22,12 @@ class TicketTest < ActiveSupport::TestCase
 
   end
 
+  test "price" do
+    assertEquals Money.new(1000), @t.price
+    assertEquals Money.new(5000), @tg.price
+    assertEquals 10.0, @t.price.dollars
+  end
+
   test "validity" do
     assert @t.valid?
     assert @tg.valid?
@@ -39,6 +45,12 @@ class TicketTest < ActiveSupport::TestCase
 
   test "package generates" do
     assertEquals(@t, @tg.generates_ticket)
+  end
+
+  test "within sales period?" do
+    assert @t.within_sales_period?
+    @t.date_closed = Time.now - 100
+    assert !@t.within_sales_period?
   end
 
 =begin
@@ -69,12 +81,6 @@ class TicketTest < ActiveSupport::TestCase
   end
 
 =end
-
-  test "within sales period?" do
-    assert @t.within_sales_period?
-    @t.date_closed = Time.now - 100
-    assert !@t.within_sales_period?
-  end
 
 end
 
