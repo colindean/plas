@@ -1,4 +1,5 @@
 class Permission < ActiveRecord::Base
+  #include Comparable
   acts_as_tree :order => :code
   
   has_many :permission_to_user_group
@@ -25,6 +26,11 @@ class Permission < ActiveRecord::Base
   def users
     #we only should calculate this once, because it's expensive
     @users ||= build_users
+  end
+
+  def sort_text(other)
+    return code <=> other.code if category == other.category
+    category <=> other.category
   end
 
 end

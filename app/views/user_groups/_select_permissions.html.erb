@@ -7,7 +7,7 @@
               :html => { :id => "user-groups-list-permissions"}, 
               :as => :post, 
               :url => user_group_add_permission_url(ug) do |f| %>
-                <%= f.select "permission_id", pl.collect {|p| [p.name, p.id]}, {:include_blank => true } %>
+                <%= f.select "permission_id", pl.sort{|q,w| q.sort_text(w)}.collect {|p| ["%s: %s" % [p.category, p.name], p.id]}, {:include_blank => true } %>
                 <%= f.submit %>
   <% end %>
 <% end %>

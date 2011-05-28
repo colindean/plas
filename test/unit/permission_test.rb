@@ -23,6 +23,15 @@ class PermissionTest < ActiveSupport::TestCase
 
     @trp.parent = @tap
 
+    @nncode = "nonsense.administrate"
+    @nnname = "Administrate Nonsense"
+    @nncategory = "Nonsense"
+    @nnp = Permission.new
+    @nnp.code = @nncode
+    @nnp.name = @nnname
+    @nnp.category = @nnpcategory
+
+
   end
 
   test "creation and grouping" do
@@ -33,6 +42,10 @@ class PermissionTest < ActiveSupport::TestCase
 
   test "parenting" do
     assertEquals(@tap, @trp.parent)
+  end
+
+  test "sorting for text" do
+    assertEquals(@tap, [@trp, @tap].sort{|q,w| q.sort_text(w)}.first)
   end
 
   #TODO: write users test -- it needs some legit fixtures/mocks
