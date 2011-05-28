@@ -6,3 +6,4 @@ tmp/**/*
 vendor/cache/
 public/stylesheets/scaffold.css
 *~
+test/coverage.data
