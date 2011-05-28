@@ -11,6 +11,8 @@ These classes use it:
 *Please keep this list up to date.*
 =end
 
+#TODO: validations
+
 	TYPES = [ 'billing', 'shipping', 'emergency', 'event' ]
 	
   belongs_to :event
@@ -26,7 +28,7 @@ These classes use it:
     o.join(', ')
   end
 
-  def self.new_from_paypal_address(address)
+  def self.new_from_paypal_address(address,autosave=true)
     a = self.new
     a.line1 = address["address1"]
     a.line2 = address["address2"]
@@ -36,7 +38,7 @@ These classes use it:
     a.postcode = address["zip"]
     a.address_type = "paypal"
     a.phone = address["phone"]
-    a.save
+    a.save if autosave
     a
   end
 end

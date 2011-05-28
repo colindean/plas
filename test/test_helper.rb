@@ -10,4 +10,8 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def assertEquals(this, that, message=nil)
+    assert(this == that, message) if message
+    assert(this == that, "(#{this}) == (#{that})") if !message
+  end
 end
