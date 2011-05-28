@@ -4,7 +4,7 @@ require 'test_helper'
 class PcfgTest < ActiveSupport::TestCase
   # Replace this with your real tests.
   #
-  before do 
+  setup do 
     @user = User.create({:handle => 'rhettigan'})
   end
   test "valid" do
