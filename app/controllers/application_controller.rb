@@ -5,7 +5,15 @@ class ApplicationController < ActionController::Base
 #	filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
   helper_method :current_event
-	private
+  helper_method :firebug
+
+  use Rack::FirebugLogger
+  private
+    def firebug(message,type = :debug)
+      request.env['firebug.logs'] ||= []
+      request.env['firebug.logs'] << [type.to_sym, message.to_s]
+    end
+  
     def current_user_session
       return @current_user_session if defined?(@current_user_session)
       @current_user_session = UserSession.find

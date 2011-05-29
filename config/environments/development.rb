@@ -30,6 +30,6 @@ Plas::Application.configure do
   else
     config.logger = Logger.new(Rails.root.join("log",Rails.env + ".log"),3,5*1024*1024)  
   end
-
+  config.autoload_paths += Dir["#{config.root}/lib/**/"] # include all subdirectories
 
 end
