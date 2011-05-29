@@ -34,6 +34,24 @@
     <dd><%= @user.created_at %></dd>
   </fieldset>
 
+  <% if current_user.can('payments.accept') %>
+  <fieldset>
+    <legend><%= _('Unpaid registrations') %></legend>
+    <ul id="registrations-unpaid">
+      <% @unpaid_registrations.each do |reg| %>
+        <dt><%= reg.ticket.event.name %></dt>
+        <dd>
+        <%= reg.ticket.name %> - <%= reg.price_paid %>
+          [
+          <%= link_to _("Accept Payment"), new_transaction_url(:registration => reg) %>
+          ]
+        </dd>
+      </li>
+      <% end %>
+    </ul>
+  </fieldset>
+  <% end %>
+
   <% if current_user.can('users.administrate') %>
   <fieldset>
     <legend><%= _('Internals') %></legend>
@@ -63,4 +81,3 @@
   </fieldset>
 <% end %>
 </dl>
-

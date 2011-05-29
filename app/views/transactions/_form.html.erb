@@ -11,10 +11,44 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
-  </div>
+<fieldset>
+      <legend><%= _('Address') %></legend>
+    <%= f.fields_for :address do |af| %>
+      <dt><%= af.label :line1 %></dt>
+	  <dd><%= af.text_field :line1 %></dd>
+
+	  <dt><%= af.label :line2 %></dt>
+	  <dd><%= af.text_field :line2 %></dd>
+
+	  <dt><%= af.label :line3 %></dt>
+	  <dd><%= af.text_field :line3 %></dd>
+
+	  <dt><%= af.label :neighborhood %></dt>
+      <dd><%= af.text_field :neighborhood %></dd>
+
+	  <dt><%= af.label :city %></dt>
+      <dd><%= af.text_field :city %></dd>
+
+	  <dt><%= af.label :region %></dt>
+      <dd><%= af.text_field :region %></dd>
+
+	  <dt><%= af.label :country %></dt>
+      <dd><%= af.text_field :country %></dd>
+
+	  <dt><%= af.label :postcode %></dt>
+      <dd><%= af.text_field :postcode %></dd>
+
+	  <dt><%= af.label :phone %></dt>
+    <dd><%= af.telephone_field :phone, { :pattern => '^\(?\d{3}\)?[-\s]?\d{3}[-\s]?\d{4}.*?$' } %></dd>
+
+      <dt><%= af.label :address_type %></dt>
+      <dd><%= af.select :address_type, Address::TYPES, :default => "billing" %></dd>
+
+	  <%= af.hidden_field :primary, :value => true %>
+    <% end %>
+    </fieldset>
+
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.text_field :email %>
@@ -28,21 +62,10 @@
     <%= f.text_field :payer_country %>
   </div>
   <div class="field">
-    <%= f.label :processor_userid %><br />
-    <%= f.text_field :processor_userid %>
-  </div>
-  <div class="field">
-    <%= f.label :payment_id %><br />
+    <%= f.label :payment_id %><%= _(" or Check Number") %><br />
     <%= f.text_field :payment_id %>
   </div>
-  <div class="field">
-    <%= f.label :payment_media %><br />
-    <%= f.text_field :payment_media %>
-  </div>
-  <div class="field">
-    <%= f.label :recorded_by %><br />
-    <%= f.text_field :recorded_by %>
-  </div>
+ 
   <div class="field">
     <%= f.label :amount %><br />
     <%= f.text_field :amount %>
@@ -57,6 +80,7 @@
       <%= "(%s)" % r.user.display_name if r.user %>
     <% end %>
   </div>
+  <%= f.hidden_field :registration_id, :value => @transaction.registrations.first.to_param %>
   <div class="actions">
     <%= f.submit %>
   </div>

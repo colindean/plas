@@ -24,6 +24,8 @@ class UsersController < ApplicationController
     else
       @user = current_user
     end
+
+    @unpaid_registrations = Registration.unpaid
     
     respond_to do |format|
       format.html # show.html.erb

@@ -18,9 +18,11 @@ recorded_by is the current_user for check/walkin, or leave nil for automatic
 registration links to the generated registration
 
 =end
-  belongs_to :address, :dependent => :destroy
+  has_one :address #, :dependent => :destroy
+
   belongs_to :recorded_by, :class_name => "User"
   has_many :registrations
+  accepts_nested_attributes_for :address, :allow_destroy => true
 
   #TODO: validations
   
@@ -36,6 +38,13 @@ registration links to the generated registration
     t.payment_media = 'paypal'
     t.comments = nil
     t.recorded_by = nil
+    t
+  end
+
+  def self.create_from_offline_payment(params)
+    t = self.create(params)
+    t.registrations << Registration.find(params["registration_id"])
+    t.payment_media = 'offline'
     t
   end
 
