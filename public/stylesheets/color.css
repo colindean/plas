@@ -34,6 +34,7 @@ section#header nav#global {
   background: #F3E17B;
   background: -webkit-gradient(linear, left top, left bottom, from(#F3E17B), to(#D1C059));
   background: -moz-linear-gradient(#f3e17b, #d1c059);
+  background-image: -o-linear-gradient(#f3e17b, #d1c059);
   color: white;
   font-weight: bold;
   letter-spacing: -0.02em;
@@ -53,6 +54,7 @@ section#header header {
   background: #7071A7;
   background: -webkit-gradient(linear, left top, left bottom, from(#9293C9), to(#7071A7));
   background: -moz-linear-gradient(#9293c9, #7071a7);
+  background-image: -o-linear-gradient(#9293c9, #7071a7);
   color: white;
   font-weight: bold;
   text-shadow: .1em .1em .1em rgba(0,0,0,.7);
@@ -68,6 +70,7 @@ section#header nav#event-modules {
   background: #EEE;
   background: -webkit-gradient(linear, left top, left bottom, from(#EEE), to(#BBB));
   background: -moz-linear-gradient(#EEE, #BBB);
+  background-image: -o-linear-gradient(#eee, #bbb);
   color: black;
   font-weight: bold;
   text-shadow: .1em .1em .1em rgba(255,255,255,0.4);
