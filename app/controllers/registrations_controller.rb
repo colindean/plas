@@ -79,7 +79,10 @@ class RegistrationsController < ApplicationController
   end
 
   def confirm
-    redirect_to :action => 'error' unless params[:token] and params[:PayerID]
+    unless params[:token] and params[:PayerID]
+      redirect_to :action => 'error'
+      return
+    end
     session[:paypal_token] = params[:token]
     session[:payer_id] = params[:PayerID]
     @desired_tickets = session[:tickets]
@@ -102,7 +105,10 @@ class RegistrationsController < ApplicationController
 
   #GET /pay
   def pay
-    redirect_to :action => 'error' unless session[:paypal_token] and session[:payer_id]
+    unless session[:paypal_token] and session[:payer_id]
+      redirect_to :action => 'error' 
+      return
+    end
     #this is where we actually charge paypal
     purchase = gateway.purchase(session[:order_total],
                                 :ip => request.remote_ip,

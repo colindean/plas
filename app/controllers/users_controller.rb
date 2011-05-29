@@ -79,6 +79,7 @@ class UsersController < ApplicationController
       @user = current_user
     else
       redirect_to(account_url, :notice => _("You do not have permission to update %s") % @u.display_name)
+      return
     end
     
     respond_to do |format|
@@ -100,6 +101,7 @@ class UsersController < ApplicationController
       @user.destroy
     else
       redirect_to(account_url, :notice => _("You do not have permission to destroy %s") % @user.display_name)
+      return
     end
     
     respond_to do |format|
