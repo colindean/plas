@@ -38,7 +38,7 @@ section#header nav#global {
   font-weight: bold;
   letter-spacing: -0.02em;
   line-height: .85em;
-  text-shadow: .05em .05em .1em rgba(0,0,0,.7);
+  text-shadow: .05em .05em .2em rgba(0,0,0,.7);
   
   -moz-border-radius: 0 0 .3em .3em;
   -webkit-border-radius: 0 0 .3em .3em;

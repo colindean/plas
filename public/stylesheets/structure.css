@@ -144,3 +144,15 @@ div#errorExplanation {
   margin: 0 auto;
   width: 95%;
 }
+
+
+/*footer to bottom*/
+html{height:100%}
+body{min-height:100%;position:relative;}
+section#content{padding-bottom:.5em;margin-bottom:0;}
+section#footer{
+  bottom:0;
+  /*position:absolute;*/
+  height:.5em;
+}
+footer{height:2em};
