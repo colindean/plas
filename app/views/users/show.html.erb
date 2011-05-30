@@ -44,7 +44,7 @@
             reg.ticket.event.name,
             reg.ticket.name,
             reg.price_paid.currency.symbol,
-            reg.price_paid]), reg.to_param]}, {}, {:multiple => true, :size => 2}
+            reg.price_paid]), reg.to_param]}, {}, {:multiple => true}
           %>
             <%= f.submit _("Record payments") %>
         <% end %>
@@ -56,7 +56,7 @@
 
   <% if @is_user_current_or_admin %>
     <fieldset>
-      <legend><%= _("My Registrations") %></legend>
+      <legend><%= @user == current_user ? _("My Registrations") : _("%s's Registrations") % @user.display_name %></legend>
       <ul>
         <% @my_registrations.each do |reg| %>
           <li>
