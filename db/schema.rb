@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110209020229) do
+ActiveRecord::Schema.define(:version => 20110530125723) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(:version => 20110209020229) do
 
   create_table "registrations", :force => true do |t|
     t.integer  "ticket_id"
-    t.float    "price_paid"
+    t.float    "paid_cents"
     t.integer  "purchaser_id"
     t.integer  "user_id"
     t.datetime "date_given"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20110209020229) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "transaction_id"
+    t.string   "paid_currency",     :default => "USD"
   end
 
   create_table "sessions", :force => true do |t|
@@ -90,14 +91,6 @@ ActiveRecord::Schema.define(:version => 20110209020229) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
-
-##  create_table "shouts", :force => true do |t|
-##    t.string   "title"
-##    t.text     "shout"
-##    t.datetime "created_at"
-##    t.integer  "user_id"
-##    t.datetime "updated_at"
-##  end
 
   create_table "tickets", :force => true do |t|
     t.integer  "event_id"
@@ -122,12 +115,13 @@ ActiveRecord::Schema.define(:version => 20110209020229) do
     t.string   "processor_userid"
     t.string   "payment_id"
     t.integer  "recorded_by_id"
-    t.integer  "amount"
+    t.integer  "cents"
     t.text     "comments"
     t.integer  "registration_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "payment_media"
+    t.string   "currency",         :default => "USD"
   end
 
   create_table "user_groups", :force => true do |t|

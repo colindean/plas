@@ -24,6 +24,15 @@ registration links to the generated registration
   has_many :registrations
   accepts_nested_attributes_for :address, :allow_destroy => true
 
+  validates_numericality_of :price
+
+  composed_of :price,
+    :class_name => "Money",
+    :mapping => [%w(cents cents), %w(currency currency_as_string)],
+    :constructor => Proc.new { |cents, currency| Money.new(cents || 0, currency || Money.default_currency) },
+    :converter => Proc.new { |value| value.respond_to?(:to_money) ? value.to_money : raise(ArgumentError, "Can't convert #{value.class} to Money") }
+
+
   #TODO: validations
   
   def self.new_from_paypal_details(details)
@@ -41,9 +50,17 @@ registration links to the generated registration
     t
   end
 
-  def self.create_from_offline_payment(params)
-    t = self.create(params)
-    t.registrations << Registration.find(params["registration_id"])
+  def self.create_from_offline_payment(details)
+    t = self.new
+    t.email = details["email"]
+    t.payer_name = details["name"]
+    t.payer_country = details["payer_country"]
+    t.processor_userid = details["payer_id"]
+    t.payment_id = details["payment_id"]
+    t.price = details["price"]
+    t.comments = details["comments"]
+    t.address = Address.create details["address"]
+    t.registrations += Registration.find_all_by_id(details["registration_ids"])
     t.payment_media = 'offline'
     t
   end

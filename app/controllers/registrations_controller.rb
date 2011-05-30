@@ -44,13 +44,13 @@ class RegistrationsController < ApplicationController
     end
     #@tickets = []
     #TODO: Use the Money class here, will need to refactor this and view
-    @order_total = 0
+    @order_total = Money.new(0)
     @desired_tickets.each do |k,v|
       #TODO: I'm sure this can be done more efficiently and securely
       ticket = Ticket.find(v["ticket_id"])
       @desired_tickets[k]["name"] = ticket.name
-      @desired_tickets[k]["price"] = ticket.price.cents
-      @desired_tickets[k]["total"] = ticket.price.cents * v["number"].to_i
+      @desired_tickets[k]["price"] = ticket.price
+      @desired_tickets[k]["total"] = ticket.price * v["number"].to_i
       @order_total = @order_total + @desired_tickets[k]["total"]
     end
 

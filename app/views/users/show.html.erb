@@ -29,7 +29,7 @@
     
     <dt><%= _('Gender') %></dt>
     <dd><%= @user.gender %></dd>
-    
+  
     <dt><%= _('Created') %></dt>
     <dd><%= @user.created_at %></dd>
   </fieldset>
@@ -38,18 +38,15 @@
   <fieldset>
     <legend><%= _('Unpaid registrations') %></legend>
     <% if @unpaid_registrations.count > 0 %>
-      <ul id="registrations-unpaid">
-        <% @unpaid_registrations.each do |reg| %>
-          <dt><%= reg.ticket.event.name %></dt>
-          <dd>
-          <%= reg.ticket.name %> - <%= reg.price_paid %>
-            [
-            <%= link_to _("Accept Payment"), new_transaction_url(:registration => reg) %>
-            ]
-          </dd>
-        </li>
+      <% form_for Transaction.new, :url => new_transaction_url, :html => {:method => 'get'}  do |f| %>
+          <%= select :registrations, :ids, @unpaid_registrations.collect{|reg| [("%s - %s - %s %s" % [
+            reg.ticket.event.name,
+            reg.ticket.name,
+            reg.price_paid.currency.symbol,
+            reg.price_paid]), reg.to_param]}, {}, {:multiple => true, :size => 2}
+          %>
+            <%= f.submit _("Record payments") %>
         <% end %>
-      </ul>
     <% else %>
       <span><%= _("%s has no unpaid registrations.") % @user.display_name %></span>
     <% end %>

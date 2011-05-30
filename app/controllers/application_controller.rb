@@ -6,8 +6,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user
   helper_method :current_event
   helper_method :firebug
+  
+  use Rack::FirebugLogger if Rails.env == "development"
 
-  use Rack::FirebugLogger
   private
     def firebug(message,type = :debug)
       request.env['firebug.logs'] ||= []

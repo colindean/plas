@@ -9,8 +9,8 @@
   </thead>
   <tbody>
     <% @desired_tickets.each do |k,t| 
-      price = Money.new(t["price"])
-      total = Money.new(t["total"])
+      price = t["price"] #Money.new(t["price"])
+      total = t["total"] #Money.new(t["total"])
   %>
     <tr>
       <td><%= t["number"] %></td>
@@ -24,7 +24,7 @@
 
 <dl>
   <dt><%= _('Order total:') %></dt>
-  <dd><% ot = Money.new(@order_total) %>
+  <dd><% ot = @order_total %>
   <%= "%s %s" % [ot.currency.symbol, ot] %></dd>
 </dl>
 

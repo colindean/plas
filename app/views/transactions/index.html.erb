@@ -14,7 +14,7 @@
 <% @transactions.each do |transaction| %>
   <tr>
     <td><%= link_to transaction.created_at, transaction %></td>
-    <td><%= transaction.amount %></td>
+    <td><%= "%s %s" % [transaction.price.currency.symbol, transaction.price] %></td>
     <td><%= transaction.payment_media %></td>
     <td><%= mail_to transaction.email, transaction.payer_name %></td>
     <td><% if transaction.recorded_by %>

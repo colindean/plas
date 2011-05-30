@@ -27,8 +27,8 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new
     @transaction.address = Address.new if @transaction.address == nil
     begin
-      @registration = Registration.find(params[:registration])
-      @transaction.registrations << (@registration.package_parent ? @registration_package_parent : @registration)
+      @registrations = Registration.find_all_by_id(params["registrations"]["ids"])
+      @transaction.registrations += @registrations
     rescue ActiveRecord::RecordNotFound => e
       redirect_to request.referrer, :notice => "You cannot record a transaction when you don't know which registration for which you are recording it!"
       return
@@ -43,13 +43,19 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.create_from_offline_payment(params["transaction"])
     @transaction.recorded_by = current_user
+    @transaction.registrations.each do |r|
+      r.user = r.purchaser 
+    end
+    #don't forget to process the package registrations
+    @pregs = Registration.find_all_by_package_parent_id(@transaction.registrations)
+    @transaction.registrations += @pregs
     
-    firebug params["transaction"].to_json
+    
 
     respond_to do |format|
       if @transaction.save
         format.html { 
-          redirect_to(@transaction.registrations.first.purchaser, :notice => _('Payment recorded.')) 
+          redirect_to(@transaction.registrations.first.purchaser, :notice => _("Payment recorded.")) 
         }
         format.xml  { render :xml => @transaction, :status => :created, :location => @transaction }
       else

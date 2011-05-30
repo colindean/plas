@@ -37,13 +37,14 @@
 
 <p>
   <b>Recorded by:</b>
-  <%= @transaction.recorded_by %>
+  <%= @transaction.recorded_by.display_name %>
 </p>
 
 <p>
-  <b>Amount:</b>
-  <%= @transaction.amount %>
+  <b>Price:</b>
+  <%= "%s %s" % [@transaction.price.currency.symbol, @transaction.price] %>
 </p>
+
 
 <p>
   <b>Comments:</b>
