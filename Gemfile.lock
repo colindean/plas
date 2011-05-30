@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/parasew/acts_as_tree.git
+  revision: ed52495d1671c99e1add582628403bf8104e9077
+  specs:
+    acts_as_tree (1.2.3)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -32,7 +38,6 @@ GEM
       activemodel (= 3.0.7)
       activesupport (= 3.0.7)
     activesupport (3.0.7)
-    acts_as_tree (0.1.1)
     arel (2.0.10)
     authlogic (3.0.3)
       activerecord (>= 3.0.7)
@@ -129,7 +134,7 @@ PLATFORMS
 
 DEPENDENCIES
   activemerchant
-  acts_as_tree
+  acts_as_tree!
   authlogic
   capybara
   factory_girl_rails

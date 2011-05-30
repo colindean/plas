@@ -20,7 +20,9 @@ gem 'activemerchant'
 gem 'money'
 
 #for permissions
-gem 'acts_as_tree' #, :git => "git://github.com/parasew/acts_as_tree.git"
+#required, this is the rails3 version of the gem (v 1.2.3 not 0.1.1 in
+#rubygems)
+gem 'acts_as_tree', :git => "git://github.com/parasew/acts_as_tree.git"
 
 #jquery uber alles
 gem 'jquery-rails'
