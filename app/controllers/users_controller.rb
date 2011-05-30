@@ -25,7 +25,14 @@ class UsersController < ApplicationController
       @user = current_user
     end
 
-    @unpaid_registrations = Registration.unpaid
+    #there's gotta be a better way to do this in the view
+    @is_user_current_or_admin = is_user_current_or_admin? current_user
+
+    @unpaid_registrations = Registration.unpaid_for(@user) if current_user.can('payments.accept')
+
+    #this gets ones they bought, which isn't in @user.registrations
+    @my_registrations = Registration.where( :purchaser_id => @user ).limit(10)
+
     
     respond_to do |format|
       format.html # show.html.erb

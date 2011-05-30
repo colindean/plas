@@ -1,3 +1,4 @@
+<% #TODO: this view needs to be broken into partials for easier maintenance %>
 <% if notice and not notice.empty? %>
   <p class="notice">
     <%= notice %>
@@ -51,6 +52,43 @@
       <span><%= _("%s has no unpaid registrations.") % @user.display_name %></span>
     <% end %>
   </fieldset>
+  <% end %>
+
+  <% if @is_user_current_or_admin %>
+    <fieldset>
+      <legend><%= _("My Registrations") %></legend>
+      <ul>
+        <% @my_registrations.each do |reg| %>
+          <li>
+            <%= ("%s - %s - %s %s" % [
+            reg.ticket.event.name,
+            reg.ticket.name,
+            reg.price_paid.currency.symbol,
+            reg.price_paid]) %>
+            
+            <% if reg.paid? %>
+              <%= _("Paid") %> 
+            <% else %>
+              <%= _("Awaiting offline payment") %>
+            <% end %>
+
+            <% if reg.givable? and (reg.givable_by == current_user or current_user.can("registrations.give")) %>
+              <%= link_to _("Give?"), account_url   %>
+            <% elsif reg.checked_in? %>
+              <%= _("Checked in at %s") % reg.date_checked_in %>
+            <% end %>
+
+            <% if reg.given? %>
+              <%= (_("Given to %s on %s") % [
+                   link_to(reg.user.display_name, reg.user), 
+                   reg.date_given]) %>
+            <% end %>
+
+
+          </li>
+        <% end %>
+      </ul>
+    </fieldset>
   <% end %>
 
   <% if current_user.can('users.administrate') %>

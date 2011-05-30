@@ -22,8 +22,23 @@ class Registration < ActiveRecord::Base
     Registration.find_all_by_ticket_id(Ticket.find_all_by_event_id(event))
   end
 
-  def self.unpaid
-    Registration.where(:transaction_id => nil, :package_parent_id => nil)
+  def self.all_unpaid
+    Registration.where(:transaction_id => nil, 
+                       :package_parent_id => nil)
+  end
+
+  def self.unpaid_for(user)
+    Registration.where(:transaction_id => nil, 
+                       :package_parent_id => nil,
+                       :purchaser_id => user)
+  end
+
+  def givable_by
+    user || purchaser
+  end
+
+  def givable?
+    paid? and !checked_in?
   end
 
   def paid?
@@ -36,5 +51,9 @@ class Registration < ActiveRecord::Base
 
   def given?
     gift? and user != nil
+  end
+
+  def checked_in?
+    checked_in
   end
 end
