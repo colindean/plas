@@ -5,7 +5,13 @@ require File.expand_path('../config/application', __FILE__)
 
 require 'rake'
 require 'rake/testtask'
-require 'rake/rdoctask'
+require 'rdoc/task'
+#require 'rake/rdoctask'
+
+#fix for rake 0.9 no longer polluting the global namespace
+class Rails::Application
+    include Rake::DSL if defined?(Rake::DSL)
+end
 
 begin
 	require "gettext_i18n_rails/tasks"
