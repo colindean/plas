@@ -50,7 +50,12 @@
 
 
     <% @event.tickets.each do |t| %>
-      <dt class="<%= t.available? ? "available" : "unavailable" %>"><%= link_to t.name, event_ticket_path(@event, t) %></dt>
+      <dt class="<%= t.available? ? "available" : "unavailable" %>">
+        <%=t.name%> 
+        <% if current_user and current_user.can('events.administrate') %>
+          [<%= link_to _("e"), event_ticket_path(@event, t) %>]
+        <% end %>
+      </dt>
       <dd class="<%= t.available? ? "available" : "unavailable" %>">
         <%= "%s %s" % [t.price.currency.symbol, t.price] %>
         <%=
