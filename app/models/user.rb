@@ -56,13 +56,13 @@ class User < ActiveRecord::Base
     #permission will hit more than once is a page load, no sense in going
     #through all of the permissions again every time.
     if permissions.select {|p| p.code == permission_code }.count != 0
-      true
+      return true
     else
-      if RAILS_ENV == "development" and not Permission.exists?(permission_code)
+      if RAILS_ENV == "development" and not Permission.find_by_code(permission_code)
         raise _("Permission code %s does not exist") % permission_code
       end
     end
-    #true
+    false
 	end
 
 	def has_handle

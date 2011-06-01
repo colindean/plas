@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     end
 
     #there's gotta be a better way to do this in the view
-    @is_user_current_or_admin = is_user_current_or_admin? current_user
+    @is_user_current_or_admin = is_user_current_or_admin? @user
 
     @unpaid_registrations = Registration.unpaid_for(@user) if current_user.can('payments.accept')
 
