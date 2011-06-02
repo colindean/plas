@@ -1,5 +1,7 @@
 Plas::Application.routes.draw do
 
+  resources :registration_gift_logs
+
   resources :transactions
 
   resources :pcfgs
@@ -23,6 +25,9 @@ Plas::Application.routes.draw do
     match '/set_current' => 'events#set_current', :as => :setcurrent
     resources :tickets
   end
+
+  match '/give_registration' => 'registration_gift_logs#new', :as => :givereg
+  match '/give_registration' => 'registration_gift_logs#create', :as => :givereg, :via => :post
 
 # http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/
 	resource :account, :controller => "users"

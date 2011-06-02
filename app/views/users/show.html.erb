@@ -74,7 +74,7 @@
               <% end %>
 
               <% if reg.givable? and (reg.givable_by == current_user or current_user.can("registrations.give")) %>
-                <%= link_to _("Give?"), account_url   %>
+                <%= link_to _("Give?"), givereg_url(:registration => reg)   %>
               <% elsif reg.checked_in? %>
                 <%= _("Checked in at %s") % reg.date_checked_in %>
               <% end %>

@@ -1,0 +1,26 @@
+<%= form_for(@rgl) do |f| %>
+  <% if @rgl.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rgl.errors.count, "error") %> prohibited this registration_gift_log from being saved:</h2>
+
+      <ul>
+      <% @rgl.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <p>
+ <%= _("Give registration #%d, purchased %s by %s, currently held by user %s ") % [ 
+    @rgl.registration.id, @rgl.registration.purchaser.display_name, @rgl.registration.created_at, @rgl.from_user.display_name] %> 
+      <%= f.label :to_user, _("to user") %>
+      <%= select :registration_gift_log, :to_user, @to_user_list %>
+    </p>
+  </div>
+  <%= f.hidden_field :registration, :value => @rgl.registration.to_param %>
+  <div class="actions">
+    <%= f.submit _("Give registration") %>
+  </div>
+<% end %>

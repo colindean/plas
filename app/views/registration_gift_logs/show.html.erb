@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Registration:</b>
+  <%= @registration_gift_log.registration %>
+</p>
+
+<p>
+  <b>To user:</b>
+  <%= @registration_gift_log.to_user %>
+</p>
+
+<p>
+  <b>From user:</b>
+  <%= @registration_gift_log.from_user %>
+</p>
+
+<p>
+  <b>By user:</b>
+  <%= @registration_gift_log.by_user %>
+</p>
+
+
+<%= link_to 'Edit', edit_registration_gift_log_path(@registration_gift_log) %> |
+<%= link_to 'Back', registration_gift_logs_path %>

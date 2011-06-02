@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     @unpaid_registrations = Registration.unpaid_for(@user) if current_user.can('payments.accept')
 
     #this gets ones they bought, which isn't in @user.registrations
-    @my_registrations = Registration.where( :purchaser_id => @user ).limit(10)
+    @my_registrations = Registration.where( "user_id = ? OR (user_id = NULL AND purchaser_id = ?)", @user, @user ).limit(10)
 
     
     respond_to do |format|

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110601224646) do
+ActiveRecord::Schema.define(:version => 20110602003811) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -63,6 +63,15 @@ ActiveRecord::Schema.define(:version => 20110601224646) do
     t.string   "code",                              :null => false
     t.string   "category",   :default => "General", :null => false
     t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "registration_gift_logs", :force => true do |t|
+    t.integer  "registration_id"
+    t.integer  "to_user_id"
+    t.integer  "from_user_id"
+    t.integer  "by_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
