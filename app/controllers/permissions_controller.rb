@@ -1,4 +1,10 @@
 class PermissionsController < ApplicationController
+  before_filter :require_permission_app_administrate
+
+  def require_permission_app_administrate
+    user_can('app.administrate', _("You are not permitted to alter permissions."))
+  end
+  
   # GET /permissions
   # GET /permissions.xml
   def index
