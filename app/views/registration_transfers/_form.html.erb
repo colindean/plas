@@ -1,0 +1,33 @@
+<%= form_for(@registration_transfer) do |f| %>
+  <% if @registration_transfer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@registration_transfer.errors.count, "error") %> prohibited this registration_transfer from being saved:</h2>
+
+      <ul>
+      <% @registration_transfer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <p>
+    <% #TODO: using raw here may be a vuln %>
+    <%=raw _("Transfer one <b>%s</b> registration for <b>%s</b>, purchased <b>%s</b> by user <b>%s</b>, currently held by user <b>%s</b> ") % [ 
+   @registration_transfer.registration.ticket.name,
+   @registration_transfer.registration.ticket.event.name,
+   @registration_transfer.registration.created_at, 
+   @registration_transfer.registration.purchaser.display_name, 
+   @registration_transfer.from_user.display_name
+ ] %> 
+      <%= f.label :to_user, _("to user") %>
+      <%= select :registration_transfer, :to_user, @to_user_list %>
+    </p>
+  </div>
+  <%= f.hidden_field :registration, :value => @registration_transfer.registration.to_param %>
+  <div class="actions">
+    <%= f.submit _("Transfer registration") %>
+  </div>
+
+  <% end %>

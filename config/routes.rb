@@ -1,5 +1,7 @@
 Plas::Application.routes.draw do
 
+  resources :registration_transfers
+
   resources :registration_gift_logs
 
   resources :transactions

@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  to_user: 
+  from_user: 
+  by_user: 
+  registration: 
+
+two:
+  to_user: 
+  from_user: 
+  by_user: 
+  registration: 

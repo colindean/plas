@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Registration:</b>
+  <%= _("%s #%d for %s") % [
+        @registration_transfer.registration.ticket.name,
+            @registration_transfer.registration.id,
+                    @registration_transfer.registration.ticket.event.name
+    ]
+  %>
+</p>
+
+<p>
+  <b>From user:</b>
+  <%= link_to @registration_transfer.from_user.display_name, @registration_transfer.from_user %>
+</p>
+
+<p>
+  <b>To user:</b>
+  <%= link_to @registration_transfer.to_user.display_name, @registration_transfer.to_user %>
+</p>
+
+<p>
+  <b>By user:</b>
+  <%= link_to @registration_transfer.by_user.display_name, @registration_transfer.by_user %>
+</p>
+
+<p>
+  <b>Transferred at:</b>
+  <time datetime="<%= @registration_transfer.registration.date_given.to_datetime.rfc3339 %>">
+    <%= @registration_transfer.registration.date_given %>
+  </time>
+</p>
+
+<%= link_to 'Back', registration_transfers_path %>

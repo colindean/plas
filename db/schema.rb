@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110602003811) do
+ActiveRecord::Schema.define(:version => 20110603004329) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -72,6 +72,15 @@ ActiveRecord::Schema.define(:version => 20110602003811) do
     t.integer  "to_user_id"
     t.integer  "from_user_id"
     t.integer  "by_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "registration_transfers", :force => true do |t|
+    t.integer  "to_user_id"
+    t.integer  "from_user_id"
+    t.integer  "by_user_id"
+    t.integer  "registration_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

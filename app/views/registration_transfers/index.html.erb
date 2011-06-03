@@ -1,0 +1,29 @@
+<h1>Registration transfer history</h1>
+
+<table>
+  <tr>
+    <th>Registration</th>
+    <th>To user</th>
+    <th>From user</th>
+    <th>By user</th>
+    <th>When</th>
+  </tr>
+
+  <% #TODO: write some javascript which looks at these rows and highlights the
+     #      same color rows pertaining to the same registration id.
+     #      It'd be an easy way to track registrations which get passed around.
+  %>
+<% @registration_transfers.each do |registration_transfer| %>
+  <tr>
+    <td class="registration-id"><%= registration_transfer.registration.id %></td>
+    <td class="user to"><%= registration_transfer.to_user.display_name %></td>
+    <td class="user from"><%= registration_transfer.from_user.display_name %></td>
+    <td class="user by"><%= registration_transfer.by_user.display_name %></td>
+    <td class="time">
+      <time datetime="<%= registration_transfer.created_at.to_datetime.rfc3339 %>">
+        <%= registration_transfer.created_at %>
+      </time>
+    </td>
+  </tr>
+<% end %>
+</table>
