@@ -38,6 +38,7 @@ GEM
       activemodel (= 3.0.7)
       activesupport (= 3.0.7)
     activesupport (3.0.7)
+    ansi (1.2.5)
     arel (2.0.10)
     authlogic (3.0.3)
       activerecord (>= 3.0.7)
@@ -124,6 +125,8 @@ GEM
     thor (0.14.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
+    turn (0.8.2)
+      ansi (>= 1.2.2)
     tzinfo (0.3.27)
     watchr (0.7)
     xpath (0.1.4)
@@ -148,4 +151,5 @@ DEPENDENCIES
   spork
   sqlite3-ruby
   steam-condenser
+  turn
   watchr

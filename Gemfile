@@ -43,5 +43,10 @@ group :development,:test do
   gem 'rcov'
 end
 
+group :test do
+  #make test unit output more information, and colorize it
+  gem 'turn'
+end
+
 #app-specific stuff
 gem 'steam-condenser' #http://koraktor.github.com/steam-condenser
