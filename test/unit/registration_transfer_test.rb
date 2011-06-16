@@ -1,7 +1,8 @@
 require 'test_helper'
 
-class RegistrationTransferTest < ActiveSupport::TestCase
-  setup do
+class RegistrationTransferTest < MiniTest::Unit::TestCase
+
+  def setup
     @u1 = User.new
     @u2 = User.new
     @u3 = User.new
@@ -13,7 +14,7 @@ class RegistrationTransferTest < ActiveSupport::TestCase
     @rgl = RegistrationTransfer.new
   end
   
-  test "basic validation" do
+  def test_basic_validation
 
     assert !@rgl.valid?
 
@@ -28,7 +29,7 @@ class RegistrationTransferTest < ActiveSupport::TestCase
     assert @rgl.valid?
   end
 
-  test "to and from cannot be the same" do
+  def test_to_and_from_cannot_be_the_same
     @rgl.to_user = @u1
     @rgl.from_user = @u1
     @rgl.by_user = @u2
@@ -41,7 +42,7 @@ class RegistrationTransferTest < ActiveSupport::TestCase
     assert @rgl.valid?
   end
 
-  test "reg isn't givable" do
+  def test_reg_isnt_givable
     @rgl.registration = @r    
     @rgl.to_user = @u1
     @rgl.from_user = @u2
@@ -59,3 +60,4 @@ class RegistrationTransferTest < ActiveSupport::TestCase
   end
 
 end
+

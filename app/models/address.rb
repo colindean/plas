@@ -28,7 +28,7 @@ These classes use it:
     o.join(', ')
   end
 
-  def self.new_from_paypal_address(address,autosave=true)
+  def self.new_from_paypal_address(address, autosave = true)
     a = self.new
     a.line1 = address["address1"]
     a.line2 = address["address2"]
