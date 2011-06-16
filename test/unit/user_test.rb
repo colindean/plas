@@ -1,8 +1,10 @@
 require 'test_helper'
 
-class UserTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth yo" do
+class UserTest < MiniTest::Unit::TestCase
+
+  def test_no_test
     assert true
   end
+
 end
+
