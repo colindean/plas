@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class TicketTest < ActiveSupport::TestCase
+class TicketTest < MiniTest::Unit::TestCase
 
-  setup do
+  def setup
     @t = Ticket.new
     @t.price = Money.new(1000)
     @t.available = 100
@@ -19,16 +19,15 @@ class TicketTest < ActiveSupport::TestCase
     @tg.generates_number = 5
     @tg.package = true
     @tg.generates_ticket = @t
-
   end
 
-  test "price" do
-    assertEquals Money.new(1000), @t.price
-    assertEquals Money.new(5000), @tg.price
-    assertEquals 10.0, @t.price.dollars
+  def test_price
+    assert_equal Money.new(1000), @t.price
+    assert_equal Money.new(5000), @tg.price
+    assert_equal 10.0, @t.price.dollars
   end
 
-  test "validity" do
+  def test_validity
     assert @t.valid?
     assert @tg.valid?
 
@@ -43,11 +42,11 @@ class TicketTest < ActiveSupport::TestCase
     assert !@tg.valid?
   end
 
-  test "package generates" do
-    assertEquals(@t, @tg.generates_ticket)
+  def test_package_generates
+    assert_equal(@t, @tg.generates_ticket)
   end
 
-  test "within sales period?" do
+  def test_within_sales_period
     assert @t.within_sales_period?
     @t.date_closed = Time.now - 100
     assert !@t.within_sales_period?
@@ -64,11 +63,11 @@ class TicketTest < ActiveSupport::TestCase
   end
 
   test "remaining" do
-    assertEquals(1, @tg.remaining)
-    assertEquals(100, @tg.remaining)
+    assert_equal(1, @tg.remaining)
+    assert_equal(100, @tg.remaining)
     #generate a registration
-    assertEquals(0, @tg.remaining)
-    assertEquals(100 - @tg.generates_number, @t.remaining)
+    assert_equal(0, @tg.remaining)
+    assert_equal(100 - @tg.generates_number, @t.remaining)
   end
 
   test "available?" do
@@ -83,5 +82,4 @@ class TicketTest < ActiveSupport::TestCase
 =end
 
 end
-
 
