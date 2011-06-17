@@ -178,14 +178,18 @@ section#content > h1 {
 
 /* dashboard widget stuff */
 
+section.widget {
+  margin-bottom: 1em;
+}
+
 section.widget header {
-  padding: 0.2em;
+  padding: 0.3em;
 }
 
 section.widget section.content {
   border-width: 0 2px 2px 2px;
   border-style: solid;
-  padding: 0.2em;
+  padding: 0.3em;
 }
 
 /* /dashboard widget stuff */

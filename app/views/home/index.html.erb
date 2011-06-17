@@ -6,6 +6,8 @@
 
 <h1>Dashboard</h1>
 
+<% #TODO: pull these widgets into partials %>
+
 <div id="dashboard">
   <div class="column" id="left">
     <section class="widget expanded" id="widget-welcome">
@@ -48,5 +50,17 @@
         <input type="text" name="shout[text]" placeholder="Shout it here!"/>
       </section>
     </section>
+
+    <section class="widget expanded" id="widget-opensource">
+      <header>
+        <h1>PLAS is open source!</h1>
+      </header>
+      <section class="content">
+        <p>PLAS is licensed under the <%= link_to _("GNU Affero General Public License"), 'http://www.gnu.org/licenses/agpl.html' %>.</p>
+        <p align="center"><%= image_tag "logos/osi_symbol.png", :alt => _("OSI logo"), :height => 128 %></p>
+        <p>You can obtain its source at <%= link_to Plas::PROJECT_URL, Plas::PROJECT_URL %>.</p>
+      </section>
+    </section>
+
   </div>
 </div>
