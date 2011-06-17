@@ -119,3 +119,20 @@ div#errorExplanation {
   -webkit-box-shadow:.1em .1em 2em black;
   box-shadow:.1em .1em 0.3em black;
 }
+
+/* dashboard widget stuff */
+
+section.widget section.content {
+  border-color: #ddd;
+}
+
+section.widget header { /* virtually the same as section#header header */
+  background: #7071A7;
+  background: -webkit-gradient(linear, left top, left bottom, from(#9293C9), to(#7071A7));
+  background: -moz-linear-gradient(#9293c9, #7071a7);
+  background-image: -o-linear-gradient(#9293c9, #7071a7);
+  color: white;
+  font-weight: bold;
+  text-shadow: .1em .1em .1em rgba(0,0,0,.7);
+}
+/* /dashboard widget stuff */

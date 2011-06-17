@@ -22,7 +22,7 @@ nav.inline ul li {
 	display: inline;
 }
 section#header {
-	margin-bottom: 1em;
+	margin-bottom: 0;
 }
 section#header header {
   padding-bottom: 0.3em;
@@ -147,12 +147,63 @@ div#errorExplanation {
 
 
 /*footer to bottom*/
-html{height:100%}
-body{min-height:100%;position:relative;}
-section#content{padding-bottom:.5em;margin-bottom:0;}
+html{
+  height:100%;
+}
+body{
+  min-height:100%;
+  position:relative;
+}
+section#content{
+  padding:.5em;
+  margin-bottom:0;
+}
 section#footer{
   bottom:0;
-  /*position:absolute;*/
   height:.5em;
 }
-footer{height:2em};
+footer{
+  height:2em;
+}
+
+ul.bullets {
+  list-style: disc inside;
+  padding-left: 1em;
+}
+
+section#content > h1 {
+  font-size: 2em;
+  margin-bottom: .5em;
+}
+
+/* dashboard widget stuff */
+
+section.widget header {
+  padding: 0.2em;
+}
+
+section.widget section.content {
+  border-width: 0 2px 2px 2px;
+  border-style: solid;
+  padding: 0.2em;
+}
+
+/* /dashboard widget stuff */
+
+#dashboard {
+  position:relative;
+}
+
+#dashboard .column {
+
+}
+
+#dashboard #left {
+float: left;
+width: 64%;
+}
+
+#dashboard #right {
+float: right;
+width: 35%;
+}

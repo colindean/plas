@@ -4,5 +4,49 @@
   </p>
 <% end %>
 
-Please note that this is a work in progress and that any information you
-input into this system will likely be deleted without a care for your precious little ego, n00b.
+<h1>Dashboard</h1>
+
+<div id="dashboard">
+  <div class="column" id="left">
+    <section class="widget expanded" id="widget-welcome">
+      <header>
+        <h1>Welcome</h1>
+      </header>
+      <section class="content">
+        <p>Welcome to this in-development LAN party administration system. Here's what's
+        working right now, so feel free to play around with it.</p>
+
+        <ul class="bullets">
+          <li>Create an account</li>
+          <li>Become the administrator if one doesn't exist</li>
+          <li>Create User Groups</li>
+          <li>Add/remove users to User Groups</li>
+          <li>Create Permissions</li>
+          <li>Give permissions to User Groups</li>
+          <li>Create Events</li>
+          <li>Register for Events</li>
+          <li>Pay for Event Registrations with PayPal</li>
+          <li>Pay for Event Registrations with an offline payment</li>
+          <li>Mark users as paid</li>
+          <li>Transfer Event Registration to other Users</li>
+        </ul>
+      </section>
+    </section>
+  </div>
+
+  <div class="column" id="right">
+    <section class="widget expanded" id="widget-shoutbox">
+      <header>
+        <h1>Shoutbox</h1>
+      </header>
+      <section class="content">
+        <p>Got something to say? Say it! Note that this doesn't actually work yet.</p>
+
+        <ul class="shouts">
+          <li><%= link_to User.find(1).display_name, User.find(1) %>: Hip hip hooray!</li>
+        </ul>
+        <input type="text" name="shout[text]" placeholder="Shout it here!"/>
+      </section>
+    </section>
+  </div>
+</div>
