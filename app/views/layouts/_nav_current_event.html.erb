@@ -5,7 +5,7 @@
         <%= link_to _("Dashboard"), root_path %>
       </li>
       <li>
-        <%= link_to _("Tournaments"), root_path %>
+        <%= link_to _("Tournaments"), event_tournaments_path(current_event) %>
       </li>
       <li>
         <%= link_to _("Seating Map"), root_path %>
