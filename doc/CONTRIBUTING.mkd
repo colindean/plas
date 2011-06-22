@@ -123,6 +123,18 @@ Writing code
 
 Please maintain a standard Ruby coding style, but ensure that it's readable. If you must choose between a Rubyism and readability for non-Rubyists, choose the latter. It's possible that many developers (especially from Pittco) haven't used Ruby and may not be accustomed to seeing things like `foo if bar` instead of `if bar then return foo` (although you *should* do this--it's proper Ruby!).
 
+Staying sync'd
+--------------
+
+You'll want to make sure that you pull in code from upstream frequently, as
+PLAS is under heavy development.
+
+    git remote add upstream http://github.com/colindean/plas.git
+
+This will add a new remote called upstream. You can then do `git fetch` to
+download the code and do `git merge --rebase upstream/master` periodically to
+get the new code.
+
 Reporting issues
 ----------------
 

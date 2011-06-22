@@ -62,11 +62,14 @@ signature from the API console, and then set three Pfcgs:
  * paypal.password
  * paypal.signature
  
-This will be made easier at some point, such as when Pcfg starts to see heavier 
-use. I'd entertain a patch/pull with these prepopulated, as well as a better 
+I'd entertain a patch/pull with these prepopulated, as well as a better 
 way to edit Pcfg (I'd like it to be kinda like Firefox's about:config). For 
 now, go to http://localhost:3000/pcfgs to set pcfg variables.
 
+To use tournaments, you need a [Challonge](http://www.challonge.com) account
+and the API key from it. Set the `challonge.api.username` Pcfg to your username
+and set `challonge.api.key` to the key. These Pcfgs are created at bootstrap
+time.
 
 Contributing
 ------------
