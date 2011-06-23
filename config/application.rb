@@ -35,6 +35,7 @@ module Plas
       g.orm             :active_record
       g.template_engine :erb
       g.test_framework  :test_unit
+      g.fixture_replacement :factory_girl, :dir => "test/factories"
     end
 
     # Configure the default encoding used in templates for Ruby 1.9.
@@ -44,3 +45,4 @@ module Plas
     config.filter_parameters += [:password]
   end
 end
+
