@@ -50,6 +50,33 @@ section#header nav#global {
   box-shadow:.1em .1em .5em black;
 }
 
+section#header nav a {
+  -webkit-transition: 200ms linear 0s;
+	-moz-transition: 200ms linear 0s;
+	-o-transition: 200ms linear 0s;
+	transition: 200ms linear 0s;
+}
+
+section#header nav#global a {
+  color: #00f;
+  text-decoration: none;
+}
+
+section#header nav#global a:hover, section#header nav#global a:focus {
+/*	text-shadow: -1px 1px 3px #000, 1px -1px 3px #fff; */
+  text-shadow: .05em .05em 1em rgba(128, 128, 255, .6);
+  color: #fff;
+}
+
+section#header nav#event-modules a {
+  color: purple;
+  text-decoration: none;
+}
+section#header nav#event-modules a:hover, section#header nav#event-modules a:focus {
+  color: blue;
+  text-shadow: .05em .05em 1em black;
+}
+
 section#header header {
   background: #7071A7;
   background: -webkit-gradient(linear, left top, left bottom, from(#9293C9), to(#7071A7));
