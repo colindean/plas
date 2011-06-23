@@ -16,3 +16,4 @@ class ActiveSupport::TestCase
     # assert(this == that, "(#{this}) == (#{that})") if !message
   # end
 end
+
