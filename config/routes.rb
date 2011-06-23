@@ -26,6 +26,7 @@ Plas::Application.routes.draw do
     match '/registrations' => 'registrations#index'
     match '/set_current' => 'events#set_current', :as => :setcurrent
     resources :tickets
+    resources :tournaments
   end
 
   match '/give_registration' => 'registration_gift_logs#new', :as => :givereg
