@@ -30,6 +30,8 @@ gem 'jquery-rails'
 #for tournament brackets...
 gem 'challonge-api' #https://bitbucket.org/corneldm/challonge-api/wiki/Home
 
+gem 'icalendar'
+
 group :development,:test do
   gem 'factory_girl_rails'
   gem 'watchr'

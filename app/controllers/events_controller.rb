@@ -8,6 +8,25 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @events }
+      format.ics
+    end
+  end
+
+  def calendar
+    @events = Event.all
+    @calendar = Icalendar::Calendar.new
+    @events.each do |e|
+      @calendar.event do
+        dtstart e.start
+        dtend e.end
+        summary e.name
+        klass "PRIVATE"
+      end
+    end
+    @calendar.publish
+
+    respond_to do |format|
+      format.ics { render :text => @calendar.to_ical }
     end
   end
 

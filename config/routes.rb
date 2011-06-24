@@ -8,6 +8,7 @@ Plas::Application.routes.draw do
 
   resources :pcfgs
 
+  match '/events/calendar(.:format)' => 'events#calendar'
   resources :events do
     resource :address
     #resources :registrations
@@ -28,7 +29,6 @@ Plas::Application.routes.draw do
     resources :tickets
     resources :tournaments
   end
-
   match '/give_registration' => 'registration_gift_logs#new', :as => :givereg
   match '/give_registration' => 'registration_gift_logs#create', :as => :givereg, :via => :post
 
