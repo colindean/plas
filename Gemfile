@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-gem 'rails', '3.0.7'
+gem 'rails', '3.0.9'
 
 #these next few lines address problems building on ubuntu natty
 #gem 'bzip2-ruby' #, :git =>'git://github.com/colindean/bzip2-ruby'
@@ -52,3 +52,4 @@ end
 
 #app-specific stuff
 gem 'steam-condenser' #http://koraktor.github.com/steam-condenser
+

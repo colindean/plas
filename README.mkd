@@ -45,7 +45,7 @@ Hell, it's not ready for our use!
 
 Installation
 ------------
-PLAS requires at least ruby 1.9.2 and rails 3.x. Target release is 
+PLAS requires at least ruby 1.9.2 and rails 3.0.x. Target release is 
 ruby 1.9.3 or ruby 2.0.0, whichever comes first.
 
 Use
@@ -77,7 +77,7 @@ We use [GitHub](https://github.com/colindean/plas) for our primary repository,
 but admittedly have a private repo on Dropbox which is really just a backup of 
 GitHub.
 
-We develop on ruby 1.9.2 and rails 3. See the Gemfile for 
+We develop on ruby 1.9.2 and rails 3.0.x. See the Gemfile for 
 other stuff we require. We do provide an .rvmrc for rvm users (seriously 
 makes life so much easier). 
 
@@ -88,9 +88,9 @@ Assuming you already have git, any ruby, and rvm installed, do these:
     gem install bundler
     bundle install
 
-That should make your environment kosher. When you `cd` into `plas`, rvm will ask if you want to download, compile, and install ruby-head and create a gemset called `plas`. You should probably say yes, but if you have ruby 1.9.2 installed and in use, you're probably OK. You should create the gemset anyhow.
+That should make your environment kosher. You should create the gemset anyhow.
 
-One developer reported an issue getting ruby-head working with Rails because*iconv* wasn't available on his installation of OSX 10.6. If you encounter that, read [How to fix the iconv require error in Ruby 1.9](http://exceptionz.wordpress.com/2010/02/03/how-to-fix-the-iconv-require-error-in-ruby-1-9/).
+One developer reported an issue because *iconv* wasn't available on his installation of OSX 10.6. If you encounter that, read [How to fix the iconv require error in Ruby 1.9](http://exceptionz.wordpress.com/2010/02/03/how-to-fix-the-iconv-require-error-in-ruby-1-9/).
 
 For more in-depth contributing instructions, including instructions for folks who want to be fully-fledged contributors to the project, see `doc/CONTRIBUTING.mkd`.
 
@@ -105,7 +105,7 @@ We plan to support any languages for which a translation is contributed. If you 
 **What we really need are tests.** Colin has not been a good Rubyist and
 done proper test-driven development due to the time crunch. 
 
-Please write tests where possible. We use RSpec and Cucumber for tests, what few there are. billturner is in charge of the testing harness for now, so questions about it should be directed at him. If you alter any of the harness files (.watchr, etc.) and include stuff for developing PLAS on Windows, please ensure that your changes still work on OSX and Ubuntu before submitting a pull request.
+Please write tests where possible. We're using MiniTest for tests, what few there are. billturner is in charge of the testing harness for now, so questions about it should be directed at him. If you alter any of the harness files (.watchr, etc.) and include stuff for developing PLAS on Windows, please ensure that your changes still work on OSX and Ubuntu before submitting a pull request.
 
 #### Browser Compatibility ####
 We only care about these browsers, current release and one major release back:
