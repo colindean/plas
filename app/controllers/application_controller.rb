@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   layout 'application'
-	before_filter :set_gettext_locale
-#	filter_parameter_logging :password, :password_confirmation
+  before_filter :set_gettext_locale
+# filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
   helper_method :current_event
   helper_method :firebug
@@ -32,8 +32,8 @@ class ApplicationController < ActionController::Base
         redirect_to login_url
         return false
       end
-			return true
-    end		
+      return true
+    end   
 
     def require_no_user
       if current_user
@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
         redirect_to account_url
         return false
       end
-			return true
+      return true
     end
 
     
@@ -57,26 +57,26 @@ class ApplicationController < ActionController::Base
 
     #makes for shorter before_filter methods
     def user_can(permission, fail_notice)
-			unless current_user and current_user.can(permission)
-				store_location
-				flash[:notice] = fail_notice
-				redirect_to request.referrer
-				return false
-			end
-			return true
+      unless current_user and current_user.can(permission)
+        store_location
+        flash[:notice] = fail_notice
+        redirect_to request.referrer
+        return false
+      end
+      return true
     end
 
-		#TODO: refactor these into their own file, as there's likely to be a lot of them
-		def require_permission_users_administrate
-		  user_can 'users.administrate', _("You must be an event administrator to access this page.")
+    #TODO: refactor these into their own file, as there's likely to be a lot of them
+    def require_permission_users_administrate
+      user_can 'users.administrate', _("You must be an event administrator to access this page.")
     end
-		
-		def require_permission_events_administrate
+    
+    def require_permission_events_administrate
       user_can 'events.administrate', _("You must be an event administrator to access this page.")
-		end
+    end
 
-		def require_permission_app_administrate
-			user_can 'app.administrate', _("You must be an app administrator to access this page.")
+    def require_permission_app_administrate
+      user_can 'app.administrate', _("You must be an app administrator to access this page.")
     end
 
     def current_event
