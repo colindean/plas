@@ -224,5 +224,17 @@ float: right;
 width: 35%;
 }
 
+dl#list-pcfgs dt {
+  font-weight: bold;
+  margin-bottom: 0.2em;
+}
 
+dl#list-pcfgs dd {
+  white-space:pre;
+  font-family: monospace;
+  margin-bottom: 0.5em;
+}
 
+dl#list-pcfgs {
+  margin-bottom: 1em;
+}
