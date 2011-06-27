@@ -45,7 +45,11 @@
         <p>Got something to say? Say it! Note that this doesn't actually work yet.</p>
 
         <ul class="shouts">
+          <% begin %>
           <li><%= link_to User.find(1).display_name, User.find(1) %>: Hip hip hooray!</li>
+          <% rescue %>
+          
+          <% end %>
         </ul>
         <input type="text" name="shout[text]" placeholder="Shout it here!"/>
       </section>
