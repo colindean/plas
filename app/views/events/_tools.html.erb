@@ -3,6 +3,7 @@
     <ul>
       <li><%= link_to _('Edit'), edit_event_path(@event), :class => 'icon edit' %></li>
       <li><%= link_to _('Delete'), @event, :confirm => 'Are you sure?', :method => :delete, :class => 'icon delete' %></li>
+      <li><%= (current_event == @event) ? _("Current event") : link_to(_("Set current"), event_setcurrent_path(@event)) %></li>
     </ul>
   </section>
 <% end %>
