@@ -12,8 +12,8 @@ module Rack
       js = generate_js(env['firebug.logs'])
       if orig_response.body =~ /<body>/
         orig_response.each do |line|
-          line.gsub!("</body>", js + "\n</body>")
-          new_response.write(line)
+          newline = line.gsub("</body>", js + "\n</body>")
+          new_response.write(newline)
         end
       else
         new_response.write(orig_response.body + js)
