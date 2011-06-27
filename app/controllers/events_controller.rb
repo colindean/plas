@@ -106,7 +106,7 @@ class EventsController < ApplicationController
 
   def set_current
     if Event.find(params[:event_id])
-      Pcfg.set('event.current',params[:event_id])
+      Pcfg.set('event.current',params[:event_id], current_user)
     end
     redirect_to request.referrer
   end

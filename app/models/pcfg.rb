@@ -16,21 +16,15 @@ class Pcfg < ActiveRecord::Base
     end
   end
 
-  def self.set(key, value)
-    begin
-      pcfg = self.find_by_key(key)
+  def self.set(key, value, user=nil)
+      pcfg = self.find_by_key(key) || Pcfg.create(:key => key)
       pcfg.value = value
-      pcfg.last_modified_by = current_user
-      pcfg.save
+      pcfg.last_modified_by = user
+      if not pcfg.save
+        raise "Pcfg could not be saved: #{pcfg.errors}"
+        return false
+      end
       pcfg
-    rescue ActiveRecord::RecordNotFound
-      pcfg = Pcfg.new
-      pcfg.key = key
-      pcfg.value = value
-      pcfg.last_modified_by = current_user
-      pcfg.save
-      pcfg
-    end
   end
 
   def self.unset(key)
