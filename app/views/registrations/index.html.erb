@@ -1,4 +1,10 @@
-<h1><%= _('Registrations for %s') % @event.name %></h1>
+<% title =  _('Registrations for %s') % @event.name %>
+<% content_for :title do %>
+  <%=title %>
+<% end %>
+
+<h1><%=title %></h1>
+
 <div id="registration-statistics">
   <dl>
     <dt><%= _("Registrations created") %></dt>

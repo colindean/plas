@@ -1,5 +1,9 @@
-<h1>Editing ticket</h1>
+<% title = _("Editing ticket") %>
+<% content_for :title do %>
+  <%=title %>
+<% end %>
 
+<h1><%=title %></h1>
 <%= render 'form' %>
 
 <%= link_to 'Show', @ticket %> |

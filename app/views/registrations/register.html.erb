@@ -1,7 +1,11 @@
-<h1><%= _('Register for %s') % @event.name %></h1>
-<%
-if !@tickets
-  %>
+<% title =  _('Register for %s') % @event.name %>
+<% content_for :title do %>
+  <%=title %>
+<% end %>
+
+<h1><%=title %></h1>
+
+<% if !@tickets %>
   <p><%= _("Currently, no tickets are available for this event.") %></p>
   <p><%= link_to _("Back"), event_path(@event) %></p>
 <% else

@@ -1,4 +1,9 @@
-<h1><%= _("Confirm your registration, paid with PayPal") %></h1>
+<% title = _("Confirm your registration, paid with PayPal") %>
+<% content_for :title do %>
+  <%=title %>
+<% end %>
+
+<h1><%=title %></h1>
 
 <div class="super-important"><%= _("You have not paid until you click CONFIRM below.") %></div>
 

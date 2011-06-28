@@ -1,5 +1,9 @@
-<h1>Listing tickets for <%= @event.name %></h1>
+<% title = "Listing tickets for" + @event.name %>
+<% content_for :title do %>
+  <%=title %>
+<% end %>
 
+<h1><%=title %></h1>
 <table>
   <tr>
     <th>Name</th>

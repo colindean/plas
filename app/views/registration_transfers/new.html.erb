@@ -1,4 +1,9 @@
-<h1>Transfer registration</h1>
+<% title = _('Transfer Registration') %>
+<% content_for :title do %>
+  <%=title %>
+<% end %>
+
+<h1><%=title %></h1>
 
 <%= render 'form' %>
 

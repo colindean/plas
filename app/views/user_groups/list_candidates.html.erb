@@ -1,5 +1,9 @@
-<h1><%= _("Add a user to %s") % @user_group.name %></h1>
+<% title = _("Add a user to %s") % @user_group.name %>
+<% content_for :title do %>
+  <%=title %>
+<% end %>
 
+<h1><%=title %></h1>
 <%= render :partial => "user_groups/select_users", :locals => { :ul => @user_list, :ug => @user_group } %>
 
 <br/><br/>
