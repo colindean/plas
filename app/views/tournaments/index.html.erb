@@ -6,6 +6,13 @@
 <h1><%=title %></h1>
 <ul>
 <% @tournaments.each do |t| %>
-  <li><%= t.name %></li>
+  <li>
+    <div>
+      <h2><%= t.name %></h2>
+      <div class="meter">
+        <span style="width: <%= t.progress_meter %>%"></span>
+      </div>
+    </div>
+  </li>
 <% end %>
 </ul>
