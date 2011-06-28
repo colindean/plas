@@ -239,7 +239,7 @@ dl#list-pcfgs {
   margin-bottom: 1em;
 }
 
-/*progress bars*/
+/*progress bars http://css-tricks.com/8518-css3-progress-bars/*/
 .meter {
         height: 10px;  /* Can be anything */
         position: relative;

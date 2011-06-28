@@ -7,12 +7,19 @@
 <ul>
 <% @tournaments.each do |t| %>
   <li>
-    <div>
-      <h2><%= t.name %></h2>
+    <fieldset>
+      <legend><%= t.name %></legend>
+      <h2><%= t.tournament_type %></h2>
       <div class="meter">
-        <span style="width: <%= t.progress_meter %>%"></span>
+        <span title="<%= _('%d percent complete') % t.progress_meter %>" style="width: <%= t.progress_meter %>%"></span>
       </div>
-    </div>
+      <h2>Participants</h2>
+      <ul class="participants">
+        <% t.participants.each do |p| %>
+          <li><%= p.name %></li>
+        <%end%>
+      </ul>
+    </fieldset>
   </li>
 <% end %>
 </ul>
