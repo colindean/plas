@@ -1,3 +1,10 @@
+<% title =  _('Show User') %>
+<% content_for :title do %>
+  <%=title %>
+<% end %>
+
+<h1><%=title %></h1>
+
 <% #TODO: this view needs to be broken into partials for easier maintenance %>
 <% if notice and not notice.empty? %>
   <p class="notice">

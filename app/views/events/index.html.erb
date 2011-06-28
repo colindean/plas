@@ -1,4 +1,10 @@
-<h1>Listing events</h1>
+<% title = _('Listing Events') %>
+<% content_for :title do %>
+  <%=title %>
+<% end %>
+
+<h1><%=title %></h1>
+
 <% if @events.count == 0 %>
   <p class="message">
     <%= _("There are no events scheduled.") %>

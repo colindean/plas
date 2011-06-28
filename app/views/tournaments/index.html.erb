@@ -1,5 +1,9 @@
-<h1>Tournaments for <%= current_event.name %></h1>
+<% title = "Tournaments for" + current_event.name %>
+<% content_for :title do %>
+  <%=title %>
+<% end %>
 
+<h1><%=title %></h1>
 <ul>
 <% @tournaments.each do |t| %>
   <li><%= t.name %></li>

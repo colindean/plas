@@ -1,4 +1,9 @@
-<h1>New permission</h1>
+<% title = _('New Permission') %>
+<% content_for :title do %>
+  <%=title %>
+<% end %>
+
+<h1><%=title %></h1>
 
 <%= render 'form' %>
 

@@ -1,5 +1,9 @@
-<h1><%= _('Register') %></h1>
+<% title =  _('Register') %>
+<% content_for :title do %>
+  <%=title %>
+<% end %>
 
+<h1><%=title %></h1>
 <% form_for @user, :url => account_path do |f| %>
 	<%= render :partial => "new_user_form", :locals => { :f => f } %>
 	<%= f.submit _('Register') %>

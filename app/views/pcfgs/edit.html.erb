@@ -1,4 +1,9 @@
-<h1>Editing pcfg</h1>
+<% title = _('Editing pcfg') %>
+<% content_for :title do %>
+  <%=title %>
+<% end %>
+
+<h1><%=title %></h1>
 
 <%= render 'form' %>
 

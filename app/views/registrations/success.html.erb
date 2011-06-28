@@ -1,4 +1,9 @@
-<h1><%= _("Successful payment for %s!") % @event.name %></h1>
+<% title = _("Successful payment for %s!") % @event.name %>
+<% content_for :title do %>
+  <%=title %>
+<% end %>
+
+<h1><%=title %></h1>
 <div id="success" class="message">
   <p><%= _("You have successfully paid for the event. You can now participate. Be sure to double check the times for the event so you don't miss anything!") %></p>
 </div>
