@@ -1,4 +1,9 @@
-<h1><%= _("Pay for your tickets for %s") % @event.name %></h1>
+<% title = _("Pay for your tickets for %s") % @event.name %>
+<% content_for :title do %>
+  <%=title %>
+<% end %>
+
+<h1><%=title %></h1>
 <p><%= _("Please review your order and choose a payment method.") %></p>
 <table>
   <thead>
