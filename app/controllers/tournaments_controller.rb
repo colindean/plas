@@ -3,7 +3,7 @@ class TournamentsController < ApplicationController
   before_filter :challonge_init
   
   def index
-    @tournaments = Challonge::Tournament.find(:all)
+    @tournaments = ChallongeTournament.find(:all)
   end
 
   def challonge_init
