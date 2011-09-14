@@ -16,6 +16,7 @@ class TournamentsController < ApplicationController
     
     Challonge::API.username = u
     Challonge::API.key = k
+    firebug("Accessing Challonge as #{u}")
     
   end
 
