@@ -163,3 +163,25 @@ section.widget header { /* virtually the same as section#header header */
   text-shadow: .1em .1em .1em rgba(0,0,0,.7);
 }
 /* /dashboard widget stuff */
+
+/*progress bar*/
+
+.meter {
+  background: #555;
+}
+
+.meter > span {
+  background-color: rgb(43,194,83);
+  background-image: -webkit-gradient(
+          linear,
+          left bottom,
+          left top,
+          color-stop(0, rgb(43,194,83)),
+          color-stop(1, rgb(84,240,84))
+         );
+  background-image: -moz-linear-gradient(
+          center bottom,
+          rgb(43,194,83) 37%,
+          rgb(84,240,84) 69%
+         );
+}

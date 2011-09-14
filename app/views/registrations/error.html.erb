@@ -1,2 +1,8 @@
-<h1>ERROR</h1>
+<% title = _("ERROR") %>
+<% content_for :title do %>
+  <%=title %>
+<% end %>
+
+<h1><%=title %></h1>
+
 <%= @messages %>

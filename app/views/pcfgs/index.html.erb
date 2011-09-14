@@ -1,4 +1,9 @@
-<h1>Listing pcfgs</h1>
+<% title = _('Listing pcfgs') %>
+<% content_for :title do %>
+  <%=title %>
+<% end %>
+
+<h1><%=title %></h1>
 
 <dl id="list-pcfgs">
 <% @pcfgs.each do |pcfg| %>

@@ -1,4 +1,9 @@
-<h1><%= _('Login') %></h1>
+<% title =  _('Login') %>
+<% content_for :title do %>
+  <%=title %>
+<% end %>
+
+<h1><%=title %></h1>
 <div id="form-login">
 <%= form_for @user_session, :url => user_sessions_path do |f| %>
   <%= f.error_messages %>

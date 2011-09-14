@@ -1,7 +1,25 @@
-<h1>Tournaments for <%= current_event.name %></h1>
+<% title = "Tournaments for" + current_event.name %>
+<% content_for :title do %>
+  <%=title %>
+<% end %>
 
+<h1><%=title %></h1>
 <ul>
 <% @tournaments.each do |t| %>
-  <li><%= t.name %></li>
+  <li>
+    <fieldset>
+      <legend><%= t.name %></legend>
+      <h2><%= t.tournament_type %></h2>
+      <div class="meter">
+        <span title="<%= _('%d percent complete') % t.progress_meter %>" style="width: <%= t.progress_meter %>%"></span>
+      </div>
+      <h2>Participants</h2>
+      <ul class="participants">
+        <% t.participants.each do |p| %>
+          <li><%= p.name %></li>
+        <%end%>
+      </ul>
+    </fieldset>
+  </li>
 <% end %>
 </ul>
