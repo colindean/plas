@@ -16,7 +16,12 @@ module Rack
           new_response.write(newline)
         end
       else
-        new_response.write(orig_response.body + js)
+        
+
+
+
+        resp = orig_response.body.join("") + js
+        new_response.write(resp)
       end
       new_response.finish
     end

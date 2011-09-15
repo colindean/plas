@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-gem 'rails', '3.0.9'
+gem 'rails', '3.1.0'
 
 #these next few lines address problems building on ubuntu natty
 #gem 'bzip2-ruby' #, :git =>'git://github.com/colindean/bzip2-ruby'

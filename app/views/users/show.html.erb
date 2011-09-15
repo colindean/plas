@@ -46,7 +46,7 @@
   <fieldset>
     <legend><%= _('Unpaid registrations') %></legend>
     <% if @unpaid_registrations.count > 0 %>
-      <% form_for Transaction.new, :url => new_transaction_url, :html => {:method => 'get'}  do |f| %>
+      <%= form_for Transaction.new, :url => new_transaction_url, :html => {:method => 'get'}  do |f| %>
           <%= select :registrations, :ids, @unpaid_registrations.collect{|reg| [("%s - %s - %s %s" % [
             reg.ticket.event.name,
             reg.ticket.name,

@@ -3,7 +3,7 @@
     <%= _("There are no users who are not already in this group.")%>
   </span>
 <% else #TODO: make this select show the permissions grouped by category %>
-  <% form_for :permission_to_user_groups, 
+  <%= form_for :permission_to_user_groups, 
               :html => { :id => "user-groups-list-permissions"}, 
               :as => :post, 
               :url => user_group_add_permission_url(ug) do |f| %>
