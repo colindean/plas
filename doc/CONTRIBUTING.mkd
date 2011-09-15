@@ -43,44 +43,16 @@ Install RVM
 
 [Install RVM next](http://rvm.beginrescueend.com/rvm/install/), using the instructions linked at RVM's web site, or follow here:
 
-    bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
+    bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)
 
-Next, add this line to the bottom of `~/.bashrc`. It will load RVM and your installed rubies.
-
-    [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
-    [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion # This enables bash completion for rvm
-
-A pain in the ass thing you'll have to do is change line 6 from `[ -z "$PS1" ] && return` to `if [[ -z "$PS1" ]]; then` and add `fi` just before the above RVM line. This makes RVM and your rubies always work.
-
-To check that RVM is installed correctly, the output of `type rvm | head -n1` should be "rvm is a function". If it is, you're in business. If not, make sure that your edit to .bashrc is kosher. If you haven't made any edits to your .bashrc, you can probably just [download the .bashrc I made](https://gist.github.com/704555) while writing this.
+To check that RVM is installed correctly, the output of `type rvm | head -n1` should be "rvm is a function". If it is, you're in business. If not, make sure that your edit to .bashrc is kosher. If you haven't made any edits to your .bashrc, you can probably just [download the .bashrc I made](https://gist.github.com/704555) while writing this. You may need to do `. .bashrc` in order to freshen BASH.
 
 Now, the moment of truth and justice:
 
-    rvm install ruby-head
-    rvm --default use ruby-head
-
-RVM will first download and build ruby-1.8.7. It's needed for build scripts in 1.9.x. Then it will download and build ruby-head (1.9.3dev). **You can safely walk away for ~20-30 minutes depending on your computer's CPU and RAM.** This will install the latest, greatest ruby-head.
-
-### When bad things happen here ###
-
-Sometimes the latest and greatest is broken. rvm will tell you to look at the log in `~/.rvm/log/ruby-head/make.log`. 
-
-If `executable host ruby is required. use --with-baseruby option.` appears in your log, execute `rvm use 1.8.7` in order to temporarily use ruby 1.8.7 as the host ruby. 
-
-If `make: *** [miniprelude.c] Error 1` appears in the error logs, check your clock and ensure that it is set accurately. You may need to `rvm implode` if your clock was set inaccurately, then start again at the RVM installation. You won't have to remodify `.bashrc`, though.
-
-Sometimes, you may have to specify a version.
-
-    rvm install ruby-head-r29539
-
-Revision 29539 is a known working revision and the one which [colindean](https://github.com/colindean) is using on his development machine as of this writing.
-
-We will likely stop using ruby-head when 1.9.3 or 2.0.0 is released (whichever is first).
-
-If all else fails and you can't get ruby-head to install after a few tries, just install ruby 1.9.2. It will probably be sufficient.
-
     rvm install 1.9.2
     rvm --default use 1.9.2
+
+RVM will first download and build ruby-1.8.7. It's needed for build scripts in 1.9.x. Then it will download and build ruby 1.9.2. **You can safely walk away for ~20-30 minutes depending on your computer's CPU and RAM.** This will install the latest, greatest stable.
 
 ### Update periodically ###
 
