@@ -3,7 +3,12 @@ class TournamentsController < ApplicationController
   before_filter :challonge_init
   
   def index
-    @tournaments = Challonge::Tournament.find(:all)
+    begin
+      @tournaments = Challonge::Tournament.find(:all)
+    rescue ActiveResource::ClientError => err
+      @tournaments = []
+      flash[:notice] = _("Unable to communicate with the Challonge server: " + err.message)
+    end
   end
 
   def challonge_init
