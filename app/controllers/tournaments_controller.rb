@@ -7,7 +7,7 @@ class TournamentsController < ApplicationController
       @tournaments = Challonge::Tournament.find(:all)
     rescue ActiveResource::ClientError => err
       @tournaments = []
-      flash[:alert] = _("Unable to communicate with the Challonge server: " + err.message)
+      flash[:alert] = _("Unable to retrieve tournaments from the Challonge server: " + err.message)
     end
   end
 

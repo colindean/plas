@@ -139,6 +139,10 @@ p.notice {
   left: 45%;
   padding: 0.5em;
 }
+p.alert {
+  position:relative;
+  padding:0.5em;
+}
 div#errorExplanation {
   padding: 0.5em;
   margin: 0 auto;
