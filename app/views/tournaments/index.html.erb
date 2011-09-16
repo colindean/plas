@@ -3,6 +3,12 @@
   <%=title %>
 <% end %>
 
+<% #TODO: this view needs to be broken into partials for easier maintenance %>
+<% if alert and not alert.empty? %>
+  <p class="alert">
+    <%= alert %>
+  </p>
+<% end %>
 <h1><%=title %></h1>
 <ul>
 <% @tournaments.each do |t| %>
