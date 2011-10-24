@@ -134,7 +134,7 @@ p.notice {
   -webkit-box-shadow:.1em .1em 2em black;
   box-shadow:.1em .1em 2em black;
 }
-p.alert {
+p.notice.alert {
   background: #e99;
   border: 1px solid #b66;
   -moz-border-radius: 0.3em;

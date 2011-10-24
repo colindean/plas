@@ -136,8 +136,10 @@ article.event div.admin-actions {
 p.notice {
   position: absolute;
   top: 0;
-  left: 45%;
+  left: 25%;
   padding: 0.5em;
+  width: 50%;
+  text-align: center;
 }
 p.alert {
   position:relative;
