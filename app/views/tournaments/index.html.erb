@@ -1,31 +1,11 @@
 <% title = _("Tournaments for %s") % current_event.name %>
 <% content_for :title do %>
-  <%=title %>
+  <%= title %>
 <% end %>
 
-<% #TODO: this view needs to be broken into partials for easier maintenance %>
-<% if alert and not alert.empty? %>
-  <p class="alert">
-    <%= alert %>
-  </p>
-<% end %>
-<h1><%=title %></h1>
-<ul>
-<% @tournaments.each do |t| %>
-  <li>
-    <fieldset>
-      <legend><%= t.name %></legend>
-      <h2><%= t.tournament_type %></h2>
-      <div class="meter">
-        <span title="<%= _('%d percent complete') % t.progress_meter %>" style="width: <%= t.progress_meter %>%"></span>
-      </div>
-      <h2>Participants</h2>
-      <ul class="participants">
-        <% t.participants.each do |p| %>
-          <li><%= p.name %></li>
-        <%end%>
-      </ul>
-    </fieldset>
-  </li>
-<% end %>
+<h1><%= title %></h1>
+<ul id="tournaments">
+  <%= render :partial => "individual", 
+             :collection => @tournaments, 
+             :as => :tournament %>
 </ul>
