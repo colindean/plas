@@ -195,3 +195,19 @@ section.widget header { /* virtually the same as section#header header */
           rgb(84,240,84) 69%
          );
 }
+
+#tournaments .tournament {
+  border: 1px solid #ddd;
+  
+}
+
+#tournaments .tournament h2 {
+}
+
+#tournaments .tournament .type {
+  font-style: italic;
+  font-size: 0.8em;
+}
+
+#tournaments .tournament h3 {
+}

@@ -284,3 +284,15 @@ dl#list-pcfgs {
         overflow: hidden;
 }
 
+#tournaments .tournament {
+  margin: 1em 0;
+  padding: 0.5em;
+}
+
+#tournaments .tournament h2 {
+  font-size: 1.3em;
+}
+
+#tournaments .tournament h3 {
+  font-size: 1.1em;
+}
