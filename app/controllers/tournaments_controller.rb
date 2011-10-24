@@ -5,6 +5,9 @@ class TournamentsController < ApplicationController
   def index
     begin
       @tournaments = Challonge::Tournament.find(:all)
+    rescue ActiveResource::UnauthorizedAccess
+      @tournaments = []
+      flash[:alert] = _("The Challonge API access was denied because this application was unauthorized to access it. Tell the administrators to check the API access credentials.")
     rescue ActiveResource::ClientError => err
       @tournaments = []
       flash[:alert] = _("Unable to retrieve tournaments from the Challonge server: " + err.message)
