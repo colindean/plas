@@ -1,5 +1,5 @@
 <li class="tournament">
-    <h2><%= tournament.name %></h2>
+    <h2><%= link_to tournament.name, event_tournament_url(current_event,tournament) %></h2>
     <div class="type">
       <span><%= tournament.tournament_type %></span>
     </div>
