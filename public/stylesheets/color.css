@@ -211,3 +211,15 @@ section.widget header { /* virtually the same as section#header header */
 
 #tournaments .tournament h3 {
 }
+
+.match .participant {
+  font-size: 1em;
+}
+
+.match .participant.winner {
+  font-weight: bold;
+}
+
+.match .participant.loser {
+  font-style: italic;
+}

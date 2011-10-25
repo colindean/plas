@@ -1,0 +1,24 @@
+<li class="match">
+<% if match.state == 'complete' %>
+  <span class="participant winner">
+    <%= participants.select{|p|p.id == match.winner_id}.first.name %>
+  </span>
+  <span class="versus">
+    <%= _('vs') %>
+  </span>
+  <span class="participant loser">
+    <%= participants.select{|p|p.id == match.loser_id}.first.name %>
+  </span>
+<% else %>
+  <span class="participant">
+    <%= participants.select{|p|p.id == match.player1_id}.first.name %>
+  </span>
+  <span class="versus">
+    <%= _('vs') %>
+  </span>
+  <span class="participant">
+    <%= participants.select{|p|p.id == match.player2_id}.first.name %>
+  </span>
+<%end%>
+
+

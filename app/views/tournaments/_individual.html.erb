@@ -3,9 +3,7 @@
     <div class="type">
       <span><%= tournament.tournament_type %></span>
     </div>
-    <div class="meter">
-      <span title="<%= _('%d percent complete') % tournament.progress_meter %>" style="width: <%= tournament.progress_meter %>%"></span>
-    </div>
+    <%= render :partial => 'meter', :locals => {:percentage => tournament.progress_meter} %>
     <h3><%= _("Participants") %></h3>
     <ul class="participants">
       <%= render :partial => "participants",

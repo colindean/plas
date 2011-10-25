@@ -14,6 +14,18 @@ class TournamentsController < ApplicationController
     end
   end
 
+  def show
+    begin
+      @tournament = Challonge::Tournament.find params[:id]
+    rescue ActiveResource::UnauthorizedAccess
+      @tournaments = nil
+      flash[:alert] = _("The Challonge API access was denied because this application was unauthorized to access it. Tell the administrators to check the API access credentials.")
+    rescue ActiveResource::ClientError => err
+      @tournaments = nil
+      flash[:alert] = _("Unable to retrieve tournaments from the Challonge server: " + err.message)
+    end
+  end
+
   def challonge_init
     u = Pcfg.get('challonge.api.username')
     k = Pcfg.get('challonge.api.key')

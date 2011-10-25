@@ -1,0 +1,41 @@
+<% 
+  title = @tournament.name 
+
+%>
+
+<% content_for :title do %>
+  <%= title %>
+<% end %>
+
+<h1><%= title %></h1>
+<div id="tournament-type">
+  <span><%= @tournament.tournament_type %></span>
+</div>
+
+<% if  @tournament.matches.last.winner_id %>
+  <h2><%= _('Winner') %></h2>
+  <span class="participant winner">
+    <%= @tournament.participants.select{|p| p.id == @tournament.matches.last.winner_id}.first.name %>
+  </span>
+<% end %>
+
+<h2><%= _('Participants') %></h2>
+<ul id="participants">
+<%= render :partial => "participants",
+           :collection => @tournament.participants,
+           :as => :participant  %>
+</ul>
+
+<h2><%= _('Matches') %></h2>
+
+<%= render :partial => 'meter', 
+    :locals => {:percentage => @tournament.progress_meter} %>
+    <%= n_('%s match','%s matches', @tournament.matches.count) % @tournament.matches.count %>
+<ul id="matches">
+<%= render :partial => "matches",
+           :collection => @tournament.matches,
+           :as => :match,
+           :locals => { :participants => @tournament.participants } %>
+</ul>
+
+<%= image_tag @tournament.live_image_url %>
