@@ -71,4 +71,27 @@ Pcfgs are instance-specific variables. These variables are kept in the database 
 
 Things which should *not* be put in Pcfgs are PLAS-internal variables, such as the version number or project URLs. These are hardcoded in initializers.
 
+Tournament Workflow
+-------------------
 
+When a user creates a Tournament, he gives it a name, description, max teams/
+players, and start time. Users can sign up for the tournament, representing 
+themselves or their team. When the tournament is started, Participants can 
+enter scores (double entry -- winner and loser -- for regular users, single 
+entry for tournament administrators). The tournament administrator can declare 
+winners for each Match and eventually a winner for the whole Tournament. A 
+Tournament is associated with a single event and is associated with that event 
+at creation time.
+
+On the backend, PLAS must account for various tournament backend software.
+
+PLAS implements a basic tournament model for simple contests where there are 
+no matches, no need to track scoring, and only one winner. This is useful for 
+simple deathmatch tournaments or non-gaming events.
+
+However, for more complicated tournaments, PLAS offers an interface to 
+[Challonge](http://challonge.com).  The PLAS Tournament API mirrors the 
+[Challonge API](http://challonge.com/api), which we consider to be the gold 
+standard for lightweight tournament softwares. For more information on how 
+PLAS uses the Challonge API, read the [challonge-api gem documentation](https://bitbucket.org/corneldm/challonge-api) 
+or simply read through the Tournament controller.
