@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110621233518) do
+ActiveRecord::Schema.define(:version => 20111028234925) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -100,6 +101,14 @@ ActiveRecord::Schema.define(:version => 20110621233518) do
     t.string   "paid_currency",     :default => "USD"
   end
 
+  create_table "remote_tournaments", :force => true do |t|
+    t.string   "remote_type"
+    t.string   "remote_id"
+    t.integer  "tournament_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
@@ -124,6 +133,19 @@ ActiveRecord::Schema.define(:version => 20110621233518) do
     t.string   "name",                :default => "Registration for one person", :null => false
     t.string   "currency"
   end
+
+  create_table "tournaments", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "max_participants"
+    t.datetime "start_time"
+    t.datetime "started_at"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tournaments", ["event_id"], :name => "index_tournaments_on_event_id"
 
   create_table "transactions", :force => true do |t|
     t.integer  "address_id"
