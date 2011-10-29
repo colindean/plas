@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
   has_many :user_to_user_group
   has_many :user_groups, :through => :user_to_user_group
   has_many :registrations
+  
+  has_and_belongs_to_many :tournaments, :as => :participants
+  
   #TODO: make this work and get rid of #permissions and #build_permissions
   #has_many :permissions, :through => :user_groups, :source => :user_groups
 

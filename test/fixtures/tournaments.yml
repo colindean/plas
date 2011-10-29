@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  description: MyText
+  max_participants: 1
+  start_time: 2011-10-28 19:34:13
+  end_time: 2011-10-28 19:34:13
+  event: 
+
+two:
+  name: MyString
+  description: MyText
+  max_participants: 1
+  start_time: 2011-10-28 19:34:13
+  end_time: 2011-10-28 19:34:13
+  event: 

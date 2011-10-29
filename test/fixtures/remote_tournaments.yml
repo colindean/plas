@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  tournament_type: MyString
+  tournament_id: MyString
+
+two:
+  tournament_type: MyString
+  tournament_id: MyString
