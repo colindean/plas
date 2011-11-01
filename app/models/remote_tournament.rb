@@ -26,6 +26,10 @@ class RemoteTournament < ActiveRecord::Base
   end
   
   def get
+    #I'm not sure I want this here...
+    if remote_type == 'Challonge::Tournament'
+      challonge_init
+    end
     resolve_class.find(remote_id)  
   end
   
@@ -33,5 +37,19 @@ class RemoteTournament < ActiveRecord::Base
     self.type = remote_instance.class
     self.remote_id = remote_instance.id
     get
+  end
+  
+  private 
+  
+  def challonge_init
+    u = Pcfg.get('challonge.api.username')
+    k = Pcfg.get('challonge.api.key')
+    
+    msg = _("The Challonge API credentials are not set.")
+    raise PLAS::Exceptions::RemoteTournamentError,  msg if !(u and k)
+    
+    Challonge::API.username = u
+    Challonge::API.key = k
+    
   end
 end
