@@ -4,6 +4,7 @@ class HomeController < ApplicationController
     @cu = current_user
     root << widget(:shoutbox, :current_user => current_user)
     root << widget(:opensource)
+    root << widget(:welcome)
   end
 
   def index
