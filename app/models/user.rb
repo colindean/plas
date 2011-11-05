@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
     if permissions.select {|p| p.code == permission_code }.count != 0
       return true
     else
-      if RAILS_ENV == "development" and not Permission.find_by_code(permission_code)
+      if Rails.env.development? and not Permission.find_by_code(permission_code)
         raise _("Permission code %s does not exist") % permission_code
       end
     end
