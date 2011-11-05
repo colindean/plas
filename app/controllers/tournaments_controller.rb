@@ -1,13 +1,12 @@
 class TournamentsController < ApplicationController
-
-  before_filter :challonge_init
   
   def index
     begin
-      @tournaments = Challonge::Tournament.find(:all)
+      @tournaments = Tournament.all
+      
     rescue ActiveResource::UnauthorizedAccess
       @tournaments = []
-      flash[:alert] = _("The Challonge API access was denied because this application was unauthorized to access it. Tell the administrators to check the API access credentials.")
+      flash[:alert] = _("The remote tournament access was denied because this application was unauthorized to access it. Tell the administrators to check the API access credentials.")
     rescue ActiveResource::ClientError => err
       @tournaments = []
       flash[:alert] = _("Unable to retrieve tournaments from the Challonge server: " + err.message)
@@ -16,7 +15,7 @@ class TournamentsController < ApplicationController
 
   def show
     begin
-      @tournament = Challonge::Tournament.find params[:id]
+      @tournament = Tournament.find params[:id]
     rescue ActiveResource::UnauthorizedAccess
       @tournaments = nil
       flash[:alert] = _("The Challonge API access was denied because this application was unauthorized to access it. Tell the administrators to check the API access credentials.")
@@ -25,19 +24,27 @@ class TournamentsController < ApplicationController
       flash[:alert] = _("Unable to retrieve tournaments from the Challonge server: " + err.message)
     end
   end
-
-  def challonge_init
-    u = Pcfg.get('challonge.api.username')
-    k = Pcfg.get('challonge.api.key')
-    if !(u and k)
-      redirect_to root_url, :notice => _("Tell the administrators that the Challonge API information is not set.")
-      return
+  
+  private
+  
+  #this operation might be better performed in the Tournament model
+  def resolve(object)
+    if object.respond_to? :collect # if it's an array
+      return object.collect do |t| 
+        resolve_one t
+      end
+    else
+      #otherwise it's a standalone
+      resolve_one t
     end
-    
-    Challonge::API.username = u
-    Challonge::API.key = k
-    firebug("Accessing Challonge as #{u}")
-    
+  end
+  
+  def resolve_one(t)
+    if t.remote?
+      t.remote
+    else
+      t
+    end    
   end
 
 end

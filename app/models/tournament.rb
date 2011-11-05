@@ -16,18 +16,36 @@ class Tournament < ActiveRecord::Base
     remote_tournament != nil
   end
   
-  alias remote remote_tournament
-
   def started?
     started_at != nil
   end
   
   def full?
-    participants.size < max_participants
+    participants.size <= max_participants
   end
   
   def remaining
     max_participants - participants.size
+  end
+  
+  def remote
+    @remote ||= remote_tournament.get
+  end
+    
+  def method_missing(method, *args, &block)
+    if pass_method_to_remote?(method)
+     return remote.call(method, *args, &block) 
+    end
+    super(method, *args, &block)
+  end
+  def respond_to?(method)
+    pass_method_to_remote?(method) || super(method)
+  end
+  
+  private 
+  
+  def pass_method_to_remote?(method)
+    remote? and remote.respond_to? method
   end
 
 end
