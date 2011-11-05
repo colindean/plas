@@ -32,6 +32,9 @@ gem 'challonge-api' #https://bitbucket.org/corneldm/challonge-api/wiki/Home
 
 gem 'icalendar'
 
+#for widgets, such as the shoutbox
+gem 'apotomo' 
+
 group :development,:test do
   gem 'factory_girl_rails'
   gem 'watchr'

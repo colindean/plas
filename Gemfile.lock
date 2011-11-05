@@ -42,6 +42,10 @@ GEM
     activesupport (3.1.0)
       multi_json (~> 1.0)
     ansi (1.3.0)
+    apotomo (1.2.1)
+      cells (>= 3.6.7)
+      hooks (~> 0.2.0)
+      onfire (~> 0.2.0)
     arel (2.2.1)
     authlogic (3.0.3)
       activerecord (>= 3.0.7)
@@ -58,6 +62,9 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    cells (3.7.0)
+      actionpack (~> 3.0)
+      railties (~> 3.0)
     challonge-api (0.1.1)
       activeresource
     childprocess (0.2.2)
@@ -74,6 +81,7 @@ GEM
     gettext_i18n_rails (0.2.20)
       fast_gettext
     hike (1.2.1)
+    hooks (0.2.0)
     i18n (0.6.0)
     icalendar (1.1.6)
     jquery-rails (1.0.14)
@@ -91,6 +99,7 @@ GEM
       i18n (~> 0.4)
     multi_json (1.0.3)
     nokogiri (1.5.0)
+    onfire (0.2.0)
     polyglot (0.3.2)
     rack (1.3.2)
     rack-cache (1.0.3)
@@ -154,6 +163,7 @@ PLATFORMS
 DEPENDENCIES
   activemerchant
   acts_as_tree!
+  apotomo
   authlogic
   capybara
   challonge-api

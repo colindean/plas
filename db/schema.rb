@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111028234925) do
+ActiveRecord::Schema.define(:version => 20111105021131) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -118,6 +118,15 @@ ActiveRecord::Schema.define(:version => 20111028234925) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "shouts", :force => true do |t|
+    t.string   "text"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "shouts", ["user_id"], :name => "index_shouts_on_user_id"
 
   create_table "tickets", :force => true do |t|
     t.integer  "event_id"

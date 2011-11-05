@@ -1,0 +1,23 @@
+<section class="widget expanded" id="shoutbox">
+  <header>
+    <h1>Shoutbox</h1>
+  </header>
+  <section class="content">
+    <% if @shouts and !@shouts.empty? %>
+      <ul class="shouts">
+        <% for shout in @shouts %>
+          <li>
+            <span class="user"><%= link_to shout.user.display_name, shout.user %></span><span class="colon">:</span>
+            <span class="text"><%= shout.text %></span>
+          </li>
+        <% end %>
+     </ul>
+    <% else %>
+        <p><%= _("Got something to say? Say it!") %></p>
+    <% end %>
+    <%= form_tag url_for_event(:write), :remote => true do %>
+      <%= text_field_tag 'text', nil,  :placeholder => _("Shout it here!")  %>
+      <%= submit_tag _("Shout!") %>
+    <% end %>
+  </section>
+</section>

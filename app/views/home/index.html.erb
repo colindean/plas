@@ -42,23 +42,7 @@
   </div>
 
   <div class="column" id="right">
-    <section class="widget expanded" id="widget-shoutbox">
-      <header>
-        <h1>Shoutbox</h1>
-      </header>
-      <section class="content">
-        <p>Got something to say? Say it! Note that this doesn't actually work yet.</p>
-
-        <ul class="shouts">
-          <% begin %>
-          <li><%= link_to User.find(1).display_name, User.find(1) %>: Hip hip hooray!</li>
-          <% rescue %>
-          
-          <% end %>
-        </ul>
-        <input type="text" name="shout[text]" placeholder="Shout it here!"/>
-      </section>
-    </section>
+    <%= render_widget :shoutbox %>
 
     <section class="widget expanded" id="widget-opensource">
       <header>
