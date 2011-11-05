@@ -15,9 +15,11 @@
     <% else %>
         <p><%= _("Got something to say? Say it!") %></p>
     <% end %>
-    <%= form_tag url_for_event(:write), :remote => true do %>
-      <%= text_field_tag 'text', nil,  :placeholder => _("Shout it here!")  %>
-      <%= submit_tag _("Shout!") %>
+    <% if @show_form %>
+      <%= form_tag url_for_event(:write), :remote => true do %>
+        <%= text_field_tag 'text', nil,  :placeholder => _("Shout it here!")  %>
+        <%= submit_tag _("Shout!") %>
+      <% end %>
     <% end %>
   </section>
 </section>

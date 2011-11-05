@@ -1,4 +1,5 @@
 class ShoutboxWidget < Apotomo::Widget
+  before_filter :should_show_form
   responds_to_event :write
   
   def display
@@ -18,6 +19,12 @@ class ShoutboxWidget < Apotomo::Widget
     else
       render :text => 'alert("{'+options[:current_user]+'} '+ s.errors.full_messages.join(_("and")) + '");'
     end
+  end
+
+  private
+
+  def should_show_form
+    @show_form = options[:current_user] != nil
   end
     
 
