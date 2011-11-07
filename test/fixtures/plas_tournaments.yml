@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  winner: 
+  creator: 
+  max_participants: 1
+  description: MyText
+
+two:
+  name: MyString
+  winner: 
+  creator: 
+  max_participants: 1
+  description: MyText
