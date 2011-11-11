@@ -172,6 +172,12 @@ section.widget header { /* virtually the same as section#header header */
   font-weight: bold;
   text-shadow: .1em .1em .1em rgba(0,0,0,.7);
 }
+
+section.widget .note {
+  font-style:italic;
+  color: gray;
+  font-size: 80%;
+}
 /* /dashboard widget stuff */
 
 /*progress bar*/

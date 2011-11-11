@@ -210,6 +210,20 @@ section.widget section.content {
   padding: 0.3em;
 }
 
+section.widget .note {
+  text-align:right;
+}
+
+section.widget#shoutbox time:before {
+  content: "[";
+}
+section.widget#shoutbox time:after {
+  content: "]";
+}
+section.widget#shoutbox span.user:after {
+  content: ":";
+}
+
 /* /dashboard widget stuff */
 
 #dashboard {

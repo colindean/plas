@@ -4,6 +4,12 @@ $(function(){
   $('p.notice:not(.alert)').delay(2000).fadeOut(2000);
 
   setInterval("clock_tick()", 1000);
+
+  $.each($('time'), function(){
+    var e = $(this);
+    var t = e.attr('datetime');
+    e.attr('title', new Date(t));
+  });
 });
 
 function clock_tick(){

@@ -7,7 +7,8 @@
       <ul class="shouts">
         <% for shout in @shouts %>
           <li>
-            <span class="user"><%= link_to shout.user.display_name, shout.user %></span><span class="colon">:</span>
+            <%= time_tag shout.created_at, shout.created_at.strftime("%H:%M"),  :pubdate => true %>
+            <span class="user"><%= link_to shout.user.display_name, shout.user %></span>
             <span class="text"><%= shout.text %></span>
           </li>
         <% end %>
@@ -20,6 +21,8 @@
         <%= text_field_tag 'text', nil,  :placeholder => _("Shout it here!")  %>
         <%= submit_tag _("Shout!") %>
       <% end %>
+    <% else %>
+      <aside class="note">If you sign in, you, too can shout!</aside>
     <% end %>
   </section>
 </section>
