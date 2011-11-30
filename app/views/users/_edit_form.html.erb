@@ -13,11 +13,14 @@
   <fieldset>
     <legend><%= _('Edit User Information') %></legend>
 
-    <dt><%= f.label :given_name %></dt>
-    <dd><%= f.text_field :given_name %></dd>
+    <dt><%= f.label :name %></dt>
+    <dd><%= f.text_field :name %></dd>
 
-    <dt><%= f.label :family_name %></dt>
-    <dd><%= f.text_field :family_name %></dd>
+    <dt><%= f.label :full_name %></dt>
+    <dd><%= f.text_field :full_name %></dd>
+
+    <dt><%= f.label :pronunciation %></dt>
+    <dd><%= f.text_field :pronunciation %></dd>
 
     <dt><%= f.label :handle %></dt>
     <dd><%= f.text_field :handle %></dd>
