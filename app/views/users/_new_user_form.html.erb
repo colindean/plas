@@ -14,11 +14,17 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :given_name %>
-    <%= f.text_field :given_name %>
-		<br/>
-    <%= f.label :family_name %>
-    <%= f.text_field :family_name %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  	<br/>
+
+    <%= f.label :full_name %>
+    <%= f.text_field :full_name %>
+  	<br/>
+
+    <%= f.label :pronunciation %>
+    <%= f.text_field :pronunciation %>
+  	<br/>
   </div>
   <div class="field">
     <%= f.label :birthdate %><br />

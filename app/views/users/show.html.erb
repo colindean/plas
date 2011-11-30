@@ -7,14 +7,20 @@
 
 <dl class="user-info info-list">
   <fieldset>
-    <legend><%= _('User Information for %s') % @user.full_name %></legend>
+    <legend><%= _('User Information') %></legend>
     <%=render :partial => 'users/tools'%>
 
     <dt><%= _('Name') %></dt>
-    <dd><%= @user.given_name %> <%= @user.family_name %></dd>
+    <dd><%= @user.name %></dd>
+
+    <dt><%= _('Full Name') %></dt>
+    <dd><%= @user.full_name %></dd>
     
     <dt><%= _('Handle') %></dt>
     <dd><%= ( @user.handle and not @user.handle.empty? ) ? @user.handle : _('%s has not set a handle.') % @user.display_name %></dd>
+
+    <dt><%= _('Pronunciation') %></dt>
+    <dd><%= ( @user.pronunciation and not @user.pronunciation.empty? ) ? @user.pronunciation : _('%s has not set a pronunciation.') % @user.display_name %></dd>
     
     <dt><%= _('Email') %></dt>
     <dd><%= @user.email %></dd>
