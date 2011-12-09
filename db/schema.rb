@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111130033745) do
+ActiveRecord::Schema.define(:version => 20111209000907) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -114,14 +114,6 @@ ActiveRecord::Schema.define(:version => 20111130033745) do
     t.string   "paid_currency",     :default => "USD"
   end
 
-  create_table "remote_tournaments", :force => true do |t|
-    t.string   "remote_type"
-    t.string   "remote_id"
-    t.integer  "tournament_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
@@ -163,6 +155,10 @@ ActiveRecord::Schema.define(:version => 20111130033745) do
     t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "remote_tournament_type"
+    t.integer  "remote_tournament_id"
+    t.string   "remote_type"
+    t.integer  "remote_id"
   end
 
   add_index "tournaments", ["event_id"], :name => "index_tournaments_on_event_id"
