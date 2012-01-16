@@ -155,8 +155,6 @@ ActiveRecord::Schema.define(:version => 20111209000907) do
     t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "remote_tournament_type"
-    t.integer  "remote_tournament_id"
     t.string   "remote_type"
     t.integer  "remote_id"
   end
