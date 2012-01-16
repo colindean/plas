@@ -298,6 +298,23 @@ dl#list-pcfgs {
         overflow: hidden;
 }
 
+.field label {
+  position: relative;
+  width: 100px;
+  display:inline-block;
+}
+
+.field input {
+  position: relative;
+  width:200px;
+  display:inline-block;
+}
+
+.field .note {
+  font-style:italic;
+  font-size: 0.8em;
+}
+
 #tournaments .tournament {
   margin: 1em 0;
   padding: 0.5em;

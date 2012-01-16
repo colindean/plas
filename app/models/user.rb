@@ -75,6 +75,7 @@ class User < ActiveRecord::Base
 
 	def display_name
 		return handle if has_handle
-		return "%s" % [full_name]	
+		return full_name if full_name
+    return name
 	end
 end

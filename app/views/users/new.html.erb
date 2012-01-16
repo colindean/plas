@@ -4,7 +4,7 @@
 <% end %>
 
 <h1><%=title %></h1>
-<%= form_for @user, :url => account_path do |f| %>
+<%= form_for @user, :url => account_url do |f| %>
 	<%= render :partial => "new_user_form", :locals => { :f => f } %>
 	<%= f.submit _('Register') %>
 <% end %>

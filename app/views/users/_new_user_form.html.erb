@@ -16,35 +16,38 @@
   <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %>
-  	<br/>
+  </div>
 
+  <div class="field">
     <%= f.label :full_name %>
     <%= f.text_field :full_name %>
-  	<br/>
+  </div>
 
+  <div class="field">
     <%= f.label :pronunciation %>
     <%= f.text_field :pronunciation %>
-  	<br/>
   </div>
   <div class="field">
-    <%= f.label :birthdate %><br />
+    <%= f.label :birthdate %>
     <%= f.date_select :birthdate,
                         {
                         :start_year => Time.now.year - 100, 
                         :end_year => Time.now.year - 13, 
                         :default => Time.now - 18.years,
                         } %>
-		<%= _('If you are younger than this date, you may need your parents\' signature on the waiver to enter the event. No exceptions are granted to this rule.') %>
+    <span class="note">
+		  <%= _('If you are younger than this date, you may need your parents\' signature on the waiver to enter the event. No exceptions are granted to this rule.') %>
+  </span>
   </div>
   <div class="field">
-    <%= f.label :gender %><br />
+    <%= f.label :gender %>
     <%= f.text_field :gender %>
   </div>
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email %>
     <%= f.email_field :email %>
   </div>
   <div class="field">
-    <%= f.label :password, f.object.new_record? ? nil : "Change password" %><br />
+    <%= f.label :password, f.object.new_record? ? nil : "Change password" %>
     <%= f.password_field :password %>
   </div>
