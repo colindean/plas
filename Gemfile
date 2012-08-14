@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-gem 'rails', '3.1.0'
+gem 'rails', '3.2.8'
 
 #these next few lines address problems building on ubuntu natty
 #gem 'bzip2-ruby' #, :git =>'git://github.com/colindean/bzip2-ruby'
@@ -38,14 +38,14 @@ gem 'apotomo'
 group :development,:test do
   gem 'factory_girl_rails'
   gem 'watchr'
-  gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem 'sqlite3'
   gem 'capybara' #, :git => 'git://github.com/jnicklas/capybara.git'
   #gem 'cucumber' # , :git => 'git://github.com/colindean/cucumber.git' #fixes Config deprecation warnings
   #gem 'rspec' #, '~>2.0.0.beta.20'
   #gem 'rspec-rails' #, '~>2.0.0.beta.20'
   #gem 'cucumber-rails'
   gem 'spork'
-  gem 'rcov'
+  gem 'simplecov'
 end
 
 group :test do

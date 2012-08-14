@@ -1,3 +1,3 @@
-Factory.define :transaction do |f|
+#Factory.define :transaction do |f|
 
-end
+#end
