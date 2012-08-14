@@ -27,9 +27,14 @@
     <% if current_user and current_user.can 'events.administrate' %>
       <div class="available-tickets">
         <% if event.tickets.count > 0 %>
+          <h3>Available tickets</h3>
         <ul>
           <% event.tickets.each do |ticket| %>
-          <li><%= ticket.name %> - $<%= ticket.price %> - <%= ticket.available %> <%= _('tickets available') %></li>
+            <li><%= ticket.name %> - 
+               $<%= ticket.price %> - 
+               <%= _('%d tickets available') % ticket.available %>, 
+               <%= _('%d tickets remaining') % ticket.remaining %>
+            </li>
           <% end %>
         </ul>
         <% end %>
