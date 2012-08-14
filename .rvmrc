@@ -1,2 +1,2 @@
-rvm --create use 1.9.2@plas > /dev/null
+rvm --create use 1.9.3@plas > /dev/null
 export rvm_pretty_print_flag=1
