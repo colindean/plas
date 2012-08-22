@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111209000907) do
+ActiveRecord::Schema.define(:version => 20120822035221) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20111209000907) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "waiver_id"
   end
 
   create_table "pcfgs", :force => true do |t|
@@ -223,5 +224,15 @@ ActiveRecord::Schema.define(:version => 20111209000907) do
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["last_request_at"], :name => "index_users_on_last_request_at"
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token"
+
+  create_table "waivers", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "event_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "waivers", ["event_id"], :name => "index_waivers_on_event_id"
 
 end

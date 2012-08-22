@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
   has_many :addresses, :dependent => :destroy
   has_many :tickets, :dependent => :destroy
   has_many :tournaments, :dependent => :destroy
+  belongs_to :waiver
 
   accepts_nested_attributes_for :addresses, :allow_destroy => true
   #TODO: validations
