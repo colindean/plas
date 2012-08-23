@@ -23,6 +23,7 @@ Plas::Application.routes.draw do
     match '/registration/:id/edit' => 'registrations#edit'
     match '/registrations' => 'registrations#index'
     match '/set_current' => 'events#set_current', :as => :setcurrent
+    match '/set_waiver' => 'events#set_waiver', :as => :setwaiver
     resources :tickets
     resources :tournaments
   end

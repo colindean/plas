@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-	before_filter :require_permission_events_administrate, :only => [:new, :create, :edit, :update, :destroy, :set_current]
+	before_filter :require_permission_events_administrate, :only => [:new, :create, :edit, :update, :destroy, :set_current, :set_waiver]
   # GET /events
   # GET /events.xml
   def index
@@ -35,6 +35,7 @@ class EventsController < ApplicationController
   def show
     begin
       @event = Event.find(params[:id])
+      @waivers = Waiver.all if current_user and current_user.can('events.administrate')
       respond_to do |format|
         format.html # show.html.erb
         format.xml  { render :xml => @event }
@@ -110,4 +111,35 @@ class EventsController < ApplicationController
     end
     redirect_to request.referrer
   end
+
+  def set_waiver
+    event = Event.find(params[:event_id])
+    begin
+      waiver = Waiver.find(params[:event][:waiver_id])
+    rescue ActiveRecord::RecordNotFound
+      waiver = nil
+    end
+
+    if event
+      event.waiver = waiver
+      respond_to do |format|
+        if event.save
+          format.html do
+            if waiver.nil?
+              notice = _("Waiver removed from %{event_name}") % {:event_name => event.name}
+            else
+              notice = _("Waiver %{title} set as the active waiver for %{event_name}") % { :title => waiver.title, :event_name => event.name }
+            end
+            redirect_to event, :notice => notice 
+          end
+          format.xml { head :ok }
+        else
+          format.html { render :action => "show" }
+          format.xml { render :xml => @event.errors, :status => :unprocessable_entity }
+        end
+      end
+    end
+    return
+  end
+
 end

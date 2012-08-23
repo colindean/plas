@@ -4,6 +4,11 @@
       <li><%= link_to _('Edit'), edit_event_path(@event), :class => 'icon edit' %></li>
       <li><%= link_to _('Delete'), @event, :confirm => 'Are you sure?', :method => :delete, :class => 'icon delete' %></li>
       <li><%= (current_event == @event) ? _("Current event") : link_to(_("Set current"), event_setcurrent_path(@event)) %></li>
+      <li>
+        <%= form_tag event_setwaiver_path(@event), :remote => true do -%>
+          Waiver:
+          <%= select :event, 'waiver_id', @waivers.collect {|w| [w.title, w.id]}, {:include_blank => true, :remote=>true}, {:onChange => 'this.parentNode.submit()'} %>
+        <% end %>
     </ul>
   </section>
 <% end %>

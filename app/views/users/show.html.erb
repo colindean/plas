@@ -91,7 +91,7 @@
                      reg.date_given]) %>
               <% end %>
 
-              <%= link_to _("Print waiver"), waiver_url(reg.ticket.event.waiver) %>
+              <%= link_to _("Print waiver"), waiver_url(reg.ticket.event.waiver) if reg.ticket.event.waiver %>
 
 
             </li>
