@@ -1,14 +1,16 @@
-<% title = _('Editing Waiver %{title}') % {:title => @waiver.title } %>
+<% title = _('New Waiver') %>
 <% content_for :title do %>
   <%=title %>
 <% end %>
 
 <h1><%=title %></h1>
 
+
 <%= form_for @waiver do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :locals => { :f => f } %>
   <div class="submit-options">
-    <%= f.submit %> or <%= link_to 'Back', waiver_path(@waiver) %>
+    <%= f.submit %> or <%= link_to 'Back', waivers_path %>
   </div>
 <% end %>
+

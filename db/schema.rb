@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120822035221) do
+ActiveRecord::Schema.define(:version => 20120823020119) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -228,11 +228,8 @@ ActiveRecord::Schema.define(:version => 20120822035221) do
   create_table "waivers", :force => true do |t|
     t.string   "title"
     t.text     "body"
-    t.integer  "event_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  add_index "waivers", ["event_id"], :name => "index_waivers_on_event_id"
 
 end

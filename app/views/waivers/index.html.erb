@@ -4,37 +4,41 @@
 <% end %>
 
 <h1><%= title %></h1>
-  <% if @waivers.empty? %>
-    <p><%= _("There are no waivers available currently.") %></p>
-  <% else %>
-    <table id="waiver-list">
-      <thead>
-        <tr>
-          <th><%= _("Waiver title") %></th>
-          <th><%= _("Events") %></th>
-        </tr>
-      </thead>
-      <tbody>
-      <% @waivers.each do |w| %>
-        <tr>
-          <td>
-            <%= link_to w.title, w %>
-          </td>
-          <td>
-            <% if !w.events.empty? %>
-              <ul>
-                <% w.events.each do |e| %>
-                  <li>
-                    <%= link_to e.name, e %>
-                  </li>
-                <% end %>
-              </ul>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-    </table>
-  <% end %>
+<% if @waivers.empty? %>
+  <p><%= _("There are no waivers available currently.") %></p>
+<% else %>
+  <table id="waiver-list">
+    <thead>
+      <tr>
+        <th><%= _("Waiver title") %></th>
+        <th><%= _("Events") %></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @waivers.each do |w| %>
+      <tr>
+        <td>
+          <%= link_to w.title, w %>
+        </td>
+        <td>
+          <% if !w.events.empty? %>
+            <ul>
+              <% w.events.each do |e| %>
+                <li>
+                  <%= link_to e.name, e %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        </td>
+        <td>
+        <%= link_to _('Edit'), edit_waiver_url(w) %>
+        <%= link_to _('Destroy'), w, :confirm => 'Are you sure?', :method => :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+<% end %>
 
-
+<%= link_to _("New waiver"), new_waiver_url %>

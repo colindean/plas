@@ -1,4 +1,6 @@
 class WaiversController < ApplicationController
+  before_filter :require_permission_waivers_administrate, :except => :show
+
   def index
     @waivers = Waiver.all
 
@@ -73,5 +75,11 @@ class WaiversController < ApplicationController
       format.html { redirect_to(waivers_url) }
       format.xml { head :ok }
     end
+  end
+
+  protected
+
+  def require_permission_waivers_administrate
+    user_can 'waivers.administrate', _('You must be a waiver administrator to access this page.')
   end
 end
