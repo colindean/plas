@@ -8,3 +8,4 @@ public/stylesheets/scaffold.css
 *~
 test/coverage.data
 .vagrant
+.DS_Store
