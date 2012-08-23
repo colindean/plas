@@ -1,0 +1,2 @@
+module WaiverHelper
+end

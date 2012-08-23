@@ -56,3 +56,7 @@ end
 #app-specific stuff
 gem 'steam-condenser' #http://koraktor.github.com/steam-condenser
 
+#for waivers
+gem 'redcarpet'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf'

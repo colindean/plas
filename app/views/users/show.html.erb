@@ -91,7 +91,7 @@
                      reg.date_given]) %>
               <% end %>
 
-              <a href="">Print waiver</a>
+              <%= link_to _("Print waiver"), waiver_url(reg.ticket.event.waiver) %>
 
 
             </li>

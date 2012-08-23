@@ -1,11 +1,8 @@
 Plas::Application.routes.draw do
-
+  resources :waivers
   resources :registration_transfers
-
   resources :registration_gift_logs
-
   resources :transactions
-
   resources :pcfgs
 
   match '/events/calendar(.:format)' => 'events#calendar'

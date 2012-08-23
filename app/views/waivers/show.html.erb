@@ -1,0 +1,11 @@
+<% title =  _('Waiver %{title}') % {:title => @waiver.title} %>
+<% content_for :title do %>
+  <%=title %>
+<% end %>
+
+<div id="print-controls" class="no-print">
+  <%= link_to _("PDF Version"), waiver_url(@waiver, :format => :pdf) %>
+  <%= link_to _("Print me"), "javascript:window.print()" %>
+</div>
+
+<%=raw @markdown.render @waiver.body %>
