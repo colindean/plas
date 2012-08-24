@@ -4,8 +4,7 @@ class UserTest < MiniTest::Unit::TestCase
 
   def setup
     @user = User.new
-    @user.name = 'Jon'
-    @user.full_name = 'Jon Daniel'
+    @user.name = 'Jon Daniel'
     @user.pronunciation = 'John Dan`yell'
   end
   

@@ -12,9 +12,6 @@
 
     <dt><%= _('Name') %></dt>
     <dd><%= @user.name %></dd>
-
-    <dt><%= _('Full Name') %></dt>
-    <dd><%= @user.full_name %></dd>
     
     <dt><%= _('Handle') %></dt>
     <dd><%= ( @user.handle and not @user.handle.empty? ) ? @user.handle : _('%s has not set a handle.') % @user.display_name %></dd>
@@ -24,12 +21,6 @@
     
     <dt><%= _('Email') %></dt>
     <dd><%= @user.email %></dd>
-    
-    <dt><%= _('Gaming group') %></dt>
-    <dd><%= ( @user.gaming_group and not @user.gaming_group.empty? ) ? @user.gaming_group : _('%s has not allied with a group.') % @user.display_name %></dd>
-    
-    <dt><%= _('Gamer type') %></dt>
-    <dd><%= ( @user.gamer_type ) ? @user.gamer_type : _('%s has not set a gamer type.') % @user.display_name %></dd>
     
     <dt><%= _('Birthdate') %></dt>
     <dd><%= @user.birthdate %></dd>

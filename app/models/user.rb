@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
 
   validates :name, :presence => true, :length => { :minimum => 1 }
-  validates :full_name, :presence => true, :length => { :minimum => 1 }
   validates :pronunciation, :presence => true, :length => { :minimum => 1 }
 	validates :email, :presence => true
 
@@ -75,7 +74,6 @@ class User < ActiveRecord::Base
 
 	def display_name
 		return handle if has_handle
-		return full_name if full_name
     return name
 	end
 end

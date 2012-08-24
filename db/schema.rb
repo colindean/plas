@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120823020119) do
+ActiveRecord::Schema.define(:version => 20120824040708) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line1"
@@ -195,10 +195,6 @@ ActiveRecord::Schema.define(:version => 20120823020119) do
   create_table "users", :force => true do |t|
     t.string   "handle"
     t.string   "email"
-    t.string   "gaming_group"
-    t.datetime "date_arrival"
-    t.datetime "date_departure"
-    t.integer  "gamer_type"
     t.date     "birthdate"
     t.string   "gender"
     t.datetime "created_at"
@@ -217,7 +213,6 @@ ActiveRecord::Schema.define(:version => 20120823020119) do
     t.string   "crypted_password",    :default => "",         :null => false
     t.boolean  "disabled",            :default => false,      :null => false
     t.string   "name"
-    t.string   "full_name"
     t.string   "pronunciation"
   end
 

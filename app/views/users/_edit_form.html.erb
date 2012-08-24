@@ -16,9 +16,6 @@
     <dt><%= f.label :name %></dt>
     <dd><%= f.text_field :name %></dd>
 
-    <dt><%= f.label :full_name %></dt>
-    <dd><%= f.text_field :full_name %></dd>
-
     <dt><%= f.label :pronunciation %></dt>
     <dd><%= f.text_field :pronunciation %></dd>
 
@@ -31,19 +28,6 @@
 
     <dt><%= f.label :password, f.object.new_record? ? nil : _("Change password") %></dt>
     <dd><%= f.password_field :password %></dd>
-
-    <dt><%= f.label :gaming_group %></dt>
-    <dd><%= f.text_field :gaming_group %></dd>
-
-    <dt><%= f.label :date_arrival %></dt>
-    <dd><%= f.datetime_select :date_arrival %></dd>
-
-    <dt><%= f.label :date_departure %></dt>
-    <dd><%= f.datetime_select :date_departure %></dd>
-
-    <dt><%= f.label :gamer_type %></dt>
-<% #TODO: i18n and put into User %>
-    <dd><%= f.select :gamer_type, %w[computer console both] %></dd>
 
     <dt><%= f.label :birthdate %></dt>
     <dd><%= f.date_select :birthdate, :start_year => Time.now.year - 100, 
