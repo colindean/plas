@@ -3,7 +3,7 @@ class ShoutboxWidget < Apotomo::Widget
   responds_to_event :write
   
   def display
-    @shouts = Shout.find(:all)
+    @shouts = Shout.last(100)
     render
   end
   
