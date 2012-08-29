@@ -1,4 +1,5 @@
 class Ticket < ActiveRecord::Base
+  #TODO: mass assignment protection?
   belongs_to :event
   has_one :generates_ticket, :class_name => "Ticket"
   has_many :registrations

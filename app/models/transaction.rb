@@ -18,6 +18,7 @@ recorded_by is the current_user for check/walkin, or leave nil for automatic
 registration links to the generated registration
 
 =end
+  #TODO: mass assignment protection?
   belongs_to :address #, :dependent => :destroy
 
   belongs_to :recorded_by, :class_name => "User"

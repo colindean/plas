@@ -1,4 +1,5 @@
 class Registration < ActiveRecord::Base
+  #TODO: attr_accessible or attr_protected for mass assignment protection
   #TODO: validations
   belongs_to :ticket
   belongs_to :purchaser, :class_name => "User"

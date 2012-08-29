@@ -1,4 +1,5 @@
 class UserGroup < ActiveRecord::Base
+  attr_accessible :name
   #this is basically the join model for user<->permissions
 
   #TODO: validations

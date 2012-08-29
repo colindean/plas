@@ -1,4 +1,5 @@
 class Permission < ActiveRecord::Base
+  attr_accessible :name, :code, :category, :parent
   #include Comparable
   acts_as_tree :order => :code
   

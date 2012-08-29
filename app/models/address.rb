@@ -13,6 +13,10 @@ These classes use it:
 
 #TODO: validations
 
+  attr_accessible :line1, :line2, :line3, :neighborhood, :city, :region, 
+                  :country, :postcode, :primary, :phone, :address_type
+  attr_accessible :created_at, :updated_at
+
 	TYPES = [ 'billing', 'shipping', 'emergency', 'event' ]
 	
   belongs_to :event

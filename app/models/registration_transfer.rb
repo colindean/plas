@@ -1,4 +1,5 @@
 class RegistrationTransfer < ActiveRecord::Base
+  #TODO: mass assignment protections?
 
   belongs_to :registration, :class_name => "Registration"
   belongs_to :to_user, :class_name => "User"

@@ -1,11 +1,22 @@
 class User < ActiveRecord::Base
+  #things we'll access regularly
+  attr_accessible :name, :pronounciation, :handle, :email, :birthdate, :gender,
+                  :disabled
+  #mostly internal things that are OK to access for admins only
+  attr_accessible :created_at, :updated_at, :login_count, :failed_login_count, 
+                  :last_request_at, :current_login_at, :last_login_at, 
+                  :current_login_ip, :last_login_ip
 
-  validates :name, :presence => true, :length => { :minimum => 1 }
-  validates :pronunciation, :presence => true, :length => { :minimum => 1 }
-	validates :email, :presence => true
+  validates :name, :presence => true, 
+                   :length => { :minimum => 1 }
 
-	validates_format_of :email, 
-			:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates :pronunciation, :presence => true, 
+                            :length => { :minimum => 1 }
+
+	validates :email, :presence => true,  
+			              :format => { 
+                      :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i 
+                     }
 
 	has_many :addresses, :dependent => :destroy
 

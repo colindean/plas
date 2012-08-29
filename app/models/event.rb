@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   #attr_accessible :address_attributes
+  attr_accessible :name, :start, :end, :description
   has_many :addresses, :dependent => :destroy
   has_many :tickets, :dependent => :destroy
   has_many :tournaments, :dependent => :destroy
