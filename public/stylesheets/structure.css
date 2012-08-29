@@ -223,6 +223,10 @@ section.widget#shoutbox time:after {
 section.widget#shoutbox span.user:after {
   content: ":";
 }
+section.widget#shoutbox ul.shouts {
+  max-height: 300px;
+  overflow: auto;
+}
 
 /* /dashboard widget stuff */
 

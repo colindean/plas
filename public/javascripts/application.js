@@ -10,6 +10,10 @@ $(function(){
     var t = e.attr('datetime');
     e.attr('title', new Date(t));
   });
+
+  $('#shoutbox ul.shouts').animate({ 
+    scrollTop: $("#shoutbox ul.shouts").prop("scrollHeight")}, 0);
+
 });
 
 function clock_tick(){
