@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   #things we'll access regularly
-  attr_accessible :name, :pronounciation, :handle, :email, :birthdate, :gender,
-                  :disabled
+  attr_accessible :name, :pronunciation, :handle, :email, :birthdate, :gender,
+                  :disabled, :password
   #mostly internal things that are OK to access for admins only
   attr_accessible :created_at, :updated_at, :login_count, :failed_login_count, 
                   :last_request_at, :current_login_at, :last_login_at, 

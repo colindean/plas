@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(:version => 20120824040708) do
     t.boolean  "primary"
     t.string   "phone"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "event_id"
     t.string   "address_type"
   end
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(:version => 20120824040708) do
     t.boolean  "registration_open"
     t.boolean  "visible"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.integer  "waiver_id"
   end
 
@@ -49,15 +49,15 @@ ActiveRecord::Schema.define(:version => 20120824040708) do
     t.text     "key"
     t.text     "value"
     t.integer  "last_modified_by_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "permission_to_user_groups", :force => true do |t|
     t.integer  "permission_id"
     t.integer  "user_group_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "permissions", :force => true do |t|
@@ -65,8 +65,8 @@ ActiveRecord::Schema.define(:version => 20120824040708) do
     t.string   "code",                              :null => false
     t.string   "category",   :default => "General", :null => false
     t.integer  "parent_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   create_table "plas_tournaments", :force => true do |t|
@@ -75,8 +75,8 @@ ActiveRecord::Schema.define(:version => 20120824040708) do
     t.integer  "creator_id"
     t.integer  "max_participants"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   add_index "plas_tournaments", ["creator_id"], :name => "index_plas_tournaments_on_creator_id"
@@ -87,8 +87,8 @@ ActiveRecord::Schema.define(:version => 20120824040708) do
     t.integer  "to_user_id"
     t.integer  "from_user_id"
     t.integer  "by_user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "registration_transfers", :force => true do |t|
@@ -96,8 +96,8 @@ ActiveRecord::Schema.define(:version => 20120824040708) do
     t.integer  "from_user_id"
     t.integer  "by_user_id"
     t.integer  "registration_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "registrations", :force => true do |t|
@@ -109,8 +109,8 @@ ActiveRecord::Schema.define(:version => 20120824040708) do
     t.integer  "package_parent_id"
     t.boolean  "checked_in"
     t.datetime "date_checked_in"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.integer  "transaction_id"
     t.string   "paid_currency",     :default => "USD"
   end
@@ -118,8 +118,8 @@ ActiveRecord::Schema.define(:version => 20120824040708) do
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
@@ -128,8 +128,8 @@ ActiveRecord::Schema.define(:version => 20120824040708) do
   create_table "shouts", :force => true do |t|
     t.string   "text"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "shouts", ["user_id"], :name => "index_shouts_on_user_id"
@@ -143,8 +143,8 @@ ActiveRecord::Schema.define(:version => 20120824040708) do
     t.boolean  "package"
     t.integer  "generates_ticket_id"
     t.integer  "generates_number"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                     :null => false
+    t.datetime "updated_at",                                                     :null => false
     t.string   "name",                :default => "Registration for one person", :null => false
     t.string   "currency"
   end
@@ -154,8 +154,8 @@ ActiveRecord::Schema.define(:version => 20120824040708) do
     t.text     "description"
     t.integer  "max_participants"
     t.integer  "event_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.string   "remote_type"
     t.integer  "remote_id"
   end
@@ -173,23 +173,23 @@ ActiveRecord::Schema.define(:version => 20120824040708) do
     t.integer  "cents"
     t.text     "comments"
     t.integer  "registration_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.string   "payment_media"
     t.string   "currency",         :default => "USD"
   end
 
   create_table "user_groups", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "user_to_user_groups", :force => true do |t|
     t.integer  "user_id"
     t.integer  "user_group_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -197,8 +197,8 @@ ActiveRecord::Schema.define(:version => 20120824040708) do
     t.string   "email"
     t.date     "birthdate"
     t.string   "gender"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
     t.string   "password_salt",       :default => "assalted", :null => false
     t.string   "persistence_token",   :default => "token",    :null => false
     t.string   "single_access_token", :default => "token",    :null => false
