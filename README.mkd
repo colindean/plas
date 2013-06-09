@@ -8,6 +8,8 @@ Authors
 -------
 * [Colin Dean](https://github.com/colindean)
 
+[![Gittip](http://badgr.co/Gittip/colindean.png)](https://www.gittip.com/colindean/)
+
 ### Contributors ###
 * [Jonathan Daniel](https://github.com/binarycleric)
 * [Bill Turner](https://github.com/billturner)
