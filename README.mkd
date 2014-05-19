@@ -15,6 +15,7 @@ Authors
 * [Bill Turner](https://github.com/billturner)
 * [Dan Motles](https://github.com/jungleralph)
 * [Justin Ritter](https://github.com/erad1cate)
+* [Ariel Kirkwood](http://github.com/arielkirkwood)
 
 ### Translators ###
 * English: Colin Dean
