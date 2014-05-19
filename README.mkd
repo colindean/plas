@@ -8,7 +8,7 @@ Authors
 -------
 * [Colin Dean](https://github.com/colindean)
 
-[![Gittip](http://badgr.co/Gittip/colindean.png)](https://www.gittip.com/colindean/)
+[![Gittip](http://img.shields.io/gittip/colindean.svg)](https://www.gittip.com/colindean/)
 
 ### Contributors ###
 * [Jonathan Daniel](https://github.com/binarycleric)
