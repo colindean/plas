@@ -52,7 +52,7 @@ class TournamentsController < ApplicationController
         format.xml { render :xml => @tournament, :status => :created, :location => @tournament }
       else
         format.html { render :action => "new" }
-        format.xml { render :xml => @tournamet.errors, :status => :unprocessable_entity  }
+        format.xml { render :xml => @tournament.errors, :status => :unprocessable_entity  }
       end
     end
   end
